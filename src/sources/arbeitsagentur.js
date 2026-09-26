@@ -32,14 +32,25 @@ const PATHS = ['pc/v6/jobs', 'pc/v4/app/jobs', 'pc/v4/jobs'];
 
 async function fetchJobs(q) {
   let lastError;
+  let empty = null;
   for (const path of PATHS) {
     try {
       const url = `https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/${path}?was=${encodeURIComponent(q)}&angebotsart=1&size=50&page=1`;
-      return await getJson(url, { retries: 0, headers: { 'X-API-Key': 'jobboerse-jobsuche' } });
+      const data = await getJson(url, { retries: 0, headers: { 'X-API-Key': 'jobboerse-jobsuche' } });
+      if (!Array.isArray(data?.stellenangebote)) {
+        // Newer versions may omit the key when there are no hits; remember and keep trying.
+        empty ??= { stellenangebote: [] };
+        lastError = new Error(`${path}: no stellenangebote (keys: ${Object.keys(data ?? {}).join(', ') || 'none'})`);
+        continue;
+      }
+      if (data.stellenangebote.length) return data;
+      empty = data;
     } catch (err) {
       if (!(err instanceof HttpError) || ![403, 404, 410].includes(err.status)) throw err;
       lastError = err;
     }
   }
+  if (empty && process.env.JOBREFERRER_DEBUG) console.warn(`[arbeitsagentur] ${lastError?.message ?? 'empty result'}`);
+  if (empty) return empty;
   throw lastError;
 }

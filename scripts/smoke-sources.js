@@ -5,7 +5,8 @@ import { SOURCES } from '../src/sources/index.js';
 import { setCacheEnabled } from '../src/sources/cache.js';
 
 setCacheEnabled(false);
-const profile = { roleFamily: 'software', skills: ['JavaScript', 'React', 'Node.js', 'Python'], searchQueries: ['software engineer', 'developer'], titles: ['Software Engineer'] };
+process.env.JOBREFERRER_DEBUG = '1';
+const profile = { roleFamily: 'software', skills: ['JavaScript', 'React', 'Node.js', 'Python'], searchQueries: ['software engineer', 'softwareentwickler'], titles: ['Software Engineer'] };
 const countries = ['DE', 'GB', 'NL'];
 
 let failed = 0;
