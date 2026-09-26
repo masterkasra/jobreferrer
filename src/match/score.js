@@ -34,10 +34,13 @@ export function scoreJob(job, profile, countries = []) {
   const loc = job.location;
   const usOnly = /\b(us|usa|u\.s\.|united states)\b/i.test(loc) && !/europe|emea|worldwide|anywhere|global|canada/i.test(loc);
   const americasOnly = /\b(north america|americas)\b/i.test(loc);
-  const remoteRestricted = s.remote && ((usOnly && !countries.includes('US')) || (americasOnly && !countries.includes('US') && !countries.includes('CA')));
+  const otherRegionOnly = /\b(latam|latin america|south america|apac|asia[- ]pacific|africa only)\b/i.test(loc) && !/europe|emea|\beu\b|worldwide|anywhere|global|u\.?s\.?a?\b|united states|canada|uk\b/i.test(loc);
+  const remoteRestricted = s.remote && ((usOnly && !countries.includes('US')) || (americasOnly && !countries.includes('US') && !countries.includes('CA')) || otherRegionOnly);
 
   if (job.kind === 'freelance') {
     score += 20;
+    // Gigs restricted to US citizens (or similar) are not open to the candidate.
+    if (s.noVisa) (score -= 30), reasons.push('no-sponsorship');
   } else {
     if (s.visa) (score += 15), reasons.push('visa');
     if (s.relocation) (score += 10), reasons.push('relocation');

@@ -32,7 +32,10 @@ for (const [name, lang] of CASES) {
     console.log(`  sources: ${r.sources.map((s) => `${s.id}=${s.status === 'ok' ? s.count : s.status}`).join(' ')}`);
     writeFileSync(new URL(`${name.replace(/\W/g, '_')}.html`, out), toHtml(r));
     if (jobs.length < 5) failures.push(`${name}: only ${jobs.length} ranked jobs with employer + link`);
-    if (!jobs.every((j) => j.pitch?.coverLetter)) failures.push(`${name}: missing cover letters`);
+    // The top jobs (PITCH_COUNT, default 10) get a tailored letter; the rest get links and tips only.
+    const withLetter = r.jobs.slice(0, 10).filter((j) => j.pitch?.coverLetter).length;
+    if (withLetter < Math.min(10, r.jobs.length)) failures.push(`${name}: only ${withLetter} of the top jobs have a cover letter`);
+    if (!r.freelance.every((g) => g.proposal)) failures.push(`${name}: freelance gigs without proposals`);
     summary.push(`| ${name} | ${r.profile.headline} | ${r.stats.total} | ${r.stats.matched} | ${r.stats.visa} | ${jobs.slice(0, 3).map((j) => `${j.title} @ ${j.company}`).join('<br>')} | ${r.freelance.length} |`);
   } catch (err) {
     failures.push(`${name}: ${err.stack}`);

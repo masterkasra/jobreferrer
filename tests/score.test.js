@@ -35,3 +35,16 @@ test('freelance projects are ranked by skills', () => {
   const gigs = rankJobs(jobs, profile, countries).filter((j) => j.kind === 'freelance');
   assert.equal(gigs.length, 3);
 });
+
+test('remote roles locked to other regions and US-citizen gigs are penalised', () => {
+  const latam = makeJob({ source: 't', sourceName: 'T', title: 'Senior React Developer', company: 'X', location: 'LATAM', url: 'https://x', description: 'Remote. React, Node.js, TypeScript' });
+  const eu = makeJob({ source: 't', sourceName: 'T', title: 'Senior React Developer', company: 'Y', location: 'Europe', url: 'https://y', description: 'Remote. React, Node.js, TypeScript' });
+  assert.ok(scoreJob(latam, profile, countries).reasons.includes('region-locked'));
+  assert.ok(scoreJob(latam, profile, countries).score < scoreJob(eu, profile, countries).score);
+  const gig = makeJob({ source: 't', sourceName: 'T', kind: 'freelance', title: 'U.S. Citizen Full-Stack Developer', url: 'https://z', description: 'React Node.js' });
+  const ok = makeJob({ source: 't', sourceName: 'T', kind: 'freelance', title: 'Full-Stack Developer', url: 'https://w', description: 'React Node.js' });
+  assert.ok(scoreJob(gig, profile, countries).score < scoreJob(ok, profile, countries).score - 20);
+  const long = makeJob({ source: 't', sourceName: 'T', title: 'Dev', url: 'https://v', location: Array(40).fill('Germany, Netherlands').join(', ') });
+  assert.ok(long.location.length <= 92 && long.location.endsWith('…'));
+  assert.ok(long.countries.includes('DE') && long.countries.includes('NL'));
+});

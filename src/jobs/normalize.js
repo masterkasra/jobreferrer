@@ -34,7 +34,8 @@ export function makeJob(raw) {
     kind: raw.kind ?? 'job',
     title: clean(raw.title),
     company: clean(raw.company ?? ''),
-    location: location || (signals.remote ? 'Remote' : ''),
+    // Some remote boards list 70+ countries; keep the display short (countries[] keeps them all).
+    location: shorten(location) || (signals.remote ? 'Remote' : ''),
     countries,
     region: regionOf(location),
     url: raw.url,
@@ -45,6 +46,8 @@ export function makeJob(raw) {
     signals,
   };
 }
+
+const shorten = (loc) => (loc.length > 90 ? `${loc.slice(0, 87).replace(/[,\s]+[^,]*$/, '')}, …` : loc);
 
 const clean = (s) => htmlToText(String(s)).replace(/\s+/g, ' ').trim();
 
