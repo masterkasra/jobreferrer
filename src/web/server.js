@@ -39,6 +39,7 @@ button{margin-top:18px;width:100%;padding:12px;border:0;border-radius:10px;backg
 <label>زبان گزارش</label><select id="lang"><option value="fa">فارسی</option><option value="en">English</option></select>
 <button id="go" type="submit">جستجو</button>
 <p class="muted" id="status"></p>
+<p class="muted">🔒 رزومه شما فقط برای همین جستجو خوانده می‌شود و جایی ذخیره نمی‌شود.</p>
 </form></main>
 <script>
 const drop = document.getElementById('drop'), dl = document.getElementById('dl'), file = document.getElementById('file'), status = document.getElementById('status');
@@ -50,6 +51,7 @@ document.getElementById('f').onsubmit = async (e) => {
   e.preventDefault();
   const f = file.files[0];
   if (!f) { status.textContent = 'اول فایل رزومه را انتخاب کنید.'; return; }
+  if (f.size > 4.4 * 1024 * 1024) { status.textContent = 'حجم فایل بیشتر از ۴ مگابایت است؛ لطفاً PDF کم‌حجم‌تر یا فایل Word بفرستید.'; return; }
   const q = new URLSearchParams({ countries: [...document.querySelectorAll('[name=c]:checked')].map((x) => x.value).join(','), nationality: document.getElementById('nat').value, title: document.getElementById('title').value, lang: document.getElementById('lang').value });
   const btn = document.getElementById('go'); btn.disabled = true; status.textContent = '⏳ در حال تحلیل رزومه و جستجو در سایت‌های کاریابی… (۱ تا ۳ دقیقه)';
   try {
@@ -72,14 +74,16 @@ async function readBody(req) {
   return Buffer.concat(chunks);
 }
 
-export const server = createServer(async (req, res) => {
+// Shared by the local server and the Vercel function (api/index.js):
+// GET → upload page, POST → run the search and return the HTML report.
+export async function handler(req, res) {
   const url = new URL(req.url, 'http://localhost');
   try {
-    if (req.method === 'GET' && url.pathname === '/') {
+    if (req.method === 'GET' && !url.pathname.startsWith('/api/run')) {
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       return res.end(page());
     }
-    if (req.method === 'POST' && url.pathname === '/api/run') {
+    if (req.method === 'POST') {
       const buffer = await readBody(req);
       const name = decodeURIComponent(req.headers['x-filename'] ?? 'resume.txt');
       const lang = url.searchParams.get('lang') === 'en' ? 'en' : 'fa';
@@ -108,7 +112,9 @@ export const server = createServer(async (req, res) => {
     console.error(err);
     res.writeHead(err.status ?? 500, { 'Content-Type': 'text/plain; charset=utf-8' }).end(err.message);
   }
-});
+}
+
+export const server = createServer(handler);
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   server.listen(PORT, HOST, () => console.log(`jobreferrer web UI: http://${HOST}:${PORT}`));

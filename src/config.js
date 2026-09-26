@@ -40,7 +40,8 @@ export const config = {
     topJobs: Number(env('TOP_JOBS', '25')),
     pitches: Number(env('PITCH_COUNT', '10')),
   },
-  cacheDir: resolve(process.cwd(), env('CACHE_DIR', '.cache')),
+  // Serverless platforms (Vercel) only allow writes under /tmp.
+  cacheDir: resolve(process.cwd(), env('CACHE_DIR', process.env.VERCEL ? '/tmp/jobreferrer-cache' : '.cache')),
   userAgent: 'jobreferrer/1.0 (+https://github.com/masterkasra/jobreferrer)',
 };
 
