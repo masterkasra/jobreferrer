@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: Tests (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Syntax check
+        run: for f in bin/*.js scripts/*.js $(find src -name '*.js'); do node --check "$f"; done
+      - run: npm test
+      - name: Offline demo report
+        run: node bin/jobreferrer.js examples/sample-resume.md --offline --no-ai --nationality IR --out /tmp/demo
+
+  live-sources:
+    name: Live job-board check
+    runs-on: ubuntu-latest
+    # Real network calls: informative, never blocks a merge.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run smoke
+
+  e2e:
+    name: End-to-end (live job boards)
+    runs-on: ubuntu-latest
+    # Real network calls to job boards: a board outage should not block merges,
+    # but the job is red when resumes stop producing ranked jobs.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-reports
+          path: e2e-reports/
+          retention-days: 14

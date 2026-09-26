@@ -1,0 +1,21 @@
+# Uses the deployed site like a visitor: opens the page and uploads resumes.
+name: Live site check
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: Site URL
+        default: https://jobreferrer.vercel.app
+  schedule:
+    - cron: '41 6 * * *'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/check-live.mjs "${{ inputs.url || 'https://jobreferrer.vercel.app' }}"

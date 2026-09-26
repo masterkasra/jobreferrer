@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>گزارش فرصت‌های شغلی و مهاجرت — Arman Karimi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#16181d;--muted:#5d6472;--line:#e3e6ee;--accent:#2f6fed;--good:#138a52;--warn:#b45309;--chip:#eef2fe;--miss:#fdeeee}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1115;--card:#171a21;--ink:#e8eaf0;--muted:#9aa2b2;--line:#2a2f3a;--accent:#6a9cff;--good:#3ccf8e;--warn:#f0a44b;--chip:#1f2940;--miss:#3a2224}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.7 Vazirmatn,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:960px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:1.7rem;margin:.2em 0}h2{font-size:1.3rem;margin:2em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--line)}h3{font-size:1.05rem;margin:0}h4{margin:1em 0 .3em}
+a{color:var(--accent)}.muted{color:var(--muted);font-size:.9rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}.stat b{display:block;font-size:1.5rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+.job header{display:flex;gap:12px;align-items:flex-start}.grow{flex:1;min-width:0}.company{color:var(--muted)}
+.rank{background:var(--chip);border-radius:8px;min-width:32px;text-align:center;font-weight:800}
+.score{--v:50;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:conic-gradient(var(--accent) calc(var(--v)*1%),var(--line) 0);position:relative}.score::before{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--card)}.score{isolation:isolate}.score::before{z-index:-1}
+.meta,.badges{display:flex;flex-wrap:wrap;gap:6px 14px;margin:8px 0;color:var(--muted);font-size:.88rem}.badge{background:var(--chip);color:var(--ink);border-radius:999px;padding:1px 10px}
+.chip{display:inline-block;background:var(--chip);border-radius:6px;padding:0 8px;margin:2px}.chip.miss{background:var(--miss)}
+.chip.ok{background:var(--chip)}.why .chip{font-size:.85rem}
+.pill{font-size:.8rem;border-radius:999px;padding:1px 10px;background:var(--chip);vertical-align:middle}.pill.good{background:var(--good);color:#fff}.pill.mid{background:var(--accent);color:#fff}.pill.warn{background:var(--warn);color:#fff}.pill.bad{background:#b91c1c;color:#fff}
+.path.good{border-inline-start:4px solid var(--good)}.path.mid{border-inline-start:4px solid var(--accent)}.path.warn{border-inline-start:4px solid var(--warn)}.path.bad{border-inline-start:4px solid #b91c1c}
+.calc{border-bottom:1px dashed var(--line);padding-bottom:6px}.calc:last-child{border:0}.calc h4{margin:.4em 0}
+.checklist{list-style:none;padding:0}.checklist li{margin:6px 0}
+select.track{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:4px 8px;font:inherit}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}nav.toc a{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;text-decoration:none}
+.trackbox span{display:inline-block;margin-inline-end:12px}
+.salary.good{color:var(--good)}.salary.warn{color:var(--warn)}.fit{font-style:italic}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.btn{background:var(--accent);color:#fff;text-decoration:none;padding:6px 14px;border-radius:8px;font-weight:600}.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+details{border-top:1px dashed var(--line);margin-top:8px;padding-top:8px}summary{cursor:pointer;font-weight:600;color:var(--accent)}
+.copy{border:1px solid var(--line);border-radius:10px;margin:10px 0;overflow:hidden}.copy-head{display:flex;justify-content:space-between;align-items:center;background:var(--chip);padding:4px 10px;font-size:.85rem}
+.copy button{border:0;background:var(--accent);color:#fff;border-radius:6px;padding:2px 10px;cursor:pointer;font:inherit}
+pre{margin:0;padding:12px;white-space:pre-wrap;word-wrap:break-word;font:14px/1.6 ui-sans-serif,system-ui,sans-serif;direction:ltr;text-align:left}
+.filters{position:sticky;top:0;z-index:2;background:var(--bg);padding:8px 0;display:flex;flex-wrap:wrap;gap:6px}.filters button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:4px 12px;cursor:pointer;font:inherit}.filters button[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.country h3 small{color:var(--muted);font-weight:400}.warnbox{border-inline-start:4px solid var(--warn);padding:6px 12px;background:var(--miss);border-radius:6px}
+.links p{margin:.4em 0}.links a{display:inline-block;margin:2px 4px}
+table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{border-bottom:1px solid var(--line);padding:6px;text-align:start}
+footer{margin-top:40px;color:var(--muted);font-size:.85rem;text-align:center}
+</style>
+</head>
+<body><main>
+<h1>گزارش فرصت‌های شغلی و مهاجرت</h1>
+<p class="muted">Sat, 26 Sep 2026 19:04:35 GMT · متن‌ها با قالب آماده ساخته شده‌اند؛ برای شخصی‌سازی کامل کلید ANTHROPIC_API_KEY را تنظیم کنید.</p>
+
+<section class="card">
+<h2 style="margin-top:0">پروفایل شما</h2>
+<p><b>Arman Karimi</b> — Full Stack Developer · senior · 7 سال</p>
+
+<p class="skills"><b>مهارت‌ها:</b> <span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Redux</span><span class="chip">Node.js</span><span class="chip">GraphQL</span><span class="chip">Microservices</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span><span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">CI/CD</span><span class="chip">Git</span><span class="chip">Testing</span><span class="chip">Agile</span></p>
+<p><b>زبان‌ها:</b> English C1 · German A2 · Persian native</p>
+</section>
+
+<h2>نتیجه جستجو</h2>
+<div class="stats">
+<div class="stat"><b>14</b>آگهی بررسی‌شده</div><div class="stat"><b>11</b>مرتبط با شما</div><div class="stat"><b>4</b>اسپانسر ویزا</div><div class="stat"><b>5</b>کمک جابه‌جایی</div><div class="stat"><b>5</b>دورکاری</div><div class="stat"><b>3</b>پروژه فریلنسری</div>
+</div>
+
+<nav class="toc"><a href="#jobs">✈️ موقعیت‌های شغلی مناسب مهاجرت (6)</a><a href="#remote">🏠 دورکاری از همین‌جا (بدون مهاجرت) (1)</a><a href="#freelance">💼 پروژه‌ها و فرصت‌های فریلنسری (3)</a><a href="#immigration">🛂 ارزیابی مهاجرتی شخصی شما</a><a href="#strategy">🧭 استراتژی و راهنمای شما</a></nav>
+<div class="card trackbox"><b>پیگیری اپلای‌ها:</b> <span id="trackSummary">—</span> <span class="muted">وضعیت هر آگهی در همین مرورگر ذخیره می‌شود.</span></div>
+
+<h2 id="immigration">ارزیابی مهاجرتی شخصی شما</h2>
+<p class="muted">مثل جلسه اول با مشاور مهاجرت: واقعیت‌های پرونده شما، امتیاز در سیستم‌های رسمی، شانس هر مسیر، مدارک لازم و برنامه ۹۰ روزه.</p>
+<div class="card"><h4 style="margin-top:0">اطلاعات پرونده</h4><table><tr><th>سن</th><td><bdi>31</bdi></td></tr><tr><th>تحصیلات</th><td><bdi>کارشناسی</bdi></td></tr><tr><th>انگلیسی</th><td><bdi>IELTS L7.5 R7 W6.5 S7 → CLB 8/9/8/9</bdi></td></tr><tr><th>آلمانی</th><td><bdi>A2</bdi></td></tr><tr><th>سابقه</th><td><bdi>7 سال</bdi></td></tr></table>
+</div>
+<div class="card"><h4 style="margin-top:0">محاسبه امتیاز در سیستم‌های رسمی</h4><div class="calc"><h4>🇨🇦 Express Entry CRS: <b>365</b></h4><p class="muted">سن 99 · تحصیلات 120 · زبان 108 · انتقال‌پذیری مهارت 38</p><p>FSW 67: <b>70/100</b> ✅</p><p><b>اگر…</b></p><ul><li>آیلتس L8 R7 W7 S7 (CLB 9): <b>418</b> (+53)</li><li>آیلتس L8.5 R8 W7.5 S7.5 (CLB 10): <b>430</b> (+65)</li><li>فرانسه NCLC 7 (حدود B2): <b>427</b> (+62)</li><li>کارشناسی ارشد: <b>392</b> (+27)</li><li>نامزدی استانی (PNP): <b>965</b> (+600)</li></ul></div><div class="calc"><h4>🇩🇪 Chancenkarte: <b>8/6</b> ✅</h4><p class="muted">سابقه 3 · شغل کمبود 1 · آلمانی 1 · انگلیسی 1 · سن 2</p></div><div class="calc"><h4>🇦🇺 Skilled Independent: <b>65</b> / 65 ✅</h4><p class="muted">سن 30 · سابقه 10 · تحصیلات 15 · همسر 10</p></div></div>
+<h3>مسیرهای مهاجرت شما (به ترتیب شانس)</h3>
+<div class="card path good"><h3>آلمان — EU Blue Card <span class="pill good">شانس بالا</span></h3>
+<ul><li>با مدرک دانشگاهی شناخته‌شده (دانشگاه H+ در anabin یا تأییدیه ZAB) و پیشنهاد کار، ویزای کار مستقیم می‌گیرید.</li><li>حداقل حقوق ۲۰۲۶: ۵۰٬۷۰۰ یورو؛ برای مشاغل کمبود (از جمله IT) و فارغ‌التحصیلان ۳ سال اخیر: ۴۵٬۹۳۴ یورو.</li><li>اقامت دائم بعد از ۲۱ ماه (با زبان B1) یا ۲۷ ماه.</li></ul><h4>قدم‌های بعدی</h4><ul><li>نام دانشگاه و رشته خود را در anabin چک کنید؛ اگر H+ نیست یا مدرک «entspricht» ندارد، Statement of Comparability از ZAB بگیرید (≈۲۰۰ یورو، ۱–۳ ماه).</li><li>از کارفرما بخواهید «روند تسریع‌شده متخصصان» (§81a) را انجام دهد: هزینه ۴۱۱ یورو، نوبت سفارت ظرف حدود ۳ هفته.</li></ul>
+<p class="muted">زمان: ۱–۳ ماه پس از نوبت سفارت · هزینه: ویزا ۷۵ یورو؛ ZAB ≈ ۲۰۰ یورو · <a href="https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card" target="_blank" rel="noopener">سایت رسمی</a></p></div><div class="card path good"><h3>آلمان — Opportunity Card (Chancenkarte) <span class="pill good">شانس بالا</span></h3>
+<ul><li>اگر مدرک شما در آلمان شناخته‌شده باشد (H+ در anabin یا ZAB)، بدون امتیاز واجد شرایط هستید.</li><li>امتیاز شما: 8 از ۶ لازم (سابقه 3، سن 2، آلمانی 1، انگلیسی 1، شغل کمبود 1).</li><li>تا ۱ سال در آلمان کار پیدا کنید؛ کار پاره‌وقت ۲۰ ساعت در هفته و کار آزمایشی مجاز است.</li></ul><h4>قدم‌های بعدی</h4><ul><li>تمکن مالی: حساب بلوکه (حدود ۱٬۱۰۰ یورو در ماه) یا تعهدنامه (Verpflichtungserklärung) از یک ضامن در آلمان. برخی ارائه‌دهندگان حساب بلوکه اتباع ایران را نمی‌پذیرند؛ قبل از پرداخت بپرسید.</li></ul>
+<p class="muted">زمان: ۱–۴ ماه (بسته به نوبت سفارت) · هزینه: ویزا ۷۵ یورو + تمکن مالی · <a href="https://www.make-it-in-germany.com/en/visa-residence/types/job-search-opportunity-card" target="_blank" rel="noopener">سایت رسمی</a></p></div><div class="card path good"><h3>هلند — Highly Skilled Migrant (kennismigrant) <span class="pill good">شانس بالا</span></h3>
+<ul><li>نیازی به مدرک نیست؛ کارفرما باید اسپانسر شناخته‌شده IND باشد و حقوق ماهانه حداقل ۵٬۹۴۲ یورو (۳۰ سال به بالا) بدون احتساب ۸٪ هالیدی‌پی.</li><li>سریع‌ترین مسیر اروپا: تصمیم IND معمولاً ۲–۴ هفته.</li></ul><h4>قدم‌های بعدی</h4><ul><li>فقط به شرکت‌هایی که در فهرست رسمی اسپانسرهای IND هستند اپلای کنید (این گزارش خودش بررسی می‌کند).</li></ul>
+<p class="muted">زمان: ۲–۴ هفته + ویزای ورود MVV · هزینه: هزینه IND را کارفرما می‌پردازد · <a href="https://ind.nl/en/residence-permits/work/highly-skilled-migrant" target="_blank" rel="noopener">سایت رسمی</a></p></div><div class="card path mid"><h3>انگلستان — Skilled Worker visa <span class="pill mid">ممکن</span></h3>
+<ul><li>کارفرما باید اسپانسر دارای مجوز Home Office باشد؛ شغل باید در سطح مدرک دانشگاهی (RQF 6) باشد.</li><li>حداقل حقوق ۴۱٬۷۰۰ پوند یا نرخ رایج آن شغل (هر کدام بیشتر). انگلیسی در سطح B2 با آزمون SELT (مثل IELTS for UKVI).</li></ul><h4>قدم‌های بعدی</h4><ul><li>فقط برای آگهی‌هایی که در این گزارش «در فهرست رسمی اسپانسرها» علامت دارند وقت بگذارید.</li></ul>
+<p class="muted">زمان: ۳–۸ هفته پس از CoS · هزینه: هزینه درمان (IHS) ۱٬۰۳۵ پوند در سال + هزینه ویزا · <a href="https://www.gov.uk/skilled-worker-visa" target="_blank" rel="noopener">سایت رسمی</a></p></div><div class="card path mid"><h3>ایرلند — Critical Skills Employment Permit <span class="pill mid">ممکن</span></h3>
+<ul><li>برای مشاغل فهرست مهارت‌های حیاتی (بیشتر نقش‌های IT و مهندسی) با حقوق حداقل ۴۰٬۹۰۴ یورو و مدرک مرتبط.</li><li>خانواده بلافاصله می‌تواند بیاید؛ بعد از ۲ سال Stamp 4 (اقامت بدون نیاز به مجوز کار).</li></ul>
+<p class="muted">زمان: حدود ۱–۳ ماه · <a href="https://enterprise.gov.ie/en/what-we-do/workplace-and-skills/employment-permits/permit-types/critical-skills-employment-permit/" target="_blank" rel="noopener">سایت رسمی</a></p></div><div class="card path mid"><h3>استرالیا — Skilled Independent (189) / Nominated (190) <span class="pill mid">ممکن</span></h3>
+<ul><li>امتیاز شما 65 (حداقل ۶۵؛ در دعوت‌های اخیر مشاغل IT معمولاً ۸۵–۹۵+ لازم بوده).</li><li>سن 30، انگلیسی 0، سابقه 10، تحصیلات 15، وضعیت همسر 10.</li><li>ACS معمولاً ۲ سال اول سابقه را کسر می‌کند (در محاسبه لحاظ شده).</li></ul><h4>قدم‌های بعدی</h4><ul><li>آیلتس ۸ در هر مهارت ۲۰ امتیاز دارد (۷ = ۱۰ امتیاز)؛ بزرگ‌ترین اهرم شماست.</li><li>ارزیابی مهارت (ACS برای IT، Engineers Australia برای مهندسی) را شروع کنید.</li></ul>
+<p class="muted"><a href="https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-independent-189/points-table" target="_blank" rel="noopener">سایت رسمی</a></p></div><div class="card path warn"><h3>کانادا — Express Entry — Federal Skilled Worker <span class="pill warn">دشوار</span></h3>
+<ul><li>امتیاز CRS شما حدود 365 است (سن 99، تحصیلات 120، زبان 108، انتقال‌پذیری مهارت 38).</li><li>جدول ۶۷ امتیازی FSW: 70/100 — قبول.</li><li>در قرعه‌های عمومی اخیر معمولاً ۵۰۰+ لازم بوده؛ قرعه‌های دسته‌ای (زبان فرانسه، سلامت، STEM/فنی) حد پایین‌تری داشته‌اند.</li><li>بیشترین اثر: آیلتس L8.5 R8 W7.5 S7.5 (CLB 10) ← 430 (+65).</li><li>هر سال بعد از ۲۹ سالگی حدود ۵–۶ امتیاز CRS کم می‌شود؛ زمان به نفع شما نیست.</li></ul><h4>قدم‌های بعدی</h4><ul><li>آزمون IELTS General یا CELPIP بدهید (هدف: CLB 9 یعنی L8 R7 W7 S7 در آیلتس).</li><li>ارزیابی مدرک (ECA) از WES یا ICAS/IQAS بگیرید؛ WES مدارک را مستقیم از دانشگاه می‌خواهد.</li><li>پروفایل Express Entry بسازید و استریم‌های PNP (بریتیش کلمبیا و انتاریو برای فناوری) را دنبال کنید؛ نامزدی استانی ۶۰۰ امتیاز دارد.</li><li>تمکن مالی: حدود ۱۵٬۳۰۰ دلار کانادا برای یک نفر (سالانه در ژوئیه به‌روز می‌شود).</li></ul>
+<p class="muted">زمان: ۶ ماه پس از دعوت (ITA) + بررسی امنیتی بیشتر برای اتباع ایران · هزینه: هزینه دولتی اقامت دائم ≈ ۱٬۵۲۵ دلار کانادا برای هر بزرگسال + ECA + آزمون زبان · <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/check-score.html" target="_blank" rel="noopener">سایت رسمی</a></p></div>
+<div class="card"><h4 style="margin-top:0">چک‌لیست مدارک</h4>
+<ul class="checklist"><li><label><input type="checkbox" data-doc="0"> <b>پاسپورت و خروج از کشور</b> — حداقل ۱۸ ماه اعتبار. برای آقایان کارت پایان خدمت یا معافیت برای گرفتن پاسپورت/خروج لازم است.</label></li><li><label><input type="checkbox" data-doc="1"> <b>آزادسازی و تأییدیه مدرک</b> — فارغ‌التحصیلان دوره روزانه دانشگاه‌های دولتی باید تعهد آموزش رایگان را تسویه یا تضمین کنند تا مدرک آزاد شود. تأییدیه تحصیلی از سامانه سجاد (وزارت علوم) یا سامانه وزارت بهداشت.</label></li><li><label><input type="checkbox" data-doc="2"> <b>ترجمه رسمی و تأیید</b> — ترجمه توسط مترجم رسمی قوه قضاییه + مهر دادگستری و وزارت امور خارجه. ایران عضو کنوانسیون آپوستیل نیست، پس برخی کشورها تأیید سفارت خود را هم می‌خواهند.</label></li><li><label><input type="checkbox" data-doc="3"> <b>سوابق کار</b> — نامه روی سربرگ شرکت با عنوان شغلی، تاریخ شروع/پایان، ساعات کار، حقوق و وظایف دقیق + سوابق بیمه تأمین اجتماعی به عنوان مدرک پشتیبان.</label></li><li><label><input type="checkbox" data-doc="4"> <b>گواهی عدم سوءپیشینه</b> — از دفاتر پلیس+۱۰ یا خدمات قضایی؛ ترجمه رسمی. اعتبار آن معمولاً ۶ ماه است، پس نزدیک زمان اپلای بگیرید.</label></li><li><label><input type="checkbox" data-doc="5"> <b>آزمون زبان</b> — آیلتس و تافل در ایران برگزار می‌شود؛ CELPIP در ایران نیست. برای آلمانی مراکز Goethe/telc/ÖSD را چک کنید.</label></li><li><label><input type="checkbox" data-doc="6"> <b>محل انگشت‌نگاری و مصاحبه</b> — کانادا در ایران سفارت و VAC ندارد (نزدیک‌ترین‌ها: آنکارا، استانبول، دبی، ایروان). برای سایر کشورها صف نوبت تهران را با کنسولگری‌های منطقه مقایسه کنید.</label></li><li><label><input type="checkbox" data-doc="7"> <b>تمکن مالی</b> — به دلیل تحریم، صورت‌حساب بانک‌های ایرانی اغلب پذیرفته یا قابل انتقال نیست؛ از راه‌های قانونی مجاز در کشور مقصد (حساب بلوکه، ضامن، حساب در کشور ثالث) زودتر برنامه‌ریزی کنید.</label></li><li><label><input type="checkbox" data-doc="8"> <b>ارزیابی مدرک برای آلمان</b> — anabin / ZAB degree recognition <a href="https://anabin.kmk.org/" target="_blank" rel="noopener">↗</a></label></li><li><label><input type="checkbox" data-doc="9"> <b>ارزیابی مدرک برای هلند</b> — Nuffic / IDW credential evaluation <a href="https://www.idw.nl/en/" target="_blank" rel="noopener">↗</a></label></li><li><label><input type="checkbox" data-doc="10"> <b>ارزیابی مدرک برای انگلستان</b> — UK ENIC statement of comparability <a href="https://www.enic.org.uk/" target="_blank" rel="noopener">↗</a></label></li><li><label><input type="checkbox" data-doc="11"> <b>ارزیابی مدرک برای ایرلند</b> — QQI qualification recognition <a href="https://www.qqi.ie/" target="_blank" rel="noopener">↗</a></label></li><li><label><input type="checkbox" data-doc="12"> <b>ارزیابی مدرک برای کانادا</b> — Educational Credential Assessment (WES etc.) <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/education-assessed.html" target="_blank" rel="noopener">↗</a></label></li><li><label><input type="checkbox" data-doc="13"> <b>ارزیابی مدرک برای استرالیا</b> — Skills assessment (e.g. ACS for IT, Engineers Australia) <a href="https://www.acs.org.au/msa.html" target="_blank" rel="noopener">↗</a></label></li></ul></div>
+<div class="card"><h4 style="margin-top:0">برنامه ۹۰ روزه</h4><p><b>روز ۱–۱۴: پایه</b></p><ul><li>آزمون زبان را رزرو کنید (هدف: آیلتس ۷+ در هر مهارت).</li><li>ترجمه رسمی مدارک، تأییدیه تحصیلی و نامه‌های سابقه کار را شروع کنید.</li><li>رزومه انگلیسی و لینکدین را طبق اصلاحات این گزارش بازنویسی کنید.</li></ul><p><b>روز ۱۵–۴۵: اپلای هدفمند</b></p><ul><li>هفته‌ای ۱۰–۲۰ اپلای شخصی‌سازی‌شده، اولویت با آلمان و آگهی‌های دارای اسپانسر.</li><li>ارزیابی مدرک (anabin/ZAB، WES، ACS…) را ثبت کنید؛ چند هفته تا چند ماه طول می‌کشد.</li><li>برای هر آگهی یک نفر در همان شرکت را در لینکدین پیدا و پیام کوتاه بفرستید (معرفی داخلی شانس را چند برابر می‌کند).</li></ul><p><b>روز ۴۶–۷۵: مصاحبه و مذاکره</b></p><ul><li>سوالات مصاحبه این گزارش را با صدای بلند تمرین کنید.</li><li>در مذاکره: حقوق را بالاتر از حداقل ویزا نگه دارید و کمک هزینه جابه‌جایی و هزینه ویزا را بخواهید.</li></ul><p><b>روز ۷۶–۹۰: ویزا</b></p><ul><li>بعد از قرارداد: از کارفرما روند تسریع‌شده (مثل §81a آلمان) یا اسپانسرشیپ را بخواهید و نوبت سفارت را فوراً بگیرید.</li><li>مدارک را طبق چک‌لیست این گزارش کامل و کپی‌های تأییدشده نگه دارید.</li></ul></div>
+<div class="card"><h4 style="margin-top:0">مشاور مجاز (در صورت نیاز)</h4><ul><li>مشاوره رایگان رسمی: خط تماس و فرم Make it in Germany؛ برای پرونده پیچیده وکیل مهاجرت (Fachanwalt für Migrationsrecht). <a href="https://www.make-it-in-germany.com/en/about-us/contact" target="_blank" rel="noopener">↗</a></li><li>اطلاعات رسمی و تماس با IND؛ برای موارد خاص وکیل عضو NOvA. <a href="https://ind.nl/en/contact" target="_blank" rel="noopener">↗</a></li><li>مشاوران مهاجرت انگلستان باید در IAA (سابقاً OISC) ثبت باشند. <a href="https://www.gov.uk/find-an-immigration-adviser" target="_blank" rel="noopener">↗</a></li><li>فقط با مشاور دارای مجوز RCIC (ثبت‌شده در CICC) یا وکیل کانادایی کار کنید. <a href="https://college-ic.ca/protecting-the-public/find-an-immigration-consultant" target="_blank" rel="noopener">↗</a></li><li>فقط با Registered Migration Agent ثبت‌شده در OMARA. <a href="https://portal.mara.gov.au/search-the-register-of-migration-agents/" target="_blank" rel="noopener">↗</a></li></ul><p class="warnbox">هیچ مشاور معتبری «ویزای تضمینی» یا «پیشنهاد کار فروشی» (مثلاً خرید LMIA) نمی‌فروشد؛ این‌ها کلاهبرداری و غیرقانونی است.</p></div>
+
+<h2 id="strategy">استراتژی و راهنمای شما</h2>
+<div class="card"><h4 style="margin-top:0">جمع‌بندی</h4><p>بر اساس رزومه، شما یک Full Stack Developer با حدود 7 سال سابقه هستید. در این جستجو 14 موقعیت پیدا شد که 4 مورد صریحاً اسپانسر ویزا و 5 مورد کمک جابه‌جایی دارند. بهترین مقصد فعلی برای شما «انگلستان» است (Skilled Worker visa). تمرکز روی ۱۰–۲۰ درخواست باکیفیت در هفته بسیار موثرتر از ارسال انبوه است.</p>
+<ul><li><b>انگلستان</b> — شانس بالا: Skilled Worker visa: Job offer from a Home Office licensed sponsor at RQF level 6 (degree level) and English at the required CEFR level. Salary: the higher of the general threshold and the occupation going rate. 1 آگهی با اسپانسر/جابه‌جایی پیدا شد.</li><li><b>ایرلند</b> — شانس بالا: Critical Skills Employment Permit: For roles on the Critical Skills Occupations List (most tech/engineering roles). Family can join immediately; path to Stamp 4 after 2 years. 1 آگهی با اسپانسر/جابه‌جایی پیدا شد.</li><li><b>کانادا</b> — شانس بالا: Express Entry (permanent residence): Points-based (CRS): age, education, language (IELTS/CELPIP/TEF), experience. Category draws favour French, healthcare, STEM and trades. Job-offer points were removed in 2025, so a job is not required. 1 آگهی با اسپانسر/جابه‌جایی پیدا شد.</li><li><b>استرالیا</b> — شانس بالا: Skills in Demand visa (subclass 482): Employer-sponsored; Core Skills stream requires a salary above the Core Skills Income Threshold (indexed every July).</li></ul></div>
+
+<h2>کشورهای پیشنهادی</h2>
+<div class="card country"><h3>انگلستان <small>86/100 · 1 jobs</small></h3>
+
+<h4>مسیرهای ویزا</h4><ul><li><a href="https://www.gov.uk/skilled-worker-visa" target="_blank" rel="noopener">Skilled Worker visa</a> — Job offer from a Home Office licensed sponsor at RQF level 6 (degree level) and English at the required CEFR level. Salary: the higher of the general threshold and the occupation going rate.</li><li><a href="https://www.gov.uk/global-talent" target="_blank" rel="noopener">Global Talent visa</a> — No job offer needed; endorsement for leaders or potential leaders in digital technology, science, arts.</li><li><a href="https://www.gov.uk/high-potential-individual-visa" target="_blank" rel="noopener">High Potential Individual</a> — For graduates of top global universities (list published yearly); no job offer needed.</li></ul>
+<p class="muted"><a href="https://www.gov.uk/browse/visas-immigration/work-visas" target="_blank" rel="noopener">سایت رسمی</a> · ارزیابی مدرک: <a href="https://www.enic.org.uk/" target="_blank" rel="noopener">UK ENIC statement of comparability</a><br>سبک رزومه: 2-page CV, no photo, no date of birth; achievements with numbers. Cover letters are short.</p></div><div class="card country"><h3>ایرلند <small>86/100 · 1 jobs</small></h3>
+
+<h4>مسیرهای ویزا</h4><ul><li><a href="https://enterprise.gov.ie/en/what-we-do/workplace-and-skills/employment-permits/permit-types/critical-skills-employment-permit/" target="_blank" rel="noopener">Critical Skills Employment Permit</a> — For roles on the Critical Skills Occupations List (most tech/engineering roles). Family can join immediately; path to Stamp 4 after 2 years.</li><li><a href="https://enterprise.gov.ie/en/what-we-do/workplace-and-skills/employment-permits/permit-types/general-employment-permit/" target="_blank" rel="noopener">General Employment Permit</a> — For other occupations not on the ineligible list; labour market needs test usually required.</li></ul>
+<p class="muted"><a href="https://enterprise.gov.ie/en/what-we-do/workplace-and-skills/employment-permits/" target="_blank" rel="noopener">سایت رسمی</a> · ارزیابی مدرک: <a href="https://www.qqi.ie/" target="_blank" rel="noopener">QQI qualification recognition</a><br>سبک رزومه: 2-page CV, no photo. Dublin tech market is English-only.</p></div><div class="card country"><h3>کانادا <small>86/100 · 1 jobs</small></h3>
+
+<h4>مسیرهای ویزا</h4><ul><li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry.html" target="_blank" rel="noopener">Express Entry (permanent residence)</a> — Points-based (CRS): age, education, language (IELTS/CELPIP/TEF), experience. Category draws favour French, healthcare, STEM and trades. Job-offer points were removed in 2025, so a job is not required.</li><li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/provincial-nominees.html" target="_blank" rel="noopener">Provincial Nominee Programs</a> — Provinces nominate candidates in their in-demand occupations (tech draws in BC and Ontario).</li><li><a href="https://www.canada.ca/en/employment-social-development/services/foreign-workers/global-talent.html" target="_blank" rel="noopener">Global Talent Stream (work permit)</a> — Employers can hire in-demand tech workers with ~2-week processing.</li></ul>
+<p class="muted"><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry.html" target="_blank" rel="noopener">سایت رسمی</a> · ارزیابی مدرک: <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/education-assessed.html" target="_blank" rel="noopener">Educational Credential Assessment (WES etc.)</a><br>سبک رزومه: North-American résumé: 1–2 pages, no photo, no age/marital status, achievement bullets.</p></div><div class="card country"><h3>استرالیا <small>83/100 · 0 jobs</small></h3>
+
+<h4>مسیرهای ویزا</h4><ul><li><a href="https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skills-in-demand-482" target="_blank" rel="noopener">Skills in Demand visa (subclass 482)</a> — Employer-sponsored; Core Skills stream requires a salary above the Core Skills Income Threshold (indexed every July).</li><li><a href="https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-independent-189" target="_blank" rel="noopener">Skilled Independent (subclass 189)</a> — Points-tested permanent visa, no sponsor needed; requires a positive skills assessment.</li></ul>
+<p class="muted"><a href="https://immi.homeaffairs.gov.au/" target="_blank" rel="noopener">سایت رسمی</a> · ارزیابی مدرک: <a href="https://www.acs.org.au/msa.html" target="_blank" rel="noopener">Skills assessment (e.g. ACS for IT, Engineers Australia)</a><br>سبک رزومه: 2–3 page résumé, no photo; list referees.</p></div><div class="card country"><h3>آلمان <small>82/100 · 1 jobs</small></h3>
+
+<h4>مسیرهای ویزا</h4><ul><li><a href="https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card" target="_blank" rel="noopener">EU Blue Card</a> — Recognised degree + job offer at or above the salary threshold. Permanent residence after 21–27 months.</li><li><a href="https://www.make-it-in-germany.com/en/visa-residence/types/it-specialists" target="_blank" rel="noopener">IT specialist without a degree</a> — At least 3 years of IT experience in the last 7 years and a job offer at the reduced Blue Card salary.</li><li><a href="https://www.make-it-in-germany.com/en/visa-residence/types/job-search-opportunity-card" target="_blank" rel="noopener">Opportunity Card (Chancenkarte)</a> — Points-based job-seeker permit for up to 1 year; you may work part-time (20 h/week) and do trial jobs while searching. Needs a recognised qualification and German A1 or English B2.</li><li><a href="https://www.make-it-in-germany.com/en/visa-residence/types/work-qualified-professionals" target="_blank" rel="noopener">Skilled worker visa (§18a/§18b)</a> — For recognised degree or vocational qualification holders with a matching job offer; no fixed salary threshold under 45.</li></ul>
+<p class="muted"><a href="https://www.make-it-in-germany.com/en/" target="_blank" rel="noopener">سایت رسمی</a> · ارزیابی مدرک: <a href="https://anabin.kmk.org/" target="_blank" rel="noopener">anabin / ZAB degree recognition</a><br>سبک رزومه: Tabular CV (Lebenslauf), 2 pages, photo optional, exact month/year dates, add language levels (CEFR). A short Anschreiben (cover letter) is still expected by many employers.</p></div>
+
+<div class="card">
+<h4 style="margin-top:0">اصلاحات رزومه</h4><ul><li>هر تجربه را با عدد بنویسید: «زمان پاسخ API را ۴۰٪ کم کردم» به جای «مسئول بک‌اند بودم».</li><li>در خلاصه بالای رزومه بنویسید: «آماده جابه‌جایی به … — نیازمند اسپانسر ویزا»؛ ریکروترها این را دنبال می‌کنند.</li><li>نام شرکت‌های ایرانی را با یک توضیح کوتاه (حوزه، اندازه، کاربران) همراه کنید تا برای کارفرمای خارجی قابل‌فهم باشد.</li><li>رزومه تک‌ستونه و بدون جدول/عکس بسازید تا سیستم‌های ATS آن را درست بخوانند.</li></ul>
+<h4>لینکدین</h4><ul><li>عنوان پروفایل را اینطور بنویسید: «Full Stack Developer | JavaScript · TypeScript · React | Open to relocation»</li><li>در Open to Work، گزینه «فقط ریکروترها» و شهرهای هدف (انگلستان، ایرلند، کانادا، استرالیا) را اضافه کنید.</li><li>هفته‌ای ۱۰ ریکروتر فنی در کشورهای هدف را با یک پیام کوتاه شخصی کانکت کنید.</li><li>هفته‌ای یک پست درباره پروژه یا یادگیری‌تان منتشر کنید تا در جستجوی ریکروترها بالاتر بیایید.</li></ul>
+<h4>استراتژی فریلنسری</h4><ul><li>سه سرویس مشخص بسازید: Web app development، API / backend development، Bug fixing &amp; performance tuning.</li><li>نرخ پیشنهادی برای شروع: 45–80 دلار در ساعت (بسته به سطح و بازار)؛ بعد از ۵ نظر مثبت نرخ را بالا ببرید.</li><li>روزانه ۳–۵ پروپوزال شخصی‌سازی‌شده (مثل نمونه‌های این گزارش) بفرستید، نه متن تکراری.</li><li>فقط از پلتفرم‌ها و روش‌های پرداختی استفاده کنید که رسماً کشور محل اقامت شما را پشتیبانی می‌کنند.</li><li>درآمد فریلنسری را مستند کنید؛ برای ویزای دیجیتال‌نومد (پرتغال، اسپانیا، استونی) مدرک درآمد خارجی لازم است.</li></ul>
+<h4>برنامه ۴ هفته‌ای جستجوی کار</h4><p><b>هفته ۱</b></p><ul><li>رزومه انگلیسی را با نکات بالا بازنویسی کنید.</li><li>پروفایل لینکدین را به‌روز کنید.</li><li>مدارک تحصیلی را برای ارزیابی (UK ENIC statement of comparability) آماده کنید.</li><li>در آزمون زبان ثبت‌نام کنید (اگر مدرک معتبر ندارید).</li></ul><p><b>هفته ۲</b></p><ul><li>به ۱۰ آگهی برتر این گزارش با نامه‌های آماده اپلای کنید.</li><li>برای هر آگهی یک نفر در شرکت را در لینکدین پیدا کنید و پیام بدهید.</li><li>پروفایل فریلنسری بسازید و ۱۰ پروپوزال بفرستید.</li></ul><p><b>هفته ۳</b></p><ul><li>ربات را دوباره اجرا کنید و آگهی‌های جدید را اپلای کنید.</li><li>سوالات مصاحبه این گزارش را تمرین کنید (با ضبط صدای خودتان).</li><li>یک پروژه کوچک برای پر کردن مهارت‌های جاافتاده شروع کنید.</li></ul><p><b>هفته ۴</b></p><ul><li>نتایج را بررسی کنید: نرخ پاسخ زیر ۵٪ یعنی رزومه یا هدف‌گیری باید اصلاح شود.</li><li>با کسانی که پاسخ ندادند یک پیگیری مودبانه بفرستید.</li><li>کشورهای هدف را بر اساس پاسخ‌ها تنظیم کنید.</li></ul>
+<h4>هشدارها</h4><div class="warnbox"><ul><li>هیچ کارفرمای واقعی برای استخدام یا ویزا از شما پول نمی‌گیرد. آگهی‌هایی که هزینه ثبت‌نام، «ویزای تضمینی» یا تماس فقط از واتساپ/تلگرام دارند را کنار بگذارید.</li><li>قوانین و حداقل حقوق ویزا مرتب تغییر می‌کند؛ قبل از هر اقدام، لینک رسمی هر کشور را بررسی کنید.</li><li>روند ویزا برای دارندگان پاسپورت ایرانی معمولاً بررسی امنیتی بیشتری دارد؛ ۲ تا ۶ ماه زمان اضافه در نظر بگیرید.</li><li>صف نوبت سفارت‌ها در تهران طولانی است؛ بسیاری از متقاضیان (در صورت پذیرش سفارت) از کنسولگری‌های آنکارا، استانبول، ایروان یا دبی اقدام می‌کنند.</li><li>بسیاری از پلتفرم‌های بین‌المللی (Upwork، Fiverr، PayPal، Stripe) به کاربران ساکن کشورهای تحت تحریم سرویس نمی‌دهند و حساب‌های خلاف قوانینشان بسته و پولشان بلوکه می‌شود. از پلتفرم‌ها و روش‌های پرداختی استفاده کنید که رسماً کشور محل اقامت شما را پشتیبانی می‌کنند.</li><li>ترجمه رسمی و تأیید مدارک تحصیلی (وزارت علوم/بهداشت و امور خارجه) را زود شروع کنید؛ معمولاً چند هفته طول می‌کشد.</li></ul></div>
+</div>
+
+<h2 id="jobs">موقعیت‌های شغلی مناسب مهاجرت</h2>
+<div class="filters" role="toolbar">
+<button type="button" data-filter="all" aria-pressed="true">★</button>
+<button type="button" data-filter="visa" aria-pressed="false">🛂 اسپانسر ویزا</button>
+<button type="button" data-filter="relocation" aria-pressed="false">✈️ کمک جابه‌جایی</button>
+<button type="button" data-filter="remote" aria-pressed="false">🏠 دورکاری</button>
+<button type="button" data-filter="new" aria-pressed="false">🆕 جدید</button>
+</div>
+<article class="card job" data-flags="visa relocation">
+  <header><span class="rank">1</span><div class="grow"><h3>Senior Full Stack Engineer (React/Node.js)</h3><div class="company">Nordlicht Software GmbH (demo)</div></div><div class="score" style="--v:98">98</div></header>
+  <div class="meta"><span><bdi>Berlin, Germany</bdi></span><span>منبع: <bdi>Demo board</bdi></span><span>انتشار: <bdi>2026-09-24</bdi></span></div>
+  <div class="badges"><span class="badge">🛂 اسپانسر ویزا</span><span class="badge">✈️ کمک جابه‌جایی</span></div>
+  <p class="salary good">حقوق: <bdi>72,000–85,000 EUR — بالاتر از حداقل ویزا (EU Blue Card: 50,700 EUR)</bdi></p>
+  <p class="skills"><b>مهارت‌های منطبق:</b> <span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span><span class="chip">AWS</span><span class="chip">Kubernetes</span></p>
+  
+  <p class="skills why"><b>چرا این آگهی:</b> <span class="chip ok">+ عنوان منطبق</span><span class="chip ok">+ اسپانسر ویزا</span><span class="chip ok">+ کمک جابه‌جایی</span><span class="chip ok">+ در کشور هدف</span><span class="chip ok">+ آگهی تازه</span></p>
+  
+  <div class="actions"><a class="btn" href="https://example.com/jobs/nordlicht-fullstack" target="_blank" rel="noopener">مشاهده و اپلای ↗</a><select class="track" data-id="7d202841e1aa" aria-label="پیگیری اپلای‌ها"><option value="">وضعیت…</option><option value="saved">ذخیره‌شده</option><option value="applied">اپلای کردم</option><option value="interview">مصاحبه</option><option value="offer">پیشنهاد کار</option><option value="rejected">رد شد</option></select></div>
+  <details><summary>نامه پیشنهادی به کارفرما · پیام کوتاه به ریکروتر (لینکدین/ایمیل) · راهنمای گرفتن این موقعیت</summary>
+    <p class="subject"><b>موضوع ایمیل:</b> Senior Full Stack Engineer (React/Node.js) — Arman Karimi (7+ years, open to relocation)</p>
+    <div dir="auto"><div class="copy"><div class="copy-head"><span>نامه پیشنهادی به کارفرما</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Dear Nordlicht Software GmbH (demo) hiring team,
+
+I&#39;m applying for the Senior Full Stack Engineer (React/Node.js) position. I&#39;m a senior Full Stack Developer with 7+ years working with TypeScript, React and Node.js, which matches the core of what you&#39;re looking for.
+
+What I would bring:
+• Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day
+• Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%
+• Also comfortable with PostgreSQL, AWS and Kubernetes
+
+I&#39;m ready to relocate to Germany and would need visa sponsorship (the EU Blue Card route fits this role). I can start the paperwork immediately and I&#39;m flexible on the start date.
+
+I&#39;d welcome a short call to discuss how I can help your team. Thank you for your time.
+
+Best regards,
+Arman Karimi
+arman.karimi@example.com | linkedin.com/in/arman-karimi-demo | github.com/arman-karimi-demo</pre></div><div class="copy"><div class="copy-head"><span>پیام کوتاه به ریکروتر (لینکدین/ایمیل)</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Hi! I&#39;m a Full Stack Developer (7+ years, TypeScript, React) and very interested in the Senior Full Stack Engineer (React/Node.js) role at Nordlicht Software GmbH (demo). Open to relocating to Germany with sponsorship. Could we have a quick chat?</pre></div></div>
+    <h4>راهنمای گرفتن این موقعیت</h4><ul><li>این آگهی تازه است؛ ظرف ۲۴–۴۸ ساعت اپلای کنید، شانس دیده شدن خیلی بیشتر است.</li><li>در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.</li></ul>
+    <h4>سوالات احتمالی مصاحبه</h4><div dir="auto"><ul><li>Walk us through a system you designed: what trade-offs did you make?</li><li>How do you debug a production issue you cannot reproduce locally?</li><li>Why do you want to relocate, and what is your timeline?</li></ul></div>
+  </details>
+</article>
+<article class="card job" data-flags="relocation">
+  <header><span class="rank">2</span><div class="grow"><h3>Full Stack Developer</h3><div class="company">Liffey Cloud (demo)</div></div><div class="score" style="--v:85">85</div></header>
+  <div class="meta"><span><bdi>Dublin, Ireland</bdi></span><span>منبع: <bdi>Demo board</bdi></span><span>انتشار: <bdi>2026-09-10</bdi></span></div>
+  <div class="badges"><span class="badge">✈️ کمک جابه‌جایی</span></div>
+  <p class="salary good">حقوق: <bdi>60,000–70,000 EUR — بالاتر از حداقل ویزا (Critical Skills Employment Permit: 40,904 EUR)</bdi></p>
+  <p class="skills"><b>مهارت‌های منطبق:</b> <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">GraphQL</span></p>
+  
+  <p class="skills why"><b>چرا این آگهی:</b> <span class="chip ok">+ عنوان منطبق</span><span class="chip ok">+ کمک جابه‌جایی</span><span class="chip ok">+ در کشور هدف</span></p>
+  
+  <div class="actions"><a class="btn" href="https://example.com/jobs/liffey-fullstack" target="_blank" rel="noopener">مشاهده و اپلای ↗</a><select class="track" data-id="8983e143f2bb" aria-label="پیگیری اپلای‌ها"><option value="">وضعیت…</option><option value="saved">ذخیره‌شده</option><option value="applied">اپلای کردم</option><option value="interview">مصاحبه</option><option value="offer">پیشنهاد کار</option><option value="rejected">رد شد</option></select></div>
+  <details><summary>نامه پیشنهادی به کارفرما · پیام کوتاه به ریکروتر (لینکدین/ایمیل) · راهنمای گرفتن این موقعیت</summary>
+    <p class="subject"><b>موضوع ایمیل:</b> Full Stack Developer — Arman Karimi (7+ years, open to relocation)</p>
+    <div dir="auto"><div class="copy"><div class="copy-head"><span>نامه پیشنهادی به کارفرما</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Dear Liffey Cloud (demo) hiring team,
+
+I&#39;m applying for the Full Stack Developer position. I&#39;m a senior Full Stack Developer with 7+ years working with React, Next.js and Node.js, which matches the core of what you&#39;re looking for.
+
+What I would bring:
+• Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day
+• Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%
+• Also comfortable with GraphQL
+
+I&#39;m ready to relocate to Ireland and would need visa sponsorship (the Critical Skills Employment Permit route fits this role). I can start the paperwork immediately and I&#39;m flexible on the start date.
+
+I&#39;d welcome a short call to discuss how I can help your team. Thank you for your time.
+
+Best regards,
+Arman Karimi
+arman.karimi@example.com | linkedin.com/in/arman-karimi-demo | github.com/arman-karimi-demo</pre></div><div class="copy"><div class="copy-head"><span>پیام کوتاه به ریکروتر (لینکدین/ایمیل)</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Hi! I&#39;m a Full Stack Developer (7+ years, React, Next.js) and very interested in the Full Stack Developer role at Liffey Cloud (demo). Open to relocating to Ireland with sponsorship. Could we have a quick chat?</pre></div></div>
+    <h4>راهنمای گرفتن این موقعیت</h4><ul><li>در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.</li></ul>
+    <h4>سوالات احتمالی مصاحبه</h4><div dir="auto"><ul><li>Walk us through a system you designed: what trade-offs did you make?</li><li>How do you debug a production issue you cannot reproduce locally?</li><li>Why do you want to relocate, and what is your timeline?</li></ul></div>
+  </details>
+</article>
+<article class="card job" data-flags="visa relocation">
+  <header><span class="rank">3</span><div class="grow"><h3>Backend Developer Node.js</h3><div class="company">Grachten Tech B.V. (demo)</div></div><div class="score" style="--v:79">79</div></header>
+  <div class="meta"><span><bdi>Amsterdam, Netherlands</bdi></span><span>منبع: <bdi>Demo board</bdi></span><span>انتشار: <bdi>2026-09-20</bdi></span></div>
+  <div class="badges"><span class="badge">🛂 اسپانسر ویزا</span><span class="badge">✈️ کمک جابه‌جایی</span></div>
+  
+  <p class="skills"><b>مهارت‌های منطبق:</b> <span class="chip">Node.js</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">Docker</span></p>
+  <p class="skills"><b>کلیدواژه‌های جاافتاده:</b> <span class="chip miss">Kafka</span></p>
+  <p class="skills why"><b>چرا این آگهی:</b> <span class="chip ok">+ عنوان منطبق</span><span class="chip ok">+ اسپانسر ویزا</span><span class="chip ok">+ کمک جابه‌جایی</span><span class="chip ok">+ در کشور هدف</span><span class="chip ok">+ آگهی تازه</span></p>
+  
+  <div class="actions"><a class="btn" href="https://example.com/jobs/grachten-backend" target="_blank" rel="noopener">مشاهده و اپلای ↗</a><select class="track" data-id="ba3bac320fc6" aria-label="پیگیری اپلای‌ها"><option value="">وضعیت…</option><option value="saved">ذخیره‌شده</option><option value="applied">اپلای کردم</option><option value="interview">مصاحبه</option><option value="offer">پیشنهاد کار</option><option value="rejected">رد شد</option></select></div>
+  <details><summary>نامه پیشنهادی به کارفرما · پیام کوتاه به ریکروتر (لینکدین/ایمیل) · راهنمای گرفتن این موقعیت</summary>
+    <p class="subject"><b>موضوع ایمیل:</b> Backend Developer Node.js — Arman Karimi (7+ years, open to relocation)</p>
+    <div dir="auto"><div class="copy"><div class="copy-head"><span>نامه پیشنهادی به کارفرما</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Dear Grachten Tech B.V. (demo) hiring team,
+
+I&#39;m applying for the Backend Developer Node.js position. I&#39;m a senior Full Stack Developer with 7+ years working with Node.js, PostgreSQL and Redis, which matches the core of what you&#39;re looking for.
+
+What I would bring:
+• Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day
+• Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%
+• Also comfortable with Docker
+
+I&#39;m ready to relocate to Netherlands and would need visa sponsorship (the Highly Skilled Migrant (kennismigrant) route fits this role). I can start the paperwork immediately and I&#39;m flexible on the start date.
+
+I&#39;d welcome a short call to discuss how I can help your team. Thank you for your time.
+
+Best regards,
+Arman Karimi
+arman.karimi@example.com | linkedin.com/in/arman-karimi-demo | github.com/arman-karimi-demo</pre></div><div class="copy"><div class="copy-head"><span>پیام کوتاه به ریکروتر (لینکدین/ایمیل)</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Hi! I&#39;m a Full Stack Developer (7+ years, Node.js, PostgreSQL) and very interested in the Backend Developer Node.js role at Grachten Tech B.V. (demo). Open to relocating to Netherlands with sponsorship. Could we have a quick chat?</pre></div></div>
+    <h4>راهنمای گرفتن این موقعیت</h4><ul><li>اگر با Kafka کار کرده‌اید، صریحاً در رزومه بیاورید؛ این کلیدواژه‌ها را ATS بررسی می‌کند.</li><li>در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.</li></ul>
+    <h4>سوالات احتمالی مصاحبه</h4><div dir="auto"><ul><li>Walk us through a system you designed: what trade-offs did you make?</li><li>How do you debug a production issue you cannot reproduce locally?</li><li>Why do you want to relocate, and what is your timeline?</li></ul></div>
+  </details>
+</article>
+<article class="card job" data-flags="visa">
+  <header><span class="rank">4</span><div class="grow"><h3>Software Engineer, Payments</h3><div class="company">Thames Fintech Ltd (demo)</div></div><div class="score" style="--v:70">70</div></header>
+  <div class="meta"><span><bdi>London, United Kingdom</bdi></span><span>منبع: <bdi>Demo board</bdi></span><span>انتشار: <bdi>2026-09-18</bdi></span></div>
+  <div class="badges"><span class="badge">🛂 اسپانسر ویزا</span></div>
+  <p class="salary good">حقوق: <bdi>65,000–80,000 GBP — بالاتر از حداقل ویزا (Skilled Worker visa: 41,700 GBP)</bdi></p>
+  <p class="skills"><b>مهارت‌های منطبق:</b> <span class="chip">TypeScript</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span><span class="chip">AWS</span></p>
+  
+  <p class="skills why"><b>چرا این آگهی:</b> <span class="chip ok">+ عنوان منطبق</span><span class="chip ok">+ اسپانسر ویزا</span><span class="chip ok">+ در کشور هدف</span></p>
+  
+  <div class="actions"><a class="btn" href="https://example.com/jobs/thames-payments" target="_blank" rel="noopener">مشاهده و اپلای ↗</a><select class="track" data-id="84e3bd04c652" aria-label="پیگیری اپلای‌ها"><option value="">وضعیت…</option><option value="saved">ذخیره‌شده</option><option value="applied">اپلای کردم</option><option value="interview">مصاحبه</option><option value="offer">پیشنهاد کار</option><option value="rejected">رد شد</option></select></div>
+  <details><summary>نامه پیشنهادی به کارفرما · پیام کوتاه به ریکروتر (لینکدین/ایمیل) · راهنمای گرفتن این موقعیت</summary>
+    <p class="subject"><b>موضوع ایمیل:</b> Software Engineer, Payments — Arman Karimi (7+ years, open to relocation)</p>
+    <div dir="auto"><div class="copy"><div class="copy-head"><span>نامه پیشنهادی به کارفرما</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Dear Thames Fintech Ltd (demo) hiring team,
+
+I&#39;m applying for the Software Engineer, Payments position. I&#39;m a senior Full Stack Developer with 7+ years working with TypeScript, Node.js and PostgreSQL, which matches the core of what you&#39;re looking for.
+
+What I would bring:
+• Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day
+• Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%
+• Also comfortable with AWS
+
+I&#39;m ready to relocate to United Kingdom and would need visa sponsorship (the Skilled Worker visa route fits this role). I can start the paperwork immediately and I&#39;m flexible on the start date.
+
+I&#39;d welcome a short call to discuss how I can help your team. Thank you for your time.
+
+Best regards,
+Arman Karimi
+arman.karimi@example.com | linkedin.com/in/arman-karimi-demo | github.com/arman-karimi-demo</pre></div><div class="copy"><div class="copy-head"><span>پیام کوتاه به ریکروتر (لینکدین/ایمیل)</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Hi! I&#39;m a Full Stack Developer (7+ years, TypeScript, Node.js) and very interested in the Software Engineer, Payments role at Thames Fintech Ltd (demo). Open to relocating to United Kingdom with sponsorship. Could we have a quick chat?</pre></div></div>
+    <h4>راهنمای گرفتن این موقعیت</h4><ul><li>در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.</li></ul>
+    <h4>سوالات احتمالی مصاحبه</h4><div dir="auto"><ul><li>Walk us through a system you designed: what trade-offs did you make?</li><li>How do you debug a production issue you cannot reproduce locally?</li><li>Why do you want to relocate, and what is your timeline?</li></ul></div>
+  </details>
+</article>
+<article class="card job" data-flags="relocation">
+  <header><span class="rank">5</span><div class="grow"><h3>Senior Software Engineer</h3><div class="company">Maple North Software (demo)</div></div><div class="score" style="--v:65">65</div></header>
+  <div class="meta"><span><bdi>Toronto, Canada</bdi></span><span>منبع: <bdi>Demo board</bdi></span><span>انتشار: <bdi>2026-09-12</bdi></span></div>
+  <div class="badges"><span class="badge">✈️ کمک جابه‌جایی</span></div>
+  
+  <p class="skills"><b>مهارت‌های منطبق:</b> <span class="chip">React</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span><span class="chip">Kubernetes</span></p>
+  
+  <p class="skills why"><b>چرا این آگهی:</b> <span class="chip ok">+ عنوان منطبق</span><span class="chip ok">+ کمک جابه‌جایی</span><span class="chip ok">+ در کشور هدف</span></p>
+  
+  <div class="actions"><a class="btn" href="https://example.com/jobs/maple-senior" target="_blank" rel="noopener">مشاهده و اپلای ↗</a><select class="track" data-id="c662588149ce" aria-label="پیگیری اپلای‌ها"><option value="">وضعیت…</option><option value="saved">ذخیره‌شده</option><option value="applied">اپلای کردم</option><option value="interview">مصاحبه</option><option value="offer">پیشنهاد کار</option><option value="rejected">رد شد</option></select></div>
+  <details><summary>نامه پیشنهادی به کارفرما · پیام کوتاه به ریکروتر (لینکدین/ایمیل) · راهنمای گرفتن این موقعیت</summary>
+    <p class="subject"><b>موضوع ایمیل:</b> Senior Software Engineer — Arman Karimi (7+ years, open to relocation)</p>
+    <div dir="auto"><div class="copy"><div class="copy-head"><span>نامه پیشنهادی به کارفرما</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Dear Maple North Software (demo) hiring team,
+
+I&#39;m applying for the Senior Software Engineer position. I&#39;m a senior Full Stack Developer with 7+ years working with React, Node.js and PostgreSQL, which matches the core of what you&#39;re looking for.
+
+What I would bring:
+• Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day
+• Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%
+• Also comfortable with Kubernetes
+
+I&#39;m ready to relocate to Canada and would need visa sponsorship (the Express Entry (permanent residence) route fits this role). I can start the paperwork immediately and I&#39;m flexible on the start date.
+
+I&#39;d welcome a short call to discuss how I can help your team. Thank you for your time.
+
+Best regards,
+Arman Karimi
+arman.karimi@example.com | linkedin.com/in/arman-karimi-demo | github.com/arman-karimi-demo</pre></div><div class="copy"><div class="copy-head"><span>پیام کوتاه به ریکروتر (لینکدین/ایمیل)</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Hi! I&#39;m a Full Stack Developer (7+ years, React, Node.js) and very interested in the Senior Software Engineer role at Maple North Software (demo). Open to relocating to Canada with sponsorship. Could we have a quick chat?</pre></div></div>
+    <h4>راهنمای گرفتن این موقعیت</h4><ul><li>در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.</li></ul>
+    <h4>سوالات احتمالی مصاحبه</h4><div dir="auto"><ul><li>Walk us through a system you designed: what trade-offs did you make?</li><li>How do you debug a production issue you cannot reproduce locally?</li><li>Why do you want to relocate, and what is your timeline?</li></ul></div>
+  </details>
+</article>
+<article class="card job" data-flags="visa relocation">
+  <header><span class="rank">6</span><div class="grow"><h3>Backend Engineer (Go)</h3><div class="company">Skärgård Systems AB (demo)</div></div><div class="score" style="--v:47">47</div></header>
+  <div class="meta"><span><bdi>Stockholm, Sweden</bdi></span><span>منبع: <bdi>Demo board</bdi></span><span>انتشار: <bdi>2026-08-30</bdi></span></div>
+  <div class="badges"><span class="badge">🛂 اسپانسر ویزا</span><span class="badge">✈️ کمک جابه‌جایی</span></div>
+  
+  <p class="skills"><b>مهارت‌های منطبق:</b> <span class="chip">Node.js</span><span class="chip">PostgreSQL</span><span class="chip">Kubernetes</span></p>
+  <p class="skills"><b>کلیدواژه‌های جاافتاده:</b> <span class="chip miss">gRPC</span><span class="chip miss">Go</span></p>
+  <p class="skills why"><b>چرا این آگهی:</b> <span class="chip ok">+ عنوان منطبق</span><span class="chip miss">− مهارت اصلی عنوان را ندارید</span><span class="chip ok">+ اسپانسر ویزا</span><span class="chip ok">+ کمک جابه‌جایی</span></p>
+  
+  <div class="actions"><a class="btn" href="https://example.com/jobs/skargard-go" target="_blank" rel="noopener">مشاهده و اپلای ↗</a><select class="track" data-id="97d7ed98ad2b" aria-label="پیگیری اپلای‌ها"><option value="">وضعیت…</option><option value="saved">ذخیره‌شده</option><option value="applied">اپلای کردم</option><option value="interview">مصاحبه</option><option value="offer">پیشنهاد کار</option><option value="rejected">رد شد</option></select></div>
+  <details><summary>نامه پیشنهادی به کارفرما · پیام کوتاه به ریکروتر (لینکدین/ایمیل) · راهنمای گرفتن این موقعیت</summary>
+    <p class="subject"><b>موضوع ایمیل:</b> Backend Engineer (Go) — Arman Karimi (7+ years, open to relocation)</p>
+    <div dir="auto"><div class="copy"><div class="copy-head"><span>نامه پیشنهادی به کارفرما</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Dear Skärgård Systems AB (demo) hiring team,
+
+I&#39;m applying for the Backend Engineer (Go) position. I&#39;m a senior Full Stack Developer with 7+ years working with Node.js, PostgreSQL and Kubernetes, which matches the core of what you&#39;re looking for.
+
+What I would bring:
+• Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day
+• Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%
+
+I&#39;m ready to relocate to Sweden and would need visa sponsorship (the Work permit route fits this role). I can start the paperwork immediately and I&#39;m flexible on the start date.
+
+I&#39;d welcome a short call to discuss how I can help your team. Thank you for your time.
+
+Best regards,
+Arman Karimi
+arman.karimi@example.com | linkedin.com/in/arman-karimi-demo | github.com/arman-karimi-demo</pre></div><div class="copy"><div class="copy-head"><span>پیام کوتاه به ریکروتر (لینکدین/ایمیل)</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Hi! I&#39;m a Full Stack Developer (7+ years, Node.js, PostgreSQL) and very interested in the Backend Engineer (Go) role at Skärgård Systems AB (demo). Open to relocating to Sweden with sponsorship. Could we have a quick chat?</pre></div></div>
+    <h4>راهنمای گرفتن این موقعیت</h4><ul><li>اگر با gRPC، Go کار کرده‌اید، صریحاً در رزومه بیاورید؛ این کلیدواژه‌ها را ATS بررسی می‌کند.</li><li>در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.</li></ul>
+    <h4>سوالات احتمالی مصاحبه</h4><div dir="auto"><ul><li>Walk us through a system you designed: what trade-offs did you make?</li><li>How do you debug a production issue you cannot reproduce locally?</li><li>Why do you want to relocate, and what is your timeline?</li></ul></div>
+  </details>
+</article>
+
+<h2 id="remote">دورکاری از همین‌جا (بدون مهاجرت)</h2>
+<p class="warnbox">شرکت‌های آمریکایی طبق تحریم‌های OFAC معمولاً نمی‌توانند با ساکنان ایران قرارداد ببندند و پلتفرم‌هایی مثل Upwork و Deel ایران را پشتیبانی نمی‌کنند. شرکت‌های اروپایی، اماراتی و ترکیه‌ای، و پلتفرم‌های ایرانی (پونیشا، کارلنسر) گزینه‌های واقع‌بینانه‌تری هستند؛ یا اقامت در کشور ثالث (مثل امارات، ترکیه، ارمنستان، گرجستان) را در نظر بگیرید.</p>
+<article class="card job" data-flags="remote">
+  <header><span class="rank">1</span><div class="grow"><h3>Senior Frontend Engineer (Remote, worldwide)</h3><div class="company">Distributed Labs (demo)</div></div><div class="score" style="--v:63">63</div></header>
+  <div class="meta"><span><bdi>Remote - Worldwide</bdi></span><span>منبع: <bdi>Demo board</bdi></span><span>انتشار: <bdi>2026-09-25</bdi></span></div>
+  <div class="badges"><span class="badge">🏠 دورکاری</span></div>
+  
+  <p class="skills"><b>مهارت‌های منطبق:</b> <span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Testing</span></p>
+  
+  <p class="skills why"><b>چرا این آگهی:</b> <span class="chip ok">+ عنوان منطبق</span><span class="chip ok">+ دورکاری از محل فعلی</span><span class="chip ok">+ آگهی تازه</span></p>
+  
+  <div class="actions"><a class="btn" href="https://example.com/jobs/distributed-frontend" target="_blank" rel="noopener">مشاهده و اپلای ↗</a><select class="track" data-id="e51f8966edd5" aria-label="پیگیری اپلای‌ها"><option value="">وضعیت…</option><option value="saved">ذخیره‌شده</option><option value="applied">اپلای کردم</option><option value="interview">مصاحبه</option><option value="offer">پیشنهاد کار</option><option value="rejected">رد شد</option></select></div>
+  <details><summary>نامه پیشنهادی به کارفرما · پیام کوتاه به ریکروتر (لینکدین/ایمیل) · راهنمای گرفتن این موقعیت</summary>
+    <p class="subject"><b>موضوع ایمیل:</b> Senior Frontend Engineer (Remote, worldwide) — Arman Karimi (7+ years, remote)</p>
+    <div dir="auto"><div class="copy"><div class="copy-head"><span>نامه پیشنهادی به کارفرما</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Dear Distributed Labs (demo) hiring team,
+
+I&#39;m applying for the Senior Frontend Engineer (Remote, worldwide) position. I&#39;m a senior Full Stack Developer with 7+ years working with TypeScript, React and Next.js, which matches the core of what you&#39;re looking for.
+
+What I would bring:
+• Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day
+• Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%
+• Also comfortable with Testing
+
+I have worked remotely with distributed teams, communicate well in writing, and can overlap with your core hours. I can join as a full-time contractor and start quickly.
+
+I&#39;d welcome a short call to discuss how I can help your team. Thank you for your time.
+
+Best regards,
+Arman Karimi
+arman.karimi@example.com | linkedin.com/in/arman-karimi-demo | github.com/arman-karimi-demo</pre></div><div class="copy"><div class="copy-head"><span>پیام کوتاه به ریکروتر (لینکدین/ایمیل)</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Hi! I&#39;m a Full Stack Developer (7+ years, TypeScript, React) and very interested in the Senior Frontend Engineer (Remote, worldwide) role at Distributed Labs (demo). Available to start soon as a remote contractor. Could we have a quick chat?</pre></div></div>
+    <h4>راهنمای گرفتن این موقعیت</h4><ul><li>این آگهی تازه است؛ ظرف ۲۴–۴۸ ساعت اپلای کنید، شانس دیده شدن خیلی بیشتر است.</li><li>در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.</li><li>برای کار ریموت: در نامه ساعت‌های هم‌پوشانی با تیم و تجربه کار ناهمزمان (async) را بنویسید. قبل از قرارداد بپرسید آیا می‌توانند به‌صورت قانونی با کشور محل اقامت شما قرارداد ببندند و پرداخت کنند.</li></ul>
+    <h4>سوالات احتمالی مصاحبه</h4><div dir="auto"><ul><li>Walk us through a system you designed: what trade-offs did you make?</li><li>How do you debug a production issue you cannot reproduce locally?</li><li>How do you stay productive and visible when working asynchronously across time zones?</li></ul></div>
+  </details>
+</article>
+
+<h2 id="freelance">پروژه‌ها و فرصت‌های فریلنسری</h2>
+<article class="card job" data-flags="remote">
+  <header><span class="rank">1</span><div class="grow"><h3>Build a Next.js dashboard with PostgreSQL backend</h3><div class="company">Demo freelance · <bdi>1,500–3,000 USD/project</bdi></div></div><div class="score" style="--v:70">70</div></header>
+  <p class="skills"><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span></p>
+  <div class="actions"><a class="btn" href="https://example.com/projects/nextjs-dashboard" target="_blank" rel="noopener">مشاهده و اپلای ↗</a></div>
+  <details><summary>پروپوزال پیشنهادی</summary><div dir="ltr"><div class="copy"><div class="copy-head"><span>پروپوزال پیشنهادی</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Hi, I read your project &quot;Build a Next.js dashboard with PostgreSQL backend&quot; and it&#39;s a strong match for my background: 7 years with React, Next.js and Node.js.
+
+How I would approach it:
+1. A short call to confirm scope, deadline and acceptance criteria.
+2. Deliver a first working milestone quickly so you can give feedback early.
+3. Finish, test and hand over with clear documentation.
+
+Relevant work: Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day; Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%.
+I can start right away. Happy to answer any questions.</pre></div></div></details>
+</article>
+<article class="card job" data-flags="remote">
+  <header><span class="rank">2</span><div class="grow"><h3>Dockerize and deploy a Node.js API on AWS</h3><div class="company">Demo freelance · <bdi>30–50 USD/hour</bdi></div></div><div class="score" style="--v:65">65</div></header>
+  <p class="skills"><span class="chip">Node.js</span><span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">CI/CD</span><span class="chip">Git</span></p>
+  <div class="actions"><a class="btn" href="https://example.com/projects/docker-aws" target="_blank" rel="noopener">مشاهده و اپلای ↗</a></div>
+  <details><summary>پروپوزال پیشنهادی</summary><div dir="ltr"><div class="copy"><div class="copy-head"><span>پروپوزال پیشنهادی</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Hi, I read your project &quot;Dockerize and deploy a Node.js API on AWS&quot; and it&#39;s a strong match for my background: 7 years with Node.js, AWS and Docker.
+
+How I would approach it:
+1. A short call to confirm scope, deadline and acceptance criteria.
+2. Deliver a first working milestone quickly so you can give feedback early.
+3. Finish, test and hand over with clear documentation.
+
+Relevant work: Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day; Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%.
+I can start right away. Happy to answer any questions.</pre></div></div></details>
+</article>
+<article class="card job" data-flags="remote">
+  <header><span class="rank">3</span><div class="grow"><h3>Fix React performance issues in e-commerce site</h3><div class="company">Demo freelance · <bdi>500–1,000 USD/project</bdi></div></div><div class="score" style="--v:65">65</div></header>
+  <p class="skills"><span class="chip">React</span><span class="chip">Redux</span></p>
+  <div class="actions"><a class="btn" href="https://example.com/projects/react-perf" target="_blank" rel="noopener">مشاهده و اپلای ↗</a></div>
+  <details><summary>پروپوزال پیشنهادی</summary><div dir="ltr"><div class="copy"><div class="copy-head"><span>پروپوزال پیشنهادی</span><button type="button" data-copy data-done="کپی شد">کپی</button></div><pre>Hi, I read your project &quot;Fix React performance issues in e-commerce site&quot; and it&#39;s a strong match for my background: 7 years with React and Redux.
+
+How I would approach it:
+1. A short call to confirm scope, deadline and acceptance criteria.
+2. Deliver a first working milestone quickly so you can give feedback early.
+3. Finish, test and hand over with clear documentation.
+
+Relevant work: Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day; Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%.
+I can start right away. Happy to answer any questions.</pre></div></div></details>
+</article>
+
+<h2>آگهی‌های مشکوک (کلاهبرداری احتمالی)</h2><div class="card warnbox"><ul><li>Web Developer - Guaranteed Visa to Europe! — Global Visa Jobs Agency (demo) <small>(asks for a fee, contact only via messenger, guarantees a visa/job)</small></li></ul></div>
+
+<h2>جستجوی آماده در سایت‌های کاریابی</h2>
+<div class="card links"><p><b>سراسری:</b> <a href="https://www.linkedin.com/jobs/search/?keywords=full%20stack%20developer%20visa%20sponsorship&amp;f_TPR=r604800" target="_blank" rel="noopener">LinkedIn — visa sponsorship, last 7 days</a> · <a href="https://www.linkedin.com/jobs/search/?keywords=full%20stack%20developer%20relocation&amp;f_TPR=r604800" target="_blank" rel="noopener">LinkedIn — relocation, last 7 days</a> · <a href="https://www.google.com/search?q=full%20stack%20developer%20jobs%20visa%20sponsorship&amp;ibp=htl;jobs" target="_blank" rel="noopener">Google Jobs</a> · <a href="https://relocate.me/search?query=full%20stack%20developer" target="_blank" rel="noopener">Relocate.me (hand-checked relocation jobs)</a> · <a href="https://visasponsor.jobs/" target="_blank" rel="noopener">Visa Sponsor Jobs</a> · <a href="https://jaabz.com/" target="_blank" rel="noopener">Jaabz (visa &amp; relocation jobs)</a> · <a href="https://europa.eu/eures/portal/jv-se/home" target="_blank" rel="noopener">EURES (EU job mobility portal)</a> · <a href="https://wellfound.com/role/full-stack-developer" target="_blank" rel="noopener">Wellfound (startups, many sponsor)</a> · <a href="https://landing.jobs/jobs?search=full%20stack%20developer" target="_blank" rel="noopener">Landing.jobs (EU tech, relocation)</a> · <a href="https://www.levels.fyi/jobs?searchText=full%20stack%20developer" target="_blank" rel="noopener">Levels.fyi jobs (with salary data)</a></p><p><b>آلمان:</b> <a href="https://www.linkedin.com/jobs/search/?keywords=full%20stack%20developer&amp;location=Germany&amp;f_TPR=r604800" target="_blank" rel="noopener">LinkedIn — Germany</a> · <a href="https://de.indeed.com/jobs?q=full%20stack%20developer%20visa%20sponsorship" target="_blank" rel="noopener">Indeed DE</a> · <a href="https://www.glassdoor.com/Job/jobs.htm?sc.keyword=full%20stack%20developer%20Germany" target="_blank" rel="noopener">Glassdoor — Germany</a> · <a href="https://www.stepstone.de/jobs/full-stack-developer" target="_blank" rel="noopener">StepStone</a> · <a href="https://www.xing.com/jobs/search?keywords=full%20stack%20developer" target="_blank" rel="noopener">XING Jobs</a> · <a href="https://www.arbeitsagentur.de/jobsuche/suche?angebotsart=1&amp;was=full%20stack%20developer" target="_blank" rel="noopener">Bundesagentur für Arbeit</a> · <a href="https://www.make-it-in-germany.com/en/working-in-germany/job-listings" target="_blank" rel="noopener">Make it in Germany (official)</a> · <a href="https://germantechjobs.de/" target="_blank" rel="noopener">GermanTechJobs</a> · <a href="https://berlinstartupjobs.com/?s=full%20stack%20developer" target="_blank" rel="noopener">Berlin Startup Jobs</a></p><p><b>هلند:</b> <a href="https://www.linkedin.com/jobs/search/?keywords=full%20stack%20developer&amp;location=Netherlands&amp;f_TPR=r604800" target="_blank" rel="noopener">LinkedIn — Netherlands</a> · <a href="https://nl.indeed.com/jobs?q=full%20stack%20developer%20visa%20sponsorship" target="_blank" rel="noopener">Indeed NL</a> · <a href="https://www.glassdoor.com/Job/jobs.htm?sc.keyword=full%20stack%20developer%20Netherlands" target="_blank" rel="noopener">Glassdoor — Netherlands</a> · <a href="https://www.nationalevacaturebank.nl/vacature/zoeken?query=full%20stack%20developer" target="_blank" rel="noopener">Nationale Vacaturebank</a> · <a href="https://undutchables.nl/" target="_blank" rel="noopener">Undutchables (English-speaking roles)</a> · <a href="https://ind.nl/en/public-register-recognised-sponsors" target="_blank" rel="noopener">IND recognised sponsors (check employer)</a></p><p><b>انگلستان:</b> <a href="https://www.linkedin.com/jobs/search/?keywords=full%20stack%20developer&amp;location=United%20Kingdom&amp;f_TPR=r604800" target="_blank" rel="noopener">LinkedIn — United Kingdom</a> · <a href="https://uk.indeed.com/jobs?q=full%20stack%20developer%20visa%20sponsorship" target="_blank" rel="noopener">Indeed GB</a> · <a href="https://www.glassdoor.com/Job/jobs.htm?sc.keyword=full%20stack%20developer%20United%20Kingdom" target="_blank" rel="noopener">Glassdoor — United Kingdom</a> · <a href="https://www.reed.co.uk/jobs/full-stack-developer-jobs" target="_blank" rel="noopener">Reed</a> · <a href="https://www.totaljobs.com/jobs/full-stack-developer" target="_blank" rel="noopener">Totaljobs</a> · <a href="https://findajob.dwp.gov.uk/search?q=full%20stack%20developer" target="_blank" rel="noopener">Find a job (GOV.UK)</a> · <a href="https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers" target="_blank" rel="noopener">Licensed visa sponsors register</a></p><p><b>ایرلند:</b> <a href="https://www.linkedin.com/jobs/search/?keywords=full%20stack%20developer&amp;location=Ireland&amp;f_TPR=r604800" target="_blank" rel="noopener">LinkedIn — Ireland</a> · <a href="https://ie.indeed.com/jobs?q=full%20stack%20developer%20visa%20sponsorship" target="_blank" rel="noopener">Indeed IE</a> · <a href="https://www.glassdoor.com/Job/jobs.htm?sc.keyword=full%20stack%20developer%20Ireland" target="_blank" rel="noopener">Glassdoor — Ireland</a> · <a href="https://www.irishjobs.ie/jobs/full-stack-developer" target="_blank" rel="noopener">IrishJobs</a> · <a href="https://www.jobs.ie/jobs/?q=full%20stack%20developer" target="_blank" rel="noopener">Jobs.ie</a></p><p><b>کانادا:</b> <a href="https://www.linkedin.com/jobs/search/?keywords=full%20stack%20developer&amp;location=Canada&amp;f_TPR=r604800" target="_blank" rel="noopener">LinkedIn — Canada</a> · <a href="https://ca.indeed.com/jobs?q=full%20stack%20developer%20visa%20sponsorship" target="_blank" rel="noopener">Indeed CA</a> · <a href="https://www.glassdoor.com/Job/jobs.htm?sc.keyword=full%20stack%20developer%20Canada" target="_blank" rel="noopener">Glassdoor — Canada</a> · <a href="https://www.jobbank.gc.ca/jobsearch/jobsearch?searchstring=full%20stack%20developer" target="_blank" rel="noopener">Job Bank (Government of Canada)</a> · <a href="https://www.workopolis.com/jobsearch/find-jobs?ak=full%20stack%20developer" target="_blank" rel="noopener">Workopolis</a></p><p><b>استرالیا:</b> <a href="https://www.linkedin.com/jobs/search/?keywords=full%20stack%20developer&amp;location=Australia&amp;f_TPR=r604800" target="_blank" rel="noopener">LinkedIn — Australia</a> · <a href="https://au.indeed.com/jobs?q=full%20stack%20developer%20visa%20sponsorship" target="_blank" rel="noopener">Indeed AU</a> · <a href="https://www.glassdoor.com/Job/jobs.htm?sc.keyword=full%20stack%20developer%20Australia" target="_blank" rel="noopener">Glassdoor — Australia</a> · <a href="https://www.seek.com.au/full-stack-developer-jobs" target="_blank" rel="noopener">SEEK</a></p><p><b>پلتفرم‌های فریلنسری:</b> <a href="https://www.upwork.com/nx/search/jobs/?q=JavaScript" target="_blank" rel="noopener">Upwork</a> · <a href="https://www.fiverr.com/search/gigs?query=JavaScript" target="_blank" rel="noopener">Fiverr (see competing gigs)</a> · <a href="https://www.peopleperhour.com/freelance-jobs?q=JavaScript" target="_blank" rel="noopener">PeoplePerHour</a> · <a href="https://www.guru.com/d/jobs/q/JavaScript/" target="_blank" rel="noopener">Guru</a> · <a href="https://contra.com/" target="_blank" rel="noopener">Contra</a> · <a href="https://www.malt.com/" target="_blank" rel="noopener">Malt (Europe)</a> · <a href="https://www.toptal.com/talent/apply" target="_blank" rel="noopener">Toptal (top 3%, high rates)</a> · <a href="https://arc.dev/remote-jobs" target="_blank" rel="noopener">Arc.dev (remote dev jobs)</a> · <a href="https://lemon.io/for-developers/" target="_blank" rel="noopener">Lemon.io (vetted devs)</a> · <a href="https://www.turing.com/jobs" target="_blank" rel="noopener">Turing (long-term remote)</a> · <a href="https://www.usebraintrust.com/" target="_blank" rel="noopener">Braintrust</a> · <a href="https://ponisha.ir/search/projects?q=JavaScript" target="_blank" rel="noopener">Ponisha (Iranian freelance market)</a> · <a href="https://www.karlancer.com/" target="_blank" rel="noopener">Karlancer (Iranian freelance market)</a></p></div>
+
+<h2>وضعیت منابع</h2>
+<div class="card"><table><tr><td>Demo data</td><td>موفق</td><td>14</td><td class="muted"></td></tr></table></div>
+
+<footer>این گزارش راهنماست، نه مشاوره حقوقی. قوانین مهاجرت تغییر می‌کند؛ همیشه سایت رسمی را بررسی کنید.<br><a href="https://github.com/masterkasra/jobreferrer">jobreferrer</a></footer>
+</main>
+<script>
+const store = { get(k) { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch { return {}; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} } };
+const tracked = store.get('jr-track');
+const docs = store.get('jr-docs');
+function summarise() {
+  const counts = {};
+  document.querySelectorAll('select.track').forEach((sel) => { if (sel.value) counts[sel.value] = (counts[sel.value] || 0) + 1; });
+  const names = Object.fromEntries([...document.querySelector('select.track')?.options ?? []].map((o) => [o.value, o.textContent]));
+  document.getElementById('trackSummary').textContent = Object.keys(counts).length ? Object.entries(counts).map(([k, n]) => names[k] + ': ' + n).join(' · ') : '—';
+}
+document.querySelectorAll('select.track').forEach((sel) => { sel.value = tracked[sel.dataset.id] || ''; sel.addEventListener('change', () => { tracked[sel.dataset.id] = sel.value; store.set('jr-track', tracked); summarise(); }); });
+document.querySelectorAll('[data-doc]').forEach((cb) => { cb.checked = Boolean(docs[cb.dataset.doc]); cb.addEventListener('change', () => { docs[cb.dataset.doc] = cb.checked; store.set('jr-docs', docs); }); });
+summarise();
+document.addEventListener('click', async (e) => {
+  const copy = e.target.closest('[data-copy]');
+  if (copy) {
+    const text = copy.closest('.copy').querySelector('pre').innerText;
+    try { await navigator.clipboard.writeText(text); } catch { const ta = document.createElement('textarea'); ta.value = text; document.body.append(ta); ta.select(); document.execCommand('copy'); ta.remove(); }
+    const old = copy.textContent; copy.textContent = copy.dataset.done; setTimeout(() => (copy.textContent = old), 1500);
+  }
+  const f = e.target.closest('[data-filter]');
+  if (f) {
+    document.querySelectorAll('[data-filter]').forEach((b) => b.setAttribute('aria-pressed', String(b === f)));
+    const want = f.dataset.filter;
+    document.querySelectorAll('#jobs ~ .job').forEach((card) => { card.hidden = want !== 'all' && !card.dataset.flags.split(' ').includes(want); });
+  }
+});
+</script>
+</body></html>

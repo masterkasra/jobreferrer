@@ -1,0 +1,44 @@
+{
+  "name": "jobreferrer",
+  "version": "1.0.0",
+  "description": "Upload a resume, get a ranked list of visa-sponsored and relocation jobs abroad, freelance gigs, a tailored pitch for every employer, and a step-by-step immigration plan.",
+  "type": "module",
+  "license": "MIT",
+  "author": "masterkasra (https://github.com/masterkasra)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/masterkasra/jobreferrer.git"
+  },
+  "keywords": [
+    "job-search",
+    "visa-sponsorship",
+    "relocation",
+    "immigration",
+    "resume",
+    "cover-letter",
+    "freelance",
+    "telegram-bot",
+    "claude"
+  ],
+  "bin": {
+    "jobreferrer": "bin/jobreferrer.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node bin/jobreferrer.js",
+    "bot": "node src/bot/telegram.js",
+    "web": "node src/web/server.js",
+    "test": "node --test tests/*.test.js",
+    "smoke": "node scripts/smoke-sources.js",
+    "e2e": "node scripts/e2e.mjs",
+    "demo": "node bin/jobreferrer.js examples/sample-resume.md --offline --no-ai -n IR -c DE,NL,GB,IE,CA,AU --age 31 --ielts 7.5,7,6.5,7 --out examples/sample-report"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.128.0",
+    "jszip": "^3.10.2",
+    "mammoth": "^1.12.3",
+    "unpdf": "^1.8.1"
+  }
+}

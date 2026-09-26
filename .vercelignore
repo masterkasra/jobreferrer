@@ -1,0 +1,9 @@
+node_modules
+.cache
+reports
+e2e-reports
+tests
+docs
+scripts
+examples/*.html
+.github
