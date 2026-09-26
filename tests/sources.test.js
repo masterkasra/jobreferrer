@@ -89,10 +89,11 @@ test('working nomads and we work remotely', async () => {
   assert.equal(parseRss('<item><title>x</title></item>').length, 1);
 });
 
-test('arbeitsagentur sends the public API key', async () => {
-  mock = mockFetch([['arbeitsagentur.de', { stellenangebote: [{ titel: 'Softwareentwickler', beruf: 'Informatiker', refnr: '123-ABC', arbeitgeber: 'BA GmbH', arbeitsort: { ort: 'Hamburg', land: 'Deutschland' }, aktuelleVeroeffentlichungsdatum: '2026-09-20' }] }]]);
+test('arbeitsagentur sends the public API key and falls back to older API versions', async () => {
+  mock = mockFetch([['pc/v6/jobs', { __status: 403 }], ['arbeitsagentur.de', { stellenangebote: [{ titel: 'Softwareentwickler', beruf: 'Informatiker', refnr: '123-ABC', arbeitgeber: 'BA GmbH', arbeitsort: { ort: 'Hamburg', land: 'Deutschland' }, aktuelleVeroeffentlichungsdatum: '2026-09-20' }] }]]);
   const [j] = await arbeitsagentur.search(ctx);
   assert.equal(mock.calls[0].opts.headers['X-API-Key'], 'jobboerse-jobsuche');
+  assert.ok(mock.calls[1].url.includes('pc/v4/app/jobs'));
   assert.equal(j.url, 'https://www.arbeitsagentur.de/jobsuche/jobdetail/123-ABC');
   assert.deepEqual(j.countries, ['DE']);
 });

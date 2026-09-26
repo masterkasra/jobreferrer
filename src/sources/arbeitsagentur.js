@@ -1,6 +1,6 @@
 // Germany's Federal Employment Agency job board (public API, shared key
 // documented at https://jobsuche.api.bund.dev). Only runs when Germany is a target.
-import { getJson } from './http.js';
+import { getJson, HttpError } from './http.js';
 import { cached, HOURS } from './cache.js';
 import { makeJob } from '../jobs/normalize.js';
 
@@ -12,8 +12,7 @@ export default {
   async search({ queries }) {
     const out = [];
     for (const q of queries.slice(0, 2)) {
-      const url = `https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/pc/v4/jobs?was=${encodeURIComponent(q)}&angebotsart=1&size=50&page=1`;
-      const data = await cached(url, 6 * HOURS, () => getJson(url, { headers: { 'X-API-Key': 'jobboerse-jobsuche' } }));
+      const data = await cached(`arbeitsagentur|${q}`, 6 * HOURS, () => fetchJobs(q));
       for (const j of data.stellenangebote ?? []) {
         const place = [j.arbeitsort?.ort, j.arbeitsort?.region, j.arbeitsort?.land || 'Deutschland'].filter(Boolean).join(', ');
         out.push(makeJob({
@@ -27,3 +26,20 @@ export default {
     return out;
   },
 };
+
+// The agency retires API versions without notice: try the newest path first.
+const PATHS = ['pc/v6/jobs', 'pc/v4/app/jobs', 'pc/v4/jobs'];
+
+async function fetchJobs(q) {
+  let lastError;
+  for (const path of PATHS) {
+    try {
+      const url = `https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/${path}?was=${encodeURIComponent(q)}&angebotsart=1&size=50&page=1`;
+      return await getJson(url, { retries: 0, headers: { 'X-API-Key': 'jobboerse-jobsuche' } });
+    } catch (err) {
+      if (!(err instanceof HttpError) || ![403, 404, 410].includes(err.status)) throw err;
+      lastError = err;
+    }
+  }
+  throw lastError;
+}

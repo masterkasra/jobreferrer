@@ -52,6 +52,7 @@ test('geo detection', () => {
 test('makeJob normalises HTML and dedupe merges boards', () => {
   const a = makeJob({ source: 'x', sourceName: 'X', title: 'Dev &amp; Ops', company: 'Acme', location: 'Dublin, Ireland', url: 'https://a', description: '<p>We sponsor visas</p>' });
   assert.equal(a.title, 'Dev & Ops');
+  assert.equal(makeJob({ source: 'x', sourceName: 'X', title: 'Robotics &#x2F; Hardware', url: 'https://c' }).title, 'Robotics / Hardware');
   assert.deepEqual(a.countries, ['IE']);
   assert.equal(a.signals.visa, true);
   assert.equal(a.description, 'We sponsor visas');
