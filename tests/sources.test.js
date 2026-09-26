@@ -99,11 +99,11 @@ test('arbeitsagentur sends the public API key and falls back to older API versio
 });
 
 test('arbeitsagentur v6 response shape (ergebnisliste)', async () => {
-  mock = mockFetch([['pc/v6/jobs', { ergebnisliste: [{ stellenangebotsTitel: 'Softwareentwickler (m/w/d)', refnr: '10000-1', arbeitgeber: 'Hamburg IT GmbH', stellenlokationen: [{ adresse: { ort: 'Hamburg', land: 'Deutschland' } }], gehaltsspanneVon: 45000, gehaltsspanneBis: 60000, eintrittszeitraum: { von: '2026-09-25' } }] }]]);
+  mock = mockFetch([['pc/v6/jobs', { ergebnisliste: [{ stellenangebotsTitel: 'Softwareentwickler (m/w/d)', refnr: '10000-1', arbeitgeber: 'Hamburg IT GmbH', stellenlokationen: [{ adresse: { ort: 'Hamburg', region: 'HAMBURG', land: 'DEUTSCHLAND' } }], gehaltsspanneVon: 45000, gehaltsspanneBis: 60000, eintrittszeitraum: { von: '2026-09-25' } }] }]]);
   const [j] = await arbeitsagentur.search(ctx);
   assert.equal(j.title, 'Softwareentwickler (m/w/d)');
   assert.equal(j.company, 'Hamburg IT GmbH');
-  assert.equal(j.location, 'Hamburg, Deutschland');
+  assert.equal(j.location, 'Hamburg, Hamburg, Deutschland');
   assert.deepEqual(j.countries, ['DE']);
   assert.equal(j.url, 'https://www.arbeitsagentur.de/jobsuche/jobdetail/10000-1');
   assert.deepEqual(j.salary, { min: 45000, max: 60000, currency: 'EUR', period: 'year' });

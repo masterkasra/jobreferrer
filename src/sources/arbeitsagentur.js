@@ -27,7 +27,9 @@ const pick = (o, ...keys) => keys.map((k) => k.split('.').reduce((v, p) => v?.[p
 
 export function toJob(j) {
   const loc = pick(j, 'stellenlokationen.0.adresse', 'stellenlokationen.0', 'arbeitsort', 'arbeitsorte.0') ?? {};
-  const place = [loc.ort, loc.region, loc.land || 'Deutschland'].filter(Boolean).join(', ');
+  // v6 sends region/country in capitals ("HESSEN", "DEUTSCHLAND").
+  const nice = (v) => (v && v === v.toUpperCase() ? v.toLowerCase().replace(/(^|[\s-])\p{L}/gu, (c) => c.toUpperCase()) : v);
+  const place = [loc.ort, nice(loc.region), nice(loc.land) || 'Deutschland'].filter(Boolean).join(', ');
   const refnr = pick(j, 'refnr', 'referenznummer', 'chiffrenummer', 'stellenangebotsId', 'id');
   const from = pick(j, 'gehaltsspanneVon');
   return makeJob({
@@ -37,7 +39,7 @@ export function toJob(j) {
     location: place,
     url: pick(j, 'externeUrl', 'allianzpartnerUrl') ?? (refnr ? `https://www.arbeitsagentur.de/jobsuche/jobdetail/${encodeURIComponent(refnr)}` : ''),
     description: [pick(j, 'beruf', 'hauptberuf'), pick(j, 'stellenbeschreibung')].filter(Boolean).join('\n'),
-    postedAt: pick(j, 'aktuelleVeroeffentlichungsdatum', 'veroeffentlichungszeitraum.von', 'modifikationsTimestamp', 'eintrittszeitraum.von'),
+    postedAt: pick(j, 'aktuelleVeroeffentlichungsdatum', 'datumErsteVeroeffentlichung', 'veroeffentlichungszeitraum.von', 'modifikationsTimestamp', 'eintrittszeitraum.von'),
     salary: from ? { min: from, max: pick(j, 'gehaltsspanneBis') ?? from, currency: 'EUR', period: 'year' } : null,
   });
 }
