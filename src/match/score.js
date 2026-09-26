@@ -5,21 +5,24 @@
 import { findSkills, aliasRegex, SKILLS } from '../profile/taxonomy.js';
 import { isEU } from '../jobs/geo.js';
 import { requiredYears, jobLevel, CANDIDATE_LEVEL, jobFamily, adjacentFamily, remoteScope, usHours, sanctionsExcluded } from './requirements.js';
+import { NATIONALITY_NOTES } from '../immigration/countries.js';
 
 const LEVEL_OK = new Set(['native', 'C2', 'C1', 'B2']);
 const STOP = new Set(['developer', 'engineer', 'senior', 'junior', 'lead', 'the', 'and', 'of', 'for', 'remote', 'specialist', 'manager']);
 // Residents of these countries are normally inside "Europe-only" remote hiring.
 const EUROPE_RESIDENT = (code) => isEU(code) || ['GB', 'CH', 'NO', 'IS', 'LI'].includes(code);
 const SANCTIONED = new Set(['IR', 'CU', 'SY', 'KP']);
+const TECHNICAL = new Set(['software', 'data', 'devops', 'security', 'qa', 'engineering']);
 
 /**
  * @param {object} job
  * @param {object} profile
  * @param {string[]} countries  target countries
- * @param {{ residence?: string }} [ctx]  where the candidate lives now (ISO code)
+ * @param {{ residence?: string, nationality?: string }} [ctx]  where the candidate lives now and their passport (ISO codes)
  */
 export function scoreJob(job, profile, countries = [], ctx = {}) {
   const residence = (ctx.residence ?? '').toUpperCase();
+  const blocked = NATIONALITY_NOTES[(ctx.nationality ?? '').toUpperCase()]?.blockedCountries ?? {};
   const reasons = [];
   const text = `${job.title}\n${job.tags.join(', ')}\n${job.description}`;
   const jobSkills = findSkills(text);
@@ -41,11 +44,14 @@ export function scoreJob(job, profile, countries = [], ctx = {}) {
   // Title (max 25): exact phrase > word hits; penalise unrelated role families.
   const title = job.title.toLowerCase();
   const phrases = [...(profile.titles ?? []), ...(profile.searchQueries ?? [])].map((t) => t.toLowerCase().trim()).filter(Boolean);
-  const words = new Set(phrases.flatMap((t) => t.split(/[^a-z0-9+#.]+/)).filter((w) => w.length > 1 && !STOP.has(w)));
-  const titleHits = [...words].filter((w) => aliasRegex(w).test(title)).length;
+  const split = (list) => new Set(list.flatMap((t) => t.toLowerCase().split(/[^a-z0-9+#.]+/)).filter((w) => w.length > 1 && !STOP.has(w)));
+  // Words from the candidate's own titles count double compared with generated search queries.
+  const own = split(profile.titles ?? []);
+  const broad = [...split(phrases)].filter((w) => !own.has(w));
+  const titleHits = [...own].filter((w) => aliasRegex(w).test(title)).length * 10 + broad.filter((w) => aliasRegex(w).test(title)).length * 5;
   // Only the candidate's own titles count as an exact match; generated search queries are broader.
   const exact = (profile.titles ?? []).some((p) => p.split(' ').length > 1 && aliasRegex(p.toLowerCase()).test(title));
-  breakdown.title = exact ? 25 : Math.min(20, titleHits * 10);
+  breakdown.title = exact ? 25 : Math.min(20, titleHits);
   if (breakdown.title) reasons.push('title');
   const fam = jobFamily(job.title);
   if (fam && profile.roleFamily && fam !== profile.roleFamily && !adjacentFamily(profile.roleFamily, fam)) {
@@ -68,6 +74,11 @@ export function scoreJob(job, profile, countries = [], ctx = {}) {
     if (needYears > years + 2) (breakdown.experience -= 12), reasons.push('needs-more-experience');
     else if (needYears > years) breakdown.experience -= 4;
     else (breakdown.experience += 4), reasons.push('experience-fit');
+  }
+  // People-management roles for an individual contributor in a technical field.
+  if (/\b(manager|head of|director)\b/i.test(job.title) && TECHNICAL.has(profile.roleFamily) && profile.seniority !== 'lead' && !/\b(manager|head|director)\b/i.test((profile.titles ?? []).join(' '))) {
+    breakdown.experience -= 10;
+    reasons.push('management-role');
   }
   const gap = jobLevel(job.title) - (CANDIDATE_LEVEL[profile.seniority] ?? 2);
   if (gap >= 2) (breakdown.experience -= 12), reasons.push('level-too-high');
@@ -110,6 +121,8 @@ export function scoreJob(job, profile, countries = [], ctx = {}) {
   }
   if (openFromHome && residence && !['US', 'CA'].includes(residence) && usHours(job.description)) (breakdown.mobility -= 6), reasons.push('us-hours');
   if (SANCTIONED.has(residence) && sanctionsExcluded(text)) (breakdown.mobility -= 30), reasons.push('sanctions');
+  // Jobs that require moving to a country closed to the candidate's passport.
+  if (!openFromHome && job.countries.length && job.countries.every((c) => blocked[c])) (breakdown.mobility -= 40), reasons.push('entry-blocked');
   score += breakdown.mobility;
 
   const spoken = new Map((profile.languages ?? []).map((l) => [l.name, l.level]));
@@ -139,9 +152,9 @@ export function scoreJob(job, profile, countries = [], ctx = {}) {
   };
 }
 
-export function rankJobs(jobs, profile, countries, { minScore = 30, residence = '' } = {}) {
+export function rankJobs(jobs, profile, countries, { minScore = 30, residence = '', nationality = '' } = {}) {
   return jobs
-    .map((j) => scoreJob(j, profile, countries, { residence }))
+    .map((j) => scoreJob(j, profile, countries, { residence, nationality }))
     .filter((j) => j.score >= minScore && !j.signals.scamFlags.length)
     .sort((a, b) => b.score - a.score || (b.postedAt ?? '').localeCompare(a.postedAt ?? ''));
 }

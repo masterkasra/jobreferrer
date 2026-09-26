@@ -40,7 +40,7 @@ const STRINGS = {
     reason: {
       visa: 'اسپانسر ویزا', relocation: 'کمک جابه‌جایی', 'target-country': 'در کشور هدف', remote: 'دورکاری از محل فعلی', title: 'عنوان منطبق', 'experience-fit': 'سابقه کافی', fresh: 'آگهی تازه',
       'needs-more-experience': 'سابقه بیشتری می‌خواهد', 'level-too-high': 'سطح بالاتر از شما', overqualified: 'سطح پایین‌تر از شما', 'title-skill-missing': 'مهارت اصلی عنوان را ندارید', 'other-field': 'رشته متفاوت',
-      'no-sponsorship': 'بدون اسپانسر', 'region-locked': 'محدود به منطقه دیگر', 'remote-needs-residence': 'دورکاری فقط برای ساکنان همان منطقه', 'us-hours': 'ساعت کاری آمریکا', sanctions: 'استخدام از کشورهای تحریم‌شده ممکن نیست', language: 'زبان محلی لازم', old: 'آگهی قدیمی', 'scam-risk': 'مشکوک',
+      'no-sponsorship': 'بدون اسپانسر', 'region-locked': 'محدود به منطقه دیگر', 'remote-needs-residence': 'دورکاری فقط برای ساکنان همان منطقه', 'us-hours': 'ساعت کاری آمریکا', sanctions: 'استخدام از کشورهای تحریم‌شده ممکن نیست', 'management-role': 'نقش مدیریتی', 'entry-blocked': 'ورود با پاسپورت شما ممنوع است', language: 'زبان محلی لازم', old: 'آگهی قدیمی', 'scam-risk': 'مشکوک',
     },
     dir: 'rtl',
     profile: 'پروفایل شما',
@@ -149,7 +149,7 @@ const STRINGS = {
     reason: {
       visa: 'visa sponsorship', relocation: 'relocation help', 'target-country': 'target country', remote: 'remote from home', title: 'title match', 'experience-fit': 'enough experience', fresh: 'fresh ad',
       'needs-more-experience': 'wants more experience', 'level-too-high': 'level above yours', overqualified: 'below your level', 'title-skill-missing': 'main skill in title missing', 'other-field': 'different field',
-      'no-sponsorship': 'no sponsorship', 'region-locked': 'locked to another region', 'remote-needs-residence': 'remote only for residents there', 'us-hours': 'US working hours', sanctions: 'cannot hire from sanctioned countries', language: 'local language needed', old: 'old ad', 'scam-risk': 'suspicious',
+      'no-sponsorship': 'no sponsorship', 'region-locked': 'locked to another region', 'remote-needs-residence': 'remote only for residents there', 'us-hours': 'US working hours', sanctions: 'cannot hire from sanctioned countries', 'management-role': 'people-management role', 'entry-blocked': 'entry closed to your passport', language: 'local language needed', old: 'old ad', 'scam-risk': 'suspicious',
     },
     dir: 'ltr',
     profile: 'Your profile',

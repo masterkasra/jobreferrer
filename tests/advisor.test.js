@@ -74,6 +74,8 @@ test('job requirement parsing: years, level, field, remote scope, sanctions, hou
   assert.equal(remoteScope(job('EMEA')), 'emea');
   assert.equal(remoteScope(job('Europe')), 'europe');
   assert.equal(remoteScope(job('Germany')), 'country');
+  assert.equal(remoteScope(job('Argentina')), 'other-place');
+  assert.equal(remoteScope(job('Fully Remote')), 'unspecified');
   assert.ok(sanctionsExcluded('Due to OFAC sanctions we cannot hire in Cuba, Iran, North Korea or Syria.'));
   assert.ok(usHours('Must overlap 4 hours with PST time zone'));
 });
@@ -95,6 +97,10 @@ test('scorer: title skill gaps, level gaps, remote eligibility from Iran, sancti
   assert.ok(sanctioned.reasons.includes('sanctions') && sanctioned.score < ww.score - 20);
   const field = scoreJob(mk({ title: 'Sales Manager', description: 'CRM', location: 'Berlin' }), profile, ['DE'], ctx);
   assert.ok(field.reasons.includes('other-field'));
+  const manager = scoreJob(mk({ title: 'Senior Engineering Manager, Frontend', description: 'React', location: 'Berlin' }), profile, ['DE'], ctx);
+  assert.ok(manager.reasons.includes('management-role'));
+  const us = scoreJob(mk({ title: 'React Developer', description: 'React TypeScript. We sponsor visas.', location: 'New York, USA' }), profile, ['DE'], { residence: 'IR', nationality: 'IR' });
+  assert.ok(us.reasons.includes('entry-blocked') && us.score < react.score - 30);
   const list = diversify([{ company: 'A' }, { company: 'A' }, { company: 'A' }, { company: 'B' }]);
   assert.deepEqual(list.map((j) => j.company), ['A', 'A', 'B', 'A']);
   const d = dedupe([mk({ title: 'Senior React.js Full-stack Developer', company: 'Lemon.io' }), mk({ title: 'Senior React Full-stack Developer (Remote)', company: 'lemon.io' })]);

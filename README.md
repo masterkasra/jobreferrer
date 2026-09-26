@@ -16,7 +16,7 @@
 ## What it does
 
 1. **Reads your resume in any common format**: PDF, Word (DOCX and legacy DOC), ODT, RTF, HTML, TXT/MD, JSON Resume, and photos or scans (JPG/PNG/WEBP, scanned PDF). English and **Persian** resumes are both supported (Persian digits, Jalali dates and job titles are understood). Without an API key a built-in parser extracts titles, skills, years, languages, degree and achievements; with a Claude key, Claude reads the resume directly and also transcribes photos and scans.
-2. **Searches 15 job sources in parallel**, including the career pages of ~27 companies that hire internationally (GitLab, Canonical, N26, GetYourGuide, Adyen, Spotify, Stripe…, via their public Greenhouse/Lever/Ashby feeds), and generates ready-made searches for 40+ more (LinkedIn, Indeed in 31 countries, StepStone, XING, SEEK, Bayt, Relocate.me, Jaabz, EURES…).
+2. **Searches 15 job sources in parallel**, including the career pages of 25 companies that hire internationally (GitLab, Canonical, N26, GetYourGuide, Adyen, Spotify, Stripe…, via their public Greenhouse/Lever/Ashby feeds), and generates ready-made searches for 40+ more (LinkedIn, Indeed in 31 countries, StepStone, XING, SEEK, Bayt, Relocate.me, Jaabz, EURES…).
 3. **Ranks every job precisely**: weighted skill match, title and field, *years of experience and seniority the ad asks for*, visa sponsorship, relocation help, target country, required local language, freshness. Each card explains *why* it was ranked (and what counts against it).
 4. **Two tracks**: jobs to **move** for (sponsorship, relocation, target countries) and **remote jobs you can do from where you live**. Remote eligibility is checked against your country of residence (worldwide / EMEA / Europe-only / one-country / US-hours) and ads that exclude sanctioned countries are pushed down.
 5. **Personal immigration assessment**, like a first consultation with an immigration adviser: official points systems (Canada CRS + FSW 67-point grid, Germany Opportunity Card, Australia points test) with "what if" levers (e.g. IELTS CLB 9 → +53 CRS), every route in your target countries rated strong / possible / hard / closed with next steps, costs and timelines, a document checklist (with Iran-specific items: degree release, official translation, military service, where to give biometrics), a 90-day plan and links to licensed advisers.
@@ -30,7 +30,7 @@
 
 | Source | Key | Notes |
 |---|---|---|
-| Company career pages | free | ~27 employers known for international hiring, read from their public Greenhouse / Lever / Ashby feeds |
+| Company career pages | free | 25 employers known for international hiring, read from their public Greenhouse / Lever / Ashby feeds |
 | Arbeitnow | free | Germany/EU, explicit visa-sponsorship flag |
 | Bundesagentur für Arbeit | free | German federal job board (only when DE is a target) |
 | Remotive, Remote OK, Jobicy, Himalayas, Working Nomads, We Work Remotely | free | Remote jobs; region-locked roles are penalised |

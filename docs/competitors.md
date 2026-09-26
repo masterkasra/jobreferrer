@@ -49,7 +49,7 @@ what jobreferrer took from them or adds on top.
 - **New-job alerts and memory** (Huntr tracker) — `--seen` / daily digest only sends jobs you have not seen.
 - **Aggregation** (all the boards above) — 14 sources with an API plus ready-made search links for 40+ boards without one (LinkedIn, Indeed ×31 countries, StepStone, SEEK, Bayt, Relocate.me, Jaabz…).
 
-- **First-hand ads from employer career pages** (Relocate.me's curation, automated) — ~27 internationally hiring companies read from their public Greenhouse/Lever/Ashby feeds.
+- **First-hand ads from employer career pages** (Relocate.me's curation, automated) — 25 internationally hiring companies read from their public Greenhouse/Lever/Ashby feeds.
 - **Remote-eligibility filters** (Remote Rocketship) — but judged against *your* country of residence, including "EU residents only", one-country remote, US-hours and sanctions exclusions.
 - **Official points calculators** (IRCC, Make it in Germany, Home Affairs) — combined in one report with what-if levers and tied to the jobs found.
 - **Explainable match** (Jobright) — each job shows the reasons for and against it, including years asked and level fit.

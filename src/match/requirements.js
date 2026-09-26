@@ -71,7 +71,8 @@ const EUROPE = /\b(europe|european|eu|eea|cet|cest|european time ?zones?)\b/i;
 
 /**
  * Where a remote hire may live:
- *  'worldwide' | 'emea' | 'europe' | 'country' (remote inside one country) | 'region-other' | '' (not remote)
+ *  'worldwide' | 'emea' | 'europe' | 'country' (remote inside one country) | 'multi-country'
+ *  | 'region-other' | 'other-place' (an unmapped place) | 'unspecified' | '' (not remote)
  */
 export function remoteScope(job) {
   if (!job.signals?.remote) return '';
@@ -82,6 +83,8 @@ export function remoteScope(job) {
   if (EUROPE.test(loc) || job.region === 'EU') return 'europe';
   if (job.countries.length === 1) return 'country';
   if (job.countries.length > 1) return 'multi-country';
+  // A place we don't map (e.g. "Argentina", "Serbia", "Hong Kong") usually means "remote, but only from there".
+  if (loc.replace(/\b(fully|100%|remote|remotely|anywhere|home ?office|homeoffice|work from home|wfh|flexible|hybrid|or|and|only|based|first|n\/a|tbd|various|multiple locations?)\b/gi, '').replace(/[^\p{L}]+/gu, '').length > 2) return 'other-place';
   // A bare "Remote" with no location: check the ad text for hints.
   const text = (job.description ?? '').slice(0, 3000);
   if (WORLDWIDE.test(text)) return 'worldwide';

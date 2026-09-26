@@ -1,6 +1,6 @@
 # گزارش فرصت‌های شغلی و مهاجرت
 
-_Sat, 26 Sep 2026 18:36:27 GMT · متن‌ها با قالب آماده ساخته شده‌اند؛ برای شخصی‌سازی کامل کلید ANTHROPIC_API_KEY را تنظیم کنید._
+_Sat, 26 Sep 2026 18:39:45 GMT · متن‌ها با قالب آماده ساخته شده‌اند؛ برای شخصی‌سازی کامل کلید ANTHROPIC_API_KEY را تنظیم کنید._
 
 ## پروفایل شما
 
@@ -199,7 +199,7 @@ Hi! I'm a Full Stack Developer (7+ years, React, Next.js) and very interested in
 - Why do you want to relocate, and what is your timeline?
 
 ### 3. Backend Developer Node.js — Grachten Tech B.V. (demo)
-امتیاز تطابق: **84/100** · Amsterdam, Netherlands · منبع: Demo board · انتشار: 2026-09-20
+امتیاز تطابق: **79/100** · Amsterdam, Netherlands · منبع: Demo board · انتشار: 2026-09-20
 🛂 اسپانسر ویزا · ✈️ کمک جابه‌جایی
 🔗 [مشاهده و اپلای](https://example.com/jobs/grachten-backend)
 مهارت‌های منطبق: Node.js, PostgreSQL, Redis, Docker
@@ -242,7 +242,7 @@ Hi! I'm a Full Stack Developer (7+ years, Node.js, PostgreSQL) and very interest
 - Why do you want to relocate, and what is your timeline?
 
 ### 4. Software Engineer, Payments — Thames Fintech Ltd (demo)
-امتیاز تطابق: **75/100** · London, United Kingdom · منبع: Demo board · انتشار: 2026-09-18
+امتیاز تطابق: **70/100** · London, United Kingdom · منبع: Demo board · انتشار: 2026-09-18
 🛂 اسپانسر ویزا
 حقوق: 65,000–80,000 GBP — بالاتر از حداقل ویزا (Skilled Worker visa: 41,700 GBP)
 🔗 [مشاهده و اپلای](https://example.com/jobs/thames-payments)
@@ -284,7 +284,7 @@ Hi! I'm a Full Stack Developer (7+ years, TypeScript, Node.js) and very interest
 - Why do you want to relocate, and what is your timeline?
 
 ### 5. Senior Software Engineer — Maple North Software (demo)
-امتیاز تطابق: **70/100** · Toronto, Canada · منبع: Demo board · انتشار: 2026-09-12
+امتیاز تطابق: **65/100** · Toronto, Canada · منبع: Demo board · انتشار: 2026-09-12
 ✈️ کمک جابه‌جایی
 🔗 [مشاهده و اپلای](https://example.com/jobs/maple-senior)
 مهارت‌های منطبق: React, Node.js, PostgreSQL, Kubernetes
@@ -325,7 +325,7 @@ Hi! I'm a Full Stack Developer (7+ years, React, Node.js) and very interested in
 - Why do you want to relocate, and what is your timeline?
 
 ### 6. Backend Engineer (Go) — Skärgård Systems AB (demo)
-امتیاز تطابق: **52/100** · Stockholm, Sweden · منبع: Demo board · انتشار: 2026-08-30
+امتیاز تطابق: **47/100** · Stockholm, Sweden · منبع: Demo board · انتشار: 2026-08-30
 🛂 اسپانسر ویزا · ✈️ کمک جابه‌جایی
 🔗 [مشاهده و اپلای](https://example.com/jobs/skargard-go)
 مهارت‌های منطبق: Node.js, PostgreSQL, Kubernetes
@@ -492,7 +492,7 @@ arman.karimi@example.com | linkedin.com/in/arman-karimi-demo | github.com/arman-
 ## پروژه‌ها و فرصت‌های فریلنسری
 
 ### 1. Build a Next.js dashboard with PostgreSQL backend
-امتیاز تطابق: **75/100** · Demo freelance · 1,500–3,000 USD/project
+امتیاز تطابق: **70/100** · Demo freelance · 1,500–3,000 USD/project
 🔗 [مشاهده و اپلای](https://example.com/projects/nextjs-dashboard)
 
 **پروپوزال پیشنهادی:**

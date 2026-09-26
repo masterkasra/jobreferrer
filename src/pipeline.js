@@ -52,8 +52,8 @@ export async function run(opts) {
     ? { jobs: dedupe(fixtureJobs.map(makeJob)), sources: [{ id: 'demo', name: 'Demo data', count: fixtureJobs.length, status: 'ok' }] }
     : await searchAll({ profile, countries, only, skip, onProgress: (row) => onProgress({ step: 'source', ...row }) });
 
-  const scams = flagged(all).map((j) => scoreJob(j, profile, countries, { residence })).slice(0, 5);
-  const ranked = rankJobs(all, profile, countries, { residence });
+  const scams = flagged(all).map((j) => scoreJob(j, profile, countries, { residence, nationality })).slice(0, 5);
+  const ranked = rankJobs(all, profile, countries, { residence, nationality });
   const employment = ranked.filter((j) => j.kind === 'job');
   // Two tracks: jobs to move for (sponsorship, relocation, target country) and remote jobs open from home.
   const movable = (j) => j.signals.visa || j.signals.relocation || j.countries.some((c) => countries.includes(c));

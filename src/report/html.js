@@ -41,7 +41,7 @@ function jobCard(j, i, s) {
 </article>`;
 }
 
-const BAD = new Set(['needs-more-experience', 'level-too-high', 'overqualified', 'title-skill-missing', 'other-field', 'no-sponsorship', 'region-locked', 'remote-needs-residence', 'us-hours', 'sanctions', 'language', 'old', 'scam-risk']);
+const BAD = new Set(['management-role', 'entry-blocked', 'needs-more-experience', 'level-too-high', 'overqualified', 'title-skill-missing', 'other-field', 'no-sponsorship', 'region-locked', 'remote-needs-residence', 'us-hours', 'sanctions', 'language', 'old', 'scam-risk']);
 
 function whyLine(j, s) {
   const chips = (j.reasons ?? []).filter((r) => s.reason[r]).map((r) => `<span class="chip ${BAD.has(r) ? 'miss' : 'ok'}">${BAD.has(r) ? '−' : '+'} ${esc(s.reason[r])}</span>`);
