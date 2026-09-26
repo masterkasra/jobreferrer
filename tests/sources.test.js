@@ -98,6 +98,17 @@ test('arbeitsagentur sends the public API key and falls back to older API versio
   assert.deepEqual(j.countries, ['DE']);
 });
 
+test('arbeitsagentur v6 response shape (ergebnisliste)', async () => {
+  mock = mockFetch([['pc/v6/jobs', { ergebnisliste: [{ stellenangebotsTitel: 'Softwareentwickler (m/w/d)', refnr: '10000-1', arbeitgeber: 'Hamburg IT GmbH', stellenlokationen: [{ adresse: { ort: 'Hamburg', land: 'Deutschland' } }], gehaltsspanneVon: 45000, gehaltsspanneBis: 60000, eintrittszeitraum: { von: '2026-09-25' } }] }]]);
+  const [j] = await arbeitsagentur.search(ctx);
+  assert.equal(j.title, 'Softwareentwickler (m/w/d)');
+  assert.equal(j.company, 'Hamburg IT GmbH');
+  assert.equal(j.location, 'Hamburg, Deutschland');
+  assert.deepEqual(j.countries, ['DE']);
+  assert.equal(j.url, 'https://www.arbeitsagentur.de/jobsuche/jobdetail/10000-1');
+  assert.deepEqual(j.salary, { min: 45000, max: 60000, currency: 'EUR', period: 'year' });
+});
+
 test('freelancer.com projects become freelance gigs', async () => {
   mock = mockFetch([['freelancer.com', { result: { projects: [{ id: 9, title: 'Build React app', seo_url: 'react/build-app', description: 'React + Node', type: 'fixed', budget: { minimum: 500, maximum: 1000 }, currency: { code: 'USD' }, time_submitted: 1790000000, jobs: [{ name: 'React.js' }] }] } }]]);
   const [g] = await freelancer.search(ctx);
