@@ -1,0 +1,62 @@
+# Free daily job alerts on GitHub Actions — no server needed.
+#
+# Setup (Settings → Secrets and variables → Actions):
+#   secrets:   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, RESUME_B64 (base64 of your PDF/DOCX)
+#              or RESUME_TEXT, and optionally ANTHROPIC_API_KEY, ADZUNA_APP_ID,
+#              ADZUNA_APP_KEY, JOOBLE_API_KEY, REED_API_KEY
+#   variables: TARGET_COUNTRIES (e.g. DE,NL,GB,IE,CA), NATIONALITY (e.g. IR),
+#              REPORT_LANG (fa|en), RESUME_NAME (e.g. resume.pdf)
+# Then enable the workflow. It runs every morning and only messages you when
+# there are jobs you have not seen yet.
+name: Daily job digest
+
+on:
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    if: ${{ vars.DIGEST_ENABLED == 'true' || github.event_name == 'workflow_dispatch' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Restore memory of jobs already sent
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: digest-${{ github.run_id }}
+          restore-keys: digest-
+      - name: Search and send
+        env:
+          RESUME_B64: ${{ secrets.RESUME_B64 }}
+          RESUME_TEXT: ${{ secrets.RESUME_TEXT }}
+          RESUME_NAME: ${{ vars.RESUME_NAME }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
+          ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
+          JOOBLE_API_KEY: ${{ secrets.JOOBLE_API_KEY }}
+          REED_API_KEY: ${{ secrets.REED_API_KEY }}
+          TARGET_COUNTRIES: ${{ vars.TARGET_COUNTRIES }}
+          NATIONALITY: ${{ vars.NATIONALITY }}
+          REPORT_LANG: ${{ vars.REPORT_LANG }}
+        run: node bin/jobreferrer.js --seen .cache/seen.json --telegram --only-new --out reports/digest --format html,json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: reports/
+          retention-days: 14
