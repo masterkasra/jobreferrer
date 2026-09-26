@@ -13,7 +13,7 @@ if (page.status !== 200 || !html.includes('jobreferrer')) failures.push(`upload 
 
 for (const name of ['en-resume.pdf', 'fa-resume.docx', 'en-resume-scan.png']) {
   const started = Date.now();
-  const res = await fetch(`${base}/api/run?countries=DE,NL,GB,IE,CA,AE&lang=fa&nationality=IR`, {
+  const res = await fetch(`${base}/api/run?countries=DE,NL,GB,IE,CA,AE&lang=fa&nationality=IR&age=31&il=7.5&ir=7&iw=6.5&is=7`, {
     method: 'POST', headers: { 'X-Filename': name }, body: readFileSync(new URL(name, dir)),
   });
   const body = await res.text();
@@ -23,7 +23,14 @@ for (const name of ['en-resume.pdf', 'fa-resume.docx', 'en-resume-scan.png']) {
   if (name.includes('scan')) {
     // No API key on the deployment: a photo must get a clear 422 message, not a crash.
     if (res.status !== 422 && res.status !== 200) failures.push(`${name}: HTTP ${res.status}`);
-  } else if (res.status !== 200 || cards < 5) failures.push(`${name}: HTTP ${res.status}, ${cards} job cards`);
+  } else {
+    const remote = body.includes('id="remote"');
+    const crs = body.match(/Express Entry CRS: <b>(\d+)<\/b>/)?.[1];
+    const routes = (body.match(/class="card path/g) ?? []).length;
+    console.log(`   remote section: ${remote} · CRS ${crs ?? '-'} · ${routes} immigration routes rated`);
+    if (res.status !== 200 || cards < 5) failures.push(`${name}: HTTP ${res.status}, ${cards} job cards`);
+    if (!remote || !crs || routes < 3) failures.push(`${name}: report is missing the remote section or the immigration assessment`);
+  }
 }
 
 if (failures.length) {

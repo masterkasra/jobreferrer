@@ -13,6 +13,7 @@ import weworkremotely, { parseRss } from '../src/sources/weworkremotely.js';
 import arbeitsagentur from '../src/sources/arbeitsagentur.js';
 import freelancer from '../src/sources/freelancer.js';
 import adzuna from '../src/sources/adzuna.js';
+import companies from '../src/sources/companies.js';
 import { searchAll } from '../src/sources/index.js';
 import { searchLinks } from '../src/sources/links.js';
 import { config } from '../src/config.js';
@@ -129,6 +130,26 @@ test('adzuna needs keys and queries per target country', async () => {
   } finally {
     Object.assign(config.adzuna, { appId: '', appKey: '' });
   }
+});
+
+test('company career pages: greenhouse, lever and ashby feeds, filtered to the candidate field', async () => {
+  mock = mockFetch([
+    ['boards-api.greenhouse.io/v1/boards/n26/', { jobs: [
+      { title: 'Senior React Developer', absolute_url: 'https://n26.com/j/1', location: { name: 'Berlin' }, updated_at: '2026-09-20T10:00:00Z', content: '&lt;p&gt;React, Node.js. We offer relocation support and visa sponsorship.&lt;/p&gt;', departments: [{ name: 'Engineering' }] },
+      { title: 'Accountant', absolute_url: 'https://n26.com/j/2', location: { name: 'Berlin' }, content: 'Excel' },
+    ] }],
+    ['api.lever.co/v0/postings/spotify', [{ text: 'Backend Developer', hostedUrl: 'https://jobs.lever.co/spotify/1', categories: { location: 'Stockholm', team: 'Eng' }, descriptionPlain: 'Node.js services', lists: [{ text: 'You have', content: '5+ years of experience' }], createdAt: 1790000000000, workplaceType: 'onsite' }]],
+    ['api.ashbyhq.com/posting-api/job-board/posthog', { jobs: [{ title: 'Product Engineer (React)', location: 'Remote', isRemote: true, descriptionHtml: '<p>React</p>', jobUrl: 'https://jobs.ashbyhq.com/posthog/1', publishedAt: '2026-09-21' }] }],
+    ['greenhouse.io', { __status: 404 }],
+    ['lever.co', { __status: 404 }],
+    ['ashbyhq.com', { __status: 404 }],
+  ]);
+  const jobs = await companies.search(ctx);
+  assert.deepEqual(jobs.map((j) => j.company).sort(), ['N26', 'PostHog', 'Spotify']);
+  const n26 = jobs.find((j) => j.company === 'N26');
+  assert.ok(n26.signals.visa && n26.signals.relocation && n26.description.startsWith('React'));
+  assert.ok(jobs.find((j) => j.company === 'PostHog').signals.remote);
+  assert.ok(jobs.find((j) => j.company === 'Spotify').description.includes('5+ years'));
 });
 
 test('searchAll isolates failing sources and reports status', async () => {

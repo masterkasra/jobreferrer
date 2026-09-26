@@ -57,11 +57,14 @@ function toIso(value) {
   return Number.isNaN(d.getTime()) ? null : d.toISOString();
 }
 
+// "Senior React.js Full-stack Developer" and "Senior React Full-Stack Developer (Remote)" are the same ad.
+const titleKey = (t) => t.toLowerCase().replace(/\((remote|hybrid|on-?site|m\/w\/d|f\/m\/d|m\/f\/d|w\/m\/d|all genders?)\)/g, '').replace(/\.js\b/g, '').replace(/\W+/g, '');
+
 /** Remove duplicates posted on several boards (same company + title). */
 export function dedupe(jobs) {
   const seen = new Map();
   for (const job of jobs) {
-    const key = `${job.company.toLowerCase().replace(/\W+/g, '')}|${job.title.toLowerCase().replace(/\W+/g, '')}`;
+    const key = `${job.company.toLowerCase().replace(/\W+/g, '')}|${titleKey(job.title)}`;
     const prev = seen.get(key);
     // Keep the richer record, but remember every board it was seen on.
     if (!prev) seen.set(key, { ...job, alsoOn: [] });

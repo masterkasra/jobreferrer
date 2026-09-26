@@ -12,6 +12,8 @@ const PORT = Number(process.env.PORT ?? 3000);
 const HOST = process.env.HOST ?? '127.0.0.1';
 const MAX = 10 * 1024 * 1024;
 
+const LEVELS = ['', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((l) => `<option value="${l}">${l || '—'}</option>`).join('');
+
 const page = () => `<!doctype html>
 <html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jobreferrer</title>
@@ -26,6 +28,9 @@ label{display:block;margin:14px 0 6px;font-weight:700}input[type=text],select{wi
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:4px}.grid label{font-weight:400;margin:0}
 button{margin-top:18px;width:100%;padding:12px;border:0;border-radius:10px;background:var(--accent);color:#fff;font:700 16px Vazirmatn,sans-serif;cursor:pointer}button:disabled{opacity:.6}
 .muted{color:var(--muted);font-size:.9rem}
+.more{margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:8px 12px}.more summary{cursor:pointer;font-weight:700;color:var(--accent)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+input[type=number]{width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
 </style></head><body><main>
 <h1>jobreferrer</h1>
 <p class="muted">رزومه بدهید؛ موقعیت‌های دارای اسپانسر ویزا و جابه‌جایی، پروژه‌های فریلنسری، نامه آماده برای هر کارفرما و برنامه مهاجرت بگیرید. ${hasClaude() ? `حالت هوش مصنوعی فعال است (${config.anthropic.model}).` : 'حالت بدون هوش مصنوعی (برای متن‌های شخصی‌تر ANTHROPIC_API_KEY را تنظیم کنید).'}</p>
@@ -34,7 +39,18 @@ button{margin-top:18px;width:100%;padding:12px;border:0;border-radius:10px;backg
 <div class="drop" id="drop"><span id="dl">فایل را اینجا بکشید یا کلیک کنید</span><input type="file" id="file" accept=".pdf,.docx,.doc,.odt,.rtf,.txt,.md,.html,.json,.jpg,.jpeg,.png,.webp" hidden></div>
 <label>کشورهای هدف</label>
 <div class="grid">${Object.entries(COUNTRIES).map(([c, v]) => `<label><input type="checkbox" name="c" value="${c}" ${config.defaults.countries.includes(c) ? 'checked' : ''}> ${v.fa}</label>`).join('')}</div>
-<label>ملیت (کد دوحرفی، اختیاری)</label><input type="text" id="nat" placeholder="IR" maxlength="2">
+<label>ملیت (کد دوحرفی پاسپورت)</label><input type="text" id="nat" value="IR" placeholder="IR" maxlength="2">
+<details class="more"><summary>اطلاعات تکمیلی برای ارزیابی دقیق مهاجرت (اختیاری، ۱ دقیقه)</summary>
+<p class="muted">با این‌ها امتیاز شما در سیستم‌های رسمی (اکسپرس انتری کانادا، فرصت شغلی آلمان، امتیاز استرالیا) دقیق محاسبه می‌شود. هیچ‌کدام ذخیره نمی‌شود.</p>
+<div class="row"><div><label>سن</label><input type="number" id="age" min="16" max="70" placeholder="مثلاً ۳۱"></div>
+<div><label>وضعیت تأهل</label><select id="married"><option value="">—</option><option value="false">مجرد</option><option value="true">متأهل (همسر همراه می‌آید)</option></select></div></div>
+<div class="row"><div><label>کشور محل زندگی فعلی</label><input type="text" id="res" placeholder="مثل ملیت" maxlength="2"></div>
+<div><label>بالاترین مدرک</label><select id="edu"><option value="">از رزومه</option><option value="phd">دکتری</option><option value="master">کارشناسی ارشد</option><option value="bachelor">کارشناسی</option><option value="two-year">کاردانی</option><option value="secondary">دیپلم</option></select></div></div>
+<label>نمره آیلتس (جنرال) — هر مهارت</label>
+<div class="row4"><input type="number" step="0.5" min="0" max="9" id="il" placeholder="Listening"><input type="number" step="0.5" min="0" max="9" id="ir" placeholder="Reading"><input type="number" step="0.5" min="0" max="9" id="iw" placeholder="Writing"><input type="number" step="0.5" min="0" max="9" id="is" placeholder="Speaking"></div>
+<div class="row"><div><label>سطح آلمانی</label><select id="de">${LEVELS}</select></div><div><label>سطح فرانسوی</label><select id="fr">${LEVELS}</select></div></div>
+<label><input type="checkbox" id="destay"> حداقل ۶ ماه (غیرتوریستی) در آلمان بوده‌ام</label>
+</details>
 <label>عنوان شغلی دلخواه (اختیاری)</label><input type="text" id="title" placeholder="مثلاً Data Engineer" maxlength="60">
 <label>زبان گزارش</label><select id="lang"><option value="fa">فارسی</option><option value="en">English</option></select>
 <button id="go" type="submit">جستجو</button>
@@ -52,8 +68,11 @@ document.getElementById('f').onsubmit = async (e) => {
   const f = file.files[0];
   if (!f) { status.textContent = 'اول فایل رزومه را انتخاب کنید.'; return; }
   if (f.size > 4.4 * 1024 * 1024) { status.textContent = 'حجم فایل بیشتر از ۴ مگابایت است؛ لطفاً PDF کم‌حجم‌تر یا فایل Word بفرستید.'; return; }
-  const q = new URLSearchParams({ countries: [...document.querySelectorAll('[name=c]:checked')].map((x) => x.value).join(','), nationality: document.getElementById('nat').value, title: document.getElementById('title').value, lang: document.getElementById('lang').value });
-  const btn = document.getElementById('go'); btn.disabled = true; status.textContent = '⏳ در حال تحلیل رزومه و جستجو در سایت‌های کاریابی… (۱ تا ۳ دقیقه)';
+  const v = (id) => document.getElementById(id).value;
+  const q = new URLSearchParams({ countries: [...document.querySelectorAll('[name=c]:checked')].map((x) => x.value).join(','), nationality: v('nat'), title: v('title'), lang: v('lang'),
+    age: v('age'), married: v('married'), residence: v('res'), education: v('edu'), il: v('il'), ir: v('ir'), iw: v('iw'), is: v('is'), german: v('de'), french: v('fr'), destay: document.getElementById('destay').checked ? '1' : '' });
+  for (const [k, val] of [...q]) if (!val) q.delete(k);
+  const btn = document.getElementById('go'); btn.disabled = true; status.textContent = '⏳ در حال تحلیل رزومه، جستجو در ده‌ها سایت کاریابی و صفحه استخدام شرکت‌ها و محاسبه امتیاز مهاجرت… (۱ تا ۳ دقیقه)';
   try {
     const res = await fetch('/api/run?' + q, { method: 'POST', headers: { 'X-Filename': encodeURIComponent(f.name) }, body: f });
     const html = await res.text();
@@ -62,6 +81,27 @@ document.getElementById('f').onsubmit = async (e) => {
   } catch (err) { status.textContent = '❌ ' + err.message; btn.disabled = false; }
 };
 </script></body></html>`;
+
+const CEFR = new Set(['A1', 'A2', 'B1', 'B2', 'C1', 'C2']);
+const EDU = new Set(['phd', 'master', 'bachelor', 'two-year', 'secondary']);
+
+/** Optional immigration facts from the form (all validated, nothing stored). */
+export function applicantFrom(q) {
+  const num = (k, min, max) => { const n = Number(q.get(k)); return Number.isFinite(n) && n >= min && n <= max && q.get(k) !== '' && q.get(k) !== null ? n : null; };
+  const bands = { l: num('il', 0, 9), r: num('ir', 0, 9), w: num('iw', 0, 9), s: num('is', 0, 9) };
+  const given = Object.values(bands).filter((b) => b !== null);
+  const a = {};
+  if (num('age', 16, 70)) a.age = num('age', 16, 70);
+  if (q.get('married') === 'true' || q.get('married') === 'false') a.married = q.get('married') === 'true';
+  if (/^[A-Za-z]{2}$/.test(q.get('residence') ?? '')) a.residence = q.get('residence').toUpperCase();
+  if (EDU.has(q.get('education'))) a.education = q.get('education');
+  if (given.length === 4) a.ielts = bands;
+  else if (given.length) a.ielts = Math.min(...given);
+  if (CEFR.has(q.get('german'))) a.german = q.get('german');
+  if (CEFR.has(q.get('french'))) a.french = q.get('french');
+  if (q.get('destay') === '1') a.stayInGermany = true;
+  return a;
+}
 
 async function readBody(req) {
   const chunks = [];
@@ -102,6 +142,7 @@ export async function handler(req, res) {
         countries: (url.searchParams.get('countries') ?? '').split(',').filter((c) => COUNTRIES[c]),
         lang,
         nationality: (url.searchParams.get('nationality') ?? '').slice(0, 2),
+        applicant: applicantFrom(url.searchParams),
         overrides: title ? { titles: [title], searchQueries: [title.toLowerCase()], headline: title } : {},
       });
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });

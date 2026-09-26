@@ -146,13 +146,13 @@ export function writePitches({ profile, jobs, guidanceLang = 'fa' }) {
   if (!jobs.length) return Promise.resolve(null);
   return safe('pitches', async () => {
     const jobBlocks = jobs
-      .map((j) => `<job id="${j.id}">\nTitle: ${j.title}\nCompany: ${j.company}\nLocation: ${j.location}\nVisa/relocation signals: ${j.signals.visa ? 'visa sponsorship' : ''} ${j.signals.relocation ? 'relocation support' : ''}\nDescription:\n${j.description.slice(0, 2500)}\n</job>`)
+      .map((j) => `<job id="${j.id}">\nTitle: ${j.title}\nCompany: ${j.company}\nLocation: ${j.location}\nVisa/relocation signals: ${j.signals.visa ? 'visa sponsorship' : ''} ${j.signals.relocation ? 'relocation support' : ''}\nTrack: ${j.openFromHome ? 'REMOTE from the candidate\'s current country (no relocation, contractor-friendly)' : 'RELOCATION (candidate moves and needs a work visa)'}${j.requiredYears ? `\nYears asked: ${j.requiredYears}+` : ''}\nDescription:\n${j.description.slice(0, 2500)}\n</job>`)
       .join('\n\n');
     const prompt = `Candidate profile (JSON):
 ${JSON.stringify(profileForPrompt(profile))}
 
 For each job below write application material in the language of the job ad (English if unsure):
-- coverLetter: 150-230 words, addressed to the hiring team, opening with the strongest matching achievement, mapping 2-3 requirements to concrete evidence from the profile, stating clearly and positively that the candidate needs visa sponsorship/relocation and is ready to move (mention notice period flexibility), ending with a call to action. No clichés, no invented facts.
+- coverLetter: 150-230 words, addressed to the hiring team, opening with the strongest matching achievement, mapping 2-3 requirements to concrete evidence from the profile, for RELOCATION jobs stating clearly and positively that the candidate needs visa sponsorship and is ready to move (mention notice period flexibility); for REMOTE jobs stressing remote/async experience and time-zone overlap without mentioning visas or the candidate's country; ending with a call to action. No clichés, no invented facts.
 - recruiterMessage: under 300 characters for LinkedIn/email outreach to a recruiter or hiring manager.
 - emailSubject: a specific subject line.
 - fitSummary: one sentence on why this candidate fits.
@@ -177,7 +177,7 @@ const STRATEGY_SCHEMA = obj({
   warnings: strArr,
 });
 
-export function writeStrategy({ profile, countryFit, stats, lang = 'fa' }) {
+export function writeStrategy({ profile, countryFit, stats, immigration, lang = 'fa' }) {
   return safe('strategy', async () => {
     const prompt = `Candidate profile (JSON):
 ${JSON.stringify(profileForPrompt(profile))}
@@ -186,9 +186,9 @@ Pre-computed country fit (score 0-100, higher is better) and visa routes:
 ${JSON.stringify(countryFit.map((c) => ({ country: c.name, score: c.score, routes: c.routes.map((r) => r.name), notes: c.reasons })))}
 
 Search results: ${JSON.stringify(stats)}
-
+${immigration ? `\nPersonal immigration assessment (official points systems, already computed — do not recalculate):\n${JSON.stringify({ calculators: immigration.calculators, pathways: immigration.pathways.map((p) => ({ country: p.code, route: p.route, status: p.status, points: p.points })), assumptions: immigration.applicant.estimated })}\n` : ''}
 Write a personal relocation job-search strategy in ${lang === 'fa' ? 'Persian (Farsi)' : 'English'}:
-- overview: 3-4 sentences on the candidate's realistic chances and the best overall route.
+- overview: 3-4 sentences on the candidate's realistic chances and the best overall route, like an experienced immigration adviser would say in a first consultation (use the assessment above; say which assumptions need confirming).
 - countryAdvice: the 3-5 best countries with verdict ("strong", "possible" or "hard") and reasoning.
 - resumeImprovements: 4-6 concrete edits for international employers and ATS systems.
 - linkedinTips: 3-5 tips to attract recruiters who sponsor visas.

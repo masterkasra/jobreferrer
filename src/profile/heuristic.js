@@ -113,6 +113,9 @@ export function heuristicProfile(input = '') {
     skills,
     languages: detectLanguages(text),
     highestDegree: DEGREES.find(([, re]) => re.test(text))?.[0] ?? 'unknown',
+    age: detectAge(text),
+    maritalStatus: /(marital status|وضعیت تا[هه]ل)\s*[:\-]?\s*(married|متا[هه]ل)/i.test(text) ? 'married' : /(marital status|وضعیت تا[هه]ل)\s*[:\-]?\s*(single|مجرد)/i.test(text) ? 'single' : 'unknown',
+    militaryService: detectMilitary(text),
     links: [...new Set(text.match(/https?:\/\/[^\s)>\]]+|(?:linkedin|github)\.com\/[^\s)>\]]+/gi) ?? [])].slice(0, 6),
     summary: '',
     strengths: achievements(lines),
@@ -120,6 +123,24 @@ export function heuristicProfile(input = '') {
     freelanceServices: ROLE_FAMILIES[family].freelance,
     source: 'heuristic',
   };
+}
+
+// Age from "Date of birth: 1992", "Born 14/03/1990", "تاریخ تولد: ۱۳۷۰" or "Age: 32" (Jalali years are converted).
+export function detectAge(text) {
+  const now = new Date().getFullYear();
+  const direct = text.match(/(?:\bage|سن)\s*[:\-]?\s*(\d{2})\b/i);
+  if (direct && Number(direct[1]) >= 16 && Number(direct[1]) <= 70) return Number(direct[1]);
+  const m = text.match(/(?:date of birth|birth ?date|\bdob|\bborn(?: on| in)?|تاریخ تولد|متولد|سال تولد)\s*[:\-]?\s*(?:\d{1,2}[./-]\d{1,2}[./-])?((?:19|20|13)\d{2})/i);
+  if (!m) return null;
+  const year = toGregorian(Number(m[1]));
+  const age = now - year;
+  return age >= 16 && age <= 70 ? age : null;
+}
+
+function detectMilitary(text) {
+  if (/پایان خدمت|military service\s*[:\-]?\s*(completed|done|finished)/i.test(text)) return 'done';
+  if (/معافیت|معاف (دائم|تحصیلی)?|military service\s*[:\-]?\s*exempt/i.test(text)) return 'exempt';
+  return 'unknown';
 }
 
 function persianTitles(text) {

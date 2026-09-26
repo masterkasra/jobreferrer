@@ -17,18 +17,25 @@ const CASES = [
 ];
 const countries = ['DE', 'NL', 'GB', 'IE', 'SE', 'CA', 'AE'];
 const failures = [];
-const summary = ['| resume | profile | jobs scanned | ranked | visa | top jobs | freelance |', '|---|---|---|---|---|---|---|'];
+const summary = ['| resume | profile | jobs scanned | ranked | visa | top jobs | remote | freelance |', '|---|---|---|---|---|---|---|---|'];
 
 for (const [name, lang] of CASES) {
   const started = Date.now();
   try {
     const resume = await loadResume(readFileSync(new URL(name, dir)), name, { useAI: false });
-    const r = await run({ text: resume.text, countries, lang, nationality: 'IR', useAI: false });
+    const r = await run({ text: resume.text, countries, lang, nationality: 'IR', useAI: false, applicant: { age: 31, ielts: { l: 7.5, r: 7, w: 6.5, s: 7 } } });
     const jobs = r.jobs.filter((j) => j.company && /^https?:\/\//.test(j.url));
     console.log(`\n=== ${name} → ${r.profile.headline} (${r.profile.roleFamily}, ${r.profile.yearsExperience}y) · queries: ${r.profile.searchQueries.join(' | ')} · ${Date.now() - started}ms`);
     console.log(`scanned ${r.stats.total} · ranked ${r.stats.matched} · visa ${r.stats.visa} · relocation ${r.stats.relocation} · freelance ${r.freelance.length} · scams ${r.stats.scams}`);
     for (const j of jobs.slice(0, 8)) console.log(`  [${j.score}] ${j.title} — ${j.company} (${j.location}) ${j.signals.visa ? '[visa]' : ''}${j.signals.relocation ? '[relocation]' : ''}${j.sponsor ? (j.sponsor.listed ? '[sponsor ✓]' : '[sponsor ?]') : ''}\n       ${j.url}`);
+    for (const j of r.remote.slice(0, 5)) console.log(`  remote: [${j.score}] ${j.title} — ${j.company} (${j.location}; ${j.remoteScope})\n       ${j.url}`);
     for (const g of r.freelance.slice(0, 3)) console.log(`  freelance: ${g.title} — ${g.url}`);
+    console.log(`  immigration: ${r.immigration.pathways.map((p) => `${p.code} ${p.route}=${p.status}`).join(' · ')}${r.immigration.calculators.crs ? ` · CRS ${r.immigration.calculators.crs.total}` : ''}`);
+    if (!r.remote.length) failures.push(`${name}: no remote jobs open from home`);
+    if (r.immigration.pathways.length < 3) failures.push(`${name}: immigration assessment has too few routes`);
+    const companies = new Map();
+    for (const j of r.jobs.slice(0, 10)) companies.set(j.company, (companies.get(j.company) ?? 0) + 1);
+    if ([...companies.values()].some((n) => n > 2)) failures.push(`${name}: one employer fills more than 2 of the top 10`);
     console.log(`  sources: ${r.sources.map((s) => `${s.id}=${s.status === 'ok' ? s.count : s.status}`).join(' ')}`);
     writeFileSync(new URL(`${name.replace(/\W/g, '_')}.html`, out), toHtml(r));
     if (jobs.length < 5) failures.push(`${name}: only ${jobs.length} ranked jobs with employer + link`);
@@ -36,7 +43,7 @@ for (const [name, lang] of CASES) {
     const withLetter = r.jobs.slice(0, 10).filter((j) => j.pitch?.coverLetter).length;
     if (withLetter < Math.min(10, r.jobs.length)) failures.push(`${name}: only ${withLetter} of the top jobs have a cover letter`);
     if (!r.freelance.every((g) => g.proposal)) failures.push(`${name}: freelance gigs without proposals`);
-    summary.push(`| ${name} | ${r.profile.headline} | ${r.stats.total} | ${r.stats.matched} | ${r.stats.visa} | ${jobs.slice(0, 3).map((j) => `${j.title} @ ${j.company}`).join('<br>')} | ${r.freelance.length} |`);
+    summary.push(`| ${name} | ${r.profile.headline} | ${r.stats.total} | ${r.stats.matched} | ${r.stats.visa} | ${jobs.slice(0, 3).map((j) => `${j.title} @ ${j.company}`).join('<br>')} | ${r.remote.slice(0, 2).map((j) => `${j.title} @ ${j.company}`).join('<br>')} | ${r.freelance.length} |`);
   } catch (err) {
     failures.push(`${name}: ${err.stack}`);
   }

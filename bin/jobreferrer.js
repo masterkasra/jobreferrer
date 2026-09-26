@@ -28,6 +28,10 @@ Options:
       --top 25               jobs in the report
       --pitches 10           jobs that get a tailored cover letter
       --title "..."          force the job title to search for
+  Immigration assessment (optional, makes the points calculators exact):
+      --age 31  --married  --residence IR  --education master|bachelor|phd|two-year|secondary
+      --ielts 8,7,7,7        IELTS General bands L,R,W,S (or one overall score)
+      --german B1  --french A2
       --only a,b / --skip a,b  choose sources (see --list-sources)
       --no-ai                do not call Claude even if ANTHROPIC_API_KEY is set
       --offline              use bundled demo jobs instead of live search
@@ -50,6 +54,13 @@ const { values, positionals } = parseArgs({
     top: { type: 'string' },
     pitches: { type: 'string' },
     title: { type: 'string' },
+    age: { type: 'string' },
+    married: { type: 'boolean', default: false },
+    residence: { type: 'string' },
+    education: { type: 'string' },
+    ielts: { type: 'string' },
+    german: { type: 'string' },
+    french: { type: 'string' },
     only: { type: 'string', default: '' },
     skip: { type: 'string', default: '' },
     'no-ai': { type: 'boolean', default: false },
@@ -104,7 +115,19 @@ const fixtureJobs = values.offline ? JSON.parse(await readFile(resolve(here, '..
 const log = (m) => process.stderr.write(`${m}\n`);
 log(`jobreferrer: ${useAI ? `AI mode (${config.anthropic.model})` : 'offline mode (no ANTHROPIC_API_KEY)'} · resume ${resume.type} read ${resume.via === 'ocr' ? 'by Claude (image/scan)' : 'locally'}, ${text.length} chars`);
 
+const bands = list(values.ielts).map(Number);
+const applicant = {
+  age: values.age ? Number(values.age) : undefined,
+  married: values.married || undefined,
+  residence: values.residence,
+  education: values.education,
+  ielts: bands.length === 4 ? { l: bands[0], r: bands[1], w: bands[2], s: bands[3] } : bands[0],
+  german: values.german,
+  french: values.french,
+};
+
 const report = await run({
+  applicant,
   text,
   pdf: resume.pdf,
   countries: list(values.countries),

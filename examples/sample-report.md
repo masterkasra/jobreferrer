@@ -1,6 +1,6 @@
 # گزارش فرصت‌های شغلی و مهاجرت
 
-_Sat, 26 Sep 2026 00:28:09 GMT · متن‌ها با قالب آماده ساخته شده‌اند؛ برای شخصی‌سازی کامل کلید ANTHROPIC_API_KEY را تنظیم کنید._
+_Sat, 26 Sep 2026 18:36:27 GMT · متن‌ها با قالب آماده ساخته شده‌اند؛ برای شخصی‌سازی کامل کلید ANTHROPIC_API_KEY را تنظیم کنید._
 
 ## پروفایل شما
 
@@ -21,7 +21,7 @@ _Sat, 26 Sep 2026 00:28:09 GMT · متن‌ها با قالب آماده ساخ�
 - **انگلستان** — شانس بالا: Skilled Worker visa: Job offer from a Home Office licensed sponsor at RQF level 6 (degree level) and English at the required CEFR level. Salary: the higher of the general threshold and the occupation going rate. 1 آگهی با اسپانسر/جابه‌جایی پیدا شد.
 - **ایرلند** — شانس بالا: Critical Skills Employment Permit: For roles on the Critical Skills Occupations List (most tech/engineering roles). Family can join immediately; path to Stamp 4 after 2 years. 1 آگهی با اسپانسر/جابه‌جایی پیدا شد.
 - **کانادا** — شانس بالا: Express Entry (permanent residence): Points-based (CRS): age, education, language (IELTS/CELPIP/TEF), experience. Category draws favour French, healthcare, STEM and trades. Job-offer points were removed in 2025, so a job is not required. 1 آگهی با اسپانسر/جابه‌جایی پیدا شد.
-- **امارات** — شانس بالا: Employer-sponsored work visa: The employer handles the entry permit, residence visa and Emirates ID; fast (1–4 weeks). No income tax.
+- **استرالیا** — شانس بالا: Skills in Demand visa (subclass 482): Employer-sponsored; Core Skills stream requires a salary above the Core Skills Income Threshold (indexed every July).
 
 #### انگلستان (86/100)
 - [Skilled Worker visa](https://www.gov.uk/skilled-worker-visa) — Job offer from a Home Office licensed sponsor at RQF level 6 (degree level) and English at the required CEFR level. Salary: the higher of the general threshold and the occupation going rate.
@@ -43,12 +43,11 @@ _Sat, 26 Sep 2026 00:28:09 GMT · متن‌ها با قالب آماده ساخ�
 - سایت رسمی: https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry.html · ارزیابی مدرک: [Educational Credential Assessment (WES etc.)](https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/education-assessed.html)
 - سبک رزومه: North-American résumé: 1–2 pages, no photo, no age/marital status, achievement bullets.
 
-#### امارات (84/100)
-- [Employer-sponsored work visa](https://u.ae/en/information-and-services/visa-and-emirates-id/residence-visas/residence-visa-for-working-in-the-uae) — The employer handles the entry permit, residence visa and Emirates ID; fast (1–4 weeks). No income tax.
-- [Golden Visa (skilled professionals)](https://u.ae/en/information-and-services/visa-and-emirates-id/residence-visas/golden-visa) — 10-year visa for professionals with a bachelor degree and a high monthly salary (skill level 1–2).
-- [Green Visa (freelancers / skilled)](https://u.ae/en/information-and-services/visa-and-emirates-id/residence-visas/green-visa) — 5-year self-sponsored visa for freelancers and skilled employees meeting income/degree requirements.
-- سایت رسمی: https://u.ae/en/information-and-services/visa-and-emirates-id · ارزیابی مدرک: [Degree attestation (MOFA)](https://www.mofa.gov.ae/en/services/attestation)
-- سبک رزومه: 2-page CV; a photo, nationality and visa status are commonly included.
+#### استرالیا (83/100)
+- [Skills in Demand visa (subclass 482)](https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skills-in-demand-482) — Employer-sponsored; Core Skills stream requires a salary above the Core Skills Income Threshold (indexed every July).
+- [Skilled Independent (subclass 189)](https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-independent-189) — Points-tested permanent visa, no sponsor needed; requires a positive skills assessment.
+- سایت رسمی: https://immi.homeaffairs.gov.au/ · ارزیابی مدرک: [Skills assessment (e.g. ACS for IT, Engineers Australia)](https://www.acs.org.au/msa.html)
+- سبک رزومه: 2–3 page résumé, no photo; list referees.
 
 #### آلمان (82/100)
 - [EU Blue Card](https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card) — Recognised degree + job offer at or above the salary threshold. Permanent residence after 21–27 months.
@@ -68,7 +67,7 @@ _Sat, 26 Sep 2026 00:28:09 GMT · متن‌ها با قالب آماده ساخ�
 ### لینکدین
 
 - عنوان پروفایل را اینطور بنویسید: «Full Stack Developer | JavaScript · TypeScript · React | Open to relocation»
-- در Open to Work، گزینه «فقط ریکروترها» و شهرهای هدف (انگلستان، ایرلند، کانادا، امارات) را اضافه کنید.
+- در Open to Work، گزینه «فقط ریکروترها» و شهرهای هدف (انگلستان، ایرلند، کانادا، استرالیا) را اضافه کنید.
 - هفته‌ای ۱۰ ریکروتر فنی در کشورهای هدف را با یک پیام کوتاه شخصی کانکت کنید.
 - هفته‌ای یک پست درباره پروژه یا یادگیری‌تان منتشر کنید تا در جستجوی ریکروترها بالاتر بیایید.
 
@@ -88,9 +87,8 @@ _Sat, 26 Sep 2026 00:28:09 GMT · متن‌ها با قالب آماده ساخ�
 - صف نوبت سفارت‌ها در تهران طولانی است؛ بسیاری از متقاضیان (در صورت پذیرش سفارت) از کنسولگری‌های آنکارا، استانبول، ایروان یا دبی اقدام می‌کنند.
 - بسیاری از پلتفرم‌های بین‌المللی (Upwork، Fiverr، PayPal، Stripe) به کاربران ساکن کشورهای تحت تحریم سرویس نمی‌دهند و حساب‌های خلاف قوانینشان بسته و پولشان بلوکه می‌شود. از پلتفرم‌ها و روش‌های پرداختی استفاده کنید که رسماً کشور محل اقامت شما را پشتیبانی می‌کنند.
 - ترجمه رسمی و تأیید مدارک تحصیلی (وزارت علوم/بهداشت و امور خارجه) را زود شروع کنید؛ معمولاً چند هفته طول می‌کشد.
-- ورود اتباع ایران به آمریکا از ژوئن ۲۰۲۵ با فرمان ریاست‌جمهوری (جز استثناهای محدود) متوقف شده است. قبل از اپلای برای موقعیت‌های آمریکا وضعیت فعلی را در travel.state.gov بررسی کنید.
 
-### برنامه ۴ هفته‌ای
+### برنامه ۴ هفته‌ای جستجوی کار
 
 **هفته ۱**
 - [ ] رزومه انگلیسی را با نکات بالا بازنویسی کنید.
@@ -158,8 +156,50 @@ Hi! I'm a Full Stack Developer (7+ years, TypeScript, React) and very interested
 - How do you debug a production issue you cannot reproduce locally?
 - Why do you want to relocate, and what is your timeline?
 
-### 2. Backend Developer Node.js — Grachten Tech B.V. (demo)
-امتیاز تطابق: **80/100** · Amsterdam, Netherlands · منبع: Demo board · انتشار: 2026-09-20
+### 2. Full Stack Developer — Liffey Cloud (demo)
+امتیاز تطابق: **85/100** · Dublin, Ireland · منبع: Demo board · انتشار: 2026-09-10
+✈️ کمک جابه‌جایی
+حقوق: 60,000–70,000 EUR — بالاتر از حداقل ویزا (Critical Skills Employment Permit: 40,904 EUR)
+🔗 [مشاهده و اپلای](https://example.com/jobs/liffey-fullstack)
+مهارت‌های منطبق: React, Next.js, Node.js, GraphQL
+
+**موضوع ایمیل:** Full Stack Developer — Arman Karimi (7+ years, open to relocation)
+
+**نامه پیشنهادی به کارفرما:**
+```
+Dear Liffey Cloud (demo) hiring team,
+
+I'm applying for the Full Stack Developer position. I'm a senior Full Stack Developer with 7+ years working with React, Next.js and Node.js, which matches the core of what you're looking for.
+
+What I would bring:
+• Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day
+• Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%
+• Also comfortable with GraphQL
+
+I'm ready to relocate to Ireland and would need visa sponsorship (the Critical Skills Employment Permit route fits this role). I can start the paperwork immediately and I'm flexible on the start date.
+
+I'd welcome a short call to discuss how I can help your team. Thank you for your time.
+
+Best regards,
+Arman Karimi
+arman.karimi@example.com | linkedin.com/in/arman-karimi-demo | github.com/arman-karimi-demo
+```
+
+**پیام کوتاه به ریکروتر (لینکدین/ایمیل):**
+```
+Hi! I'm a Full Stack Developer (7+ years, React, Next.js) and very interested in the Full Stack Developer role at Liffey Cloud (demo). Open to relocating to Ireland with sponsorship. Could we have a quick chat?
+```
+
+**راهنمای گرفتن این موقعیت:**
+- در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.
+
+**سوالات احتمالی مصاحبه:**
+- Walk us through a system you designed: what trade-offs did you make?
+- How do you debug a production issue you cannot reproduce locally?
+- Why do you want to relocate, and what is your timeline?
+
+### 3. Backend Developer Node.js — Grachten Tech B.V. (demo)
+امتیاز تطابق: **84/100** · Amsterdam, Netherlands · منبع: Demo board · انتشار: 2026-09-20
 🛂 اسپانسر ویزا · ✈️ کمک جابه‌جایی
 🔗 [مشاهده و اپلای](https://example.com/jobs/grachten-backend)
 مهارت‌های منطبق: Node.js, PostgreSQL, Redis, Docker
@@ -194,48 +234,6 @@ Hi! I'm a Full Stack Developer (7+ years, Node.js, PostgreSQL) and very interest
 
 **راهنمای گرفتن این موقعیت:**
 - اگر با Kafka کار کرده‌اید، صریحاً در رزومه بیاورید؛ این کلیدواژه‌ها را ATS بررسی می‌کند.
-- در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.
-
-**سوالات احتمالی مصاحبه:**
-- Walk us through a system you designed: what trade-offs did you make?
-- How do you debug a production issue you cannot reproduce locally?
-- Why do you want to relocate, and what is your timeline?
-
-### 3. Full Stack Developer — Liffey Cloud (demo)
-امتیاز تطابق: **80/100** · Dublin, Ireland · منبع: Demo board · انتشار: 2026-09-10
-✈️ کمک جابه‌جایی
-حقوق: 60,000–70,000 EUR — بالاتر از حداقل ویزا (Critical Skills Employment Permit: 40,904 EUR)
-🔗 [مشاهده و اپلای](https://example.com/jobs/liffey-fullstack)
-مهارت‌های منطبق: React, Next.js, Node.js, GraphQL
-
-**موضوع ایمیل:** Full Stack Developer — Arman Karimi (7+ years, open to relocation)
-
-**نامه پیشنهادی به کارفرما:**
-```
-Dear Liffey Cloud (demo) hiring team,
-
-I'm applying for the Full Stack Developer position. I'm a senior Full Stack Developer with 7+ years working with React, Next.js and Node.js, which matches the core of what you're looking for.
-
-What I would bring:
-• Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day
-• Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%
-• Also comfortable with GraphQL
-
-I'm ready to relocate to Ireland and would need visa sponsorship (the Critical Skills Employment Permit route fits this role). I can start the paperwork immediately and I'm flexible on the start date.
-
-I'd welcome a short call to discuss how I can help your team. Thank you for your time.
-
-Best regards,
-Arman Karimi
-arman.karimi@example.com | linkedin.com/in/arman-karimi-demo | github.com/arman-karimi-demo
-```
-
-**پیام کوتاه به ریکروتر (لینکدین/ایمیل):**
-```
-Hi! I'm a Full Stack Developer (7+ years, React, Next.js) and very interested in the Full Stack Developer role at Liffey Cloud (demo). Open to relocating to Ireland with sponsorship. Could we have a quick chat?
-```
-
-**راهنمای گرفتن این موقعیت:**
 - در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.
 
 **سوالات احتمالی مصاحبه:**
@@ -285,91 +283,7 @@ Hi! I'm a Full Stack Developer (7+ years, TypeScript, Node.js) and very interest
 - How do you debug a production issue you cannot reproduce locally?
 - Why do you want to relocate, and what is your timeline?
 
-### 5. Backend Engineer (Go) — Skärgård Systems AB (demo)
-امتیاز تطابق: **75/100** · Stockholm, Sweden · منبع: Demo board · انتشار: 2026-08-30
-🛂 اسپانسر ویزا · ✈️ کمک جابه‌جایی
-🔗 [مشاهده و اپلای](https://example.com/jobs/skargard-go)
-مهارت‌های منطبق: Node.js, PostgreSQL, Kubernetes
-کلیدواژه‌های جاافتاده: gRPC
-
-**موضوع ایمیل:** Backend Engineer (Go) — Arman Karimi (7+ years, open to relocation)
-
-**نامه پیشنهادی به کارفرما:**
-```
-Dear Skärgård Systems AB (demo) hiring team,
-
-I'm applying for the Backend Engineer (Go) position. I'm a senior Full Stack Developer with 7+ years working with Node.js, PostgreSQL and Kubernetes, which matches the core of what you're looking for.
-
-What I would bring:
-• Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day
-• Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%
-
-I'm ready to relocate to Sweden and would need visa sponsorship (the Work permit route fits this role). I can start the paperwork immediately and I'm flexible on the start date.
-
-I'd welcome a short call to discuss how I can help your team. Thank you for your time.
-
-Best regards,
-Arman Karimi
-arman.karimi@example.com | linkedin.com/in/arman-karimi-demo | github.com/arman-karimi-demo
-```
-
-**پیام کوتاه به ریکروتر (لینکدین/ایمیل):**
-```
-Hi! I'm a Full Stack Developer (7+ years, Node.js, PostgreSQL) and very interested in the Backend Engineer (Go) role at Skärgård Systems AB (demo). Open to relocating to Sweden with sponsorship. Could we have a quick chat?
-```
-
-**راهنمای گرفتن این موقعیت:**
-- اگر با gRPC کار کرده‌اید، صریحاً در رزومه بیاورید؛ این کلیدواژه‌ها را ATS بررسی می‌کند.
-- در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.
-
-**سوالات احتمالی مصاحبه:**
-- Walk us through a system you designed: what trade-offs did you make?
-- How do you debug a production issue you cannot reproduce locally?
-- Why do you want to relocate, and what is your timeline?
-
-### 6. Full Stack JavaScript Developer — Palm Digital FZ-LLC (demo)
-امتیاز تطابق: **70/100** · Dubai, United Arab Emirates · منبع: Demo board · انتشار: 2026-09-19
-حقوق: 25,000 AED
-🔗 [مشاهده و اپلای](https://example.com/jobs/palm-fullstack)
-مهارت‌های منطبق: JavaScript, React, Node.js, MongoDB, AWS
-
-**موضوع ایمیل:** Full Stack JavaScript Developer — Arman Karimi (7+ years, open to relocation)
-
-**نامه پیشنهادی به کارفرما:**
-```
-Dear Palm Digital FZ-LLC (demo) hiring team,
-
-I'm applying for the Full Stack JavaScript Developer position. I'm a senior Full Stack Developer with 7+ years working with JavaScript, React and Node.js, which matches the core of what you're looking for.
-
-What I would bring:
-• Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day
-• Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%
-• Also comfortable with MongoDB and AWS
-
-I'm ready to relocate to United Arab Emirates and would need visa sponsorship (the Employer-sponsored work visa route fits this role). I can start the paperwork immediately and I'm flexible on the start date.
-
-I'd welcome a short call to discuss how I can help your team. Thank you for your time.
-
-Best regards,
-Arman Karimi
-arman.karimi@example.com | linkedin.com/in/arman-karimi-demo | github.com/arman-karimi-demo
-```
-
-**پیام کوتاه به ریکروتر (لینکدین/ایمیل):**
-```
-Hi! I'm a Full Stack Developer (7+ years, JavaScript, React) and very interested in the Full Stack JavaScript Developer role at Palm Digital FZ-LLC (demo). Open to relocating to United Arab Emirates with sponsorship. Could we have a quick chat?
-```
-
-**راهنمای گرفتن این موقعیت:**
-- در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.
-- آگهی درباره ویزا چیزی نگفته؛ در اولین تماس محترمانه بپرسید که امکان اسپانسرشیپ وجود دارد یا نه.
-
-**سوالات احتمالی مصاحبه:**
-- Walk us through a system you designed: what trade-offs did you make?
-- How do you debug a production issue you cannot reproduce locally?
-- Why do you want to relocate, and what is your timeline?
-
-### 7. Senior Software Engineer — Maple North Software (demo)
+### 5. Senior Software Engineer — Maple North Software (demo)
 امتیاز تطابق: **70/100** · Toronto, Canada · منبع: Demo board · انتشار: 2026-09-12
 ✈️ کمک جابه‌جایی
 🔗 [مشاهده و اپلای](https://example.com/jobs/maple-senior)
@@ -410,13 +324,55 @@ Hi! I'm a Full Stack Developer (7+ years, React, Node.js) and very interested in
 - How do you debug a production issue you cannot reproduce locally?
 - Why do you want to relocate, and what is your timeline?
 
-### 8. Senior Frontend Engineer (Remote, worldwide) — Distributed Labs (demo)
-امتیاز تطابق: **61/100** · Remote - Worldwide · منبع: Demo board · انتشار: 2026-09-25
-🏠 دورکاری
-🔗 [مشاهده و اپلای](https://example.com/jobs/distributed-frontend)
-مهارت‌های منطبق: TypeScript, React, Next.js, Testing
+### 6. Backend Engineer (Go) — Skärgård Systems AB (demo)
+امتیاز تطابق: **52/100** · Stockholm, Sweden · منبع: Demo board · انتشار: 2026-08-30
+🛂 اسپانسر ویزا · ✈️ کمک جابه‌جایی
+🔗 [مشاهده و اپلای](https://example.com/jobs/skargard-go)
+مهارت‌های منطبق: Node.js, PostgreSQL, Kubernetes
+کلیدواژه‌های جاافتاده: gRPC, Go
 
-**موضوع ایمیل:** Senior Frontend Engineer (Remote, worldwide) — Arman Karimi (7+ years, remote)
+**موضوع ایمیل:** Backend Engineer (Go) — Arman Karimi (7+ years, open to relocation)
+
+**نامه پیشنهادی به کارفرما:**
+```
+Dear Skärgård Systems AB (demo) hiring team,
+
+I'm applying for the Backend Engineer (Go) position. I'm a senior Full Stack Developer with 7+ years working with Node.js, PostgreSQL and Kubernetes, which matches the core of what you're looking for.
+
+What I would bring:
+• Built the checkout and payments services in Node.js (NestJS) and PostgreSQL, handling 20k orders/day
+• Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%
+
+I'm ready to relocate to Sweden and would need visa sponsorship (the Work permit route fits this role). I can start the paperwork immediately and I'm flexible on the start date.
+
+I'd welcome a short call to discuss how I can help your team. Thank you for your time.
+
+Best regards,
+Arman Karimi
+arman.karimi@example.com | linkedin.com/in/arman-karimi-demo | github.com/arman-karimi-demo
+```
+
+**پیام کوتاه به ریکروتر (لینکدین/ایمیل):**
+```
+Hi! I'm a Full Stack Developer (7+ years, Node.js, PostgreSQL) and very interested in the Backend Engineer (Go) role at Skärgård Systems AB (demo). Open to relocating to Sweden with sponsorship. Could we have a quick chat?
+```
+
+**راهنمای گرفتن این موقعیت:**
+- اگر با gRPC، Go کار کرده‌اید، صریحاً در رزومه بیاورید؛ این کلیدواژه‌ها را ATS بررسی می‌کند.
+- در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.
+
+**سوالات احتمالی مصاحبه:**
+- Walk us through a system you designed: what trade-offs did you make?
+- How do you debug a production issue you cannot reproduce locally?
+- Why do you want to relocate, and what is your timeline?
+
+## دورکاری از همین‌جا (بدون مهاجرت)
+
+> شرکت‌های آمریکایی طبق تحریم‌های OFAC معمولاً نمی‌توانند با ساکنان ایران قرارداد ببندند و پلتفرم‌هایی مثل Upwork و Deel ایران را پشتیبانی نمی‌کنند. شرکت‌های اروپایی، اماراتی و ترکیه‌ای، و پلتفرم‌های ایرانی (پونیشا، کارلنسر) گزینه‌های واقع‌بینانه‌تری هستند؛ یا اقامت در کشور ثالث (مثل امارات، ترکیه، ارمنستان، گرجستان) را در نظر بگیرید.
+
+### 1. Senior Frontend Engineer (Remote, worldwide) — Distributed Labs (demo)
+امتیاز تطابق: **63/100** · Remote - Worldwide · منبع: Demo board
+🔗 [مشاهده و اپلای](https://example.com/jobs/distributed-frontend)
 
 **نامه پیشنهادی به کارفرما:**
 ```
@@ -429,7 +385,7 @@ What I would bring:
 • Migrated the frontend to React + Next.js with server-side rendering; Core Web Vitals improved 45%
 • Also comfortable with Testing
 
-I work fully remotely across time zones and I'm also open to relocating if the role requires it.
+I have worked remotely with distributed teams, communicate well in writing, and can overlap with your core hours. I can join as a full-time contractor and start quickly.
 
 I'd welcome a short call to discuss how I can help your team. Thank you for your time.
 
@@ -438,19 +394,100 @@ Arman Karimi
 arman.karimi@example.com | linkedin.com/in/arman-karimi-demo | github.com/arman-karimi-demo
 ```
 
-**پیام کوتاه به ریکروتر (لینکدین/ایمیل):**
-```
-Hi! I'm a Full Stack Developer (7+ years, TypeScript, React) and very interested in the Senior Frontend Engineer (Remote, worldwide) role at Distributed Labs (demo). Available to start soon. Could we have a quick chat?
-```
+## ارزیابی مهاجرتی شخصی شما
 
-**راهنمای گرفتن این موقعیت:**
-- این آگهی تازه است؛ ظرف ۲۴–۴۸ ساعت اپلای کنید، شانس دیده شدن خیلی بیشتر است.
-- در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.
+- 🇨🇦 CRS: **365** · FSW 67: 70/100
+- 🇩🇪 Chancenkarte: **8/6**
+- 🇦🇺 Points: **65**/65
 
-**سوالات احتمالی مصاحبه:**
-- Walk us through a system you designed: what trade-offs did you make?
-- How do you debug a production issue you cannot reproduce locally?
-- Why do you want to relocate, and what is your timeline?
+### آلمان — EU Blue Card (شانس بالا)
+- با مدرک دانشگاهی شناخته‌شده (دانشگاه H+ در anabin یا تأییدیه ZAB) و پیشنهاد کار، ویزای کار مستقیم می‌گیرید.
+- حداقل حقوق ۲۰۲۶: ۵۰٬۷۰۰ یورو؛ برای مشاغل کمبود (از جمله IT) و فارغ‌التحصیلان ۳ سال اخیر: ۴۵٬۹۳۴ یورو.
+- اقامت دائم بعد از ۲۱ ماه (با زبان B1) یا ۲۷ ماه.
+- [ ] نام دانشگاه و رشته خود را در anabin چک کنید؛ اگر H+ نیست یا مدرک «entspricht» ندارد، Statement of Comparability از ZAB بگیرید (≈۲۰۰ یورو، ۱–۳ ماه).
+- [ ] از کارفرما بخواهید «روند تسریع‌شده متخصصان» (§81a) را انجام دهد: هزینه ۴۱۱ یورو، نوبت سفارت ظرف حدود ۳ هفته.
+- سایت رسمی: https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card
+
+### آلمان — Opportunity Card (Chancenkarte) (شانس بالا)
+- اگر مدرک شما در آلمان شناخته‌شده باشد (H+ در anabin یا ZAB)، بدون امتیاز واجد شرایط هستید.
+- امتیاز شما: 8 از ۶ لازم (سابقه 3، سن 2، آلمانی 1، انگلیسی 1، شغل کمبود 1).
+- تا ۱ سال در آلمان کار پیدا کنید؛ کار پاره‌وقت ۲۰ ساعت در هفته و کار آزمایشی مجاز است.
+- [ ] تمکن مالی: حساب بلوکه (حدود ۱٬۱۰۰ یورو در ماه) یا تعهدنامه (Verpflichtungserklärung) از یک ضامن در آلمان. برخی ارائه‌دهندگان حساب بلوکه اتباع ایران را نمی‌پذیرند؛ قبل از پرداخت بپرسید.
+- سایت رسمی: https://www.make-it-in-germany.com/en/visa-residence/types/job-search-opportunity-card
+
+### هلند — Highly Skilled Migrant (kennismigrant) (شانس بالا)
+- نیازی به مدرک نیست؛ کارفرما باید اسپانسر شناخته‌شده IND باشد و حقوق ماهانه حداقل ۵٬۹۴۲ یورو (۳۰ سال به بالا) بدون احتساب ۸٪ هالیدی‌پی.
+- سریع‌ترین مسیر اروپا: تصمیم IND معمولاً ۲–۴ هفته.
+- [ ] فقط به شرکت‌هایی که در فهرست رسمی اسپانسرهای IND هستند اپلای کنید (این گزارش خودش بررسی می‌کند).
+- سایت رسمی: https://ind.nl/en/residence-permits/work/highly-skilled-migrant
+
+### انگلستان — Skilled Worker visa (ممکن)
+- کارفرما باید اسپانسر دارای مجوز Home Office باشد؛ شغل باید در سطح مدرک دانشگاهی (RQF 6) باشد.
+- حداقل حقوق ۴۱٬۷۰۰ پوند یا نرخ رایج آن شغل (هر کدام بیشتر). انگلیسی در سطح B2 با آزمون SELT (مثل IELTS for UKVI).
+- [ ] فقط برای آگهی‌هایی که در این گزارش «در فهرست رسمی اسپانسرها» علامت دارند وقت بگذارید.
+- سایت رسمی: https://www.gov.uk/skilled-worker-visa
+
+### ایرلند — Critical Skills Employment Permit (ممکن)
+- برای مشاغل فهرست مهارت‌های حیاتی (بیشتر نقش‌های IT و مهندسی) با حقوق حداقل ۴۰٬۹۰۴ یورو و مدرک مرتبط.
+- خانواده بلافاصله می‌تواند بیاید؛ بعد از ۲ سال Stamp 4 (اقامت بدون نیاز به مجوز کار).
+- سایت رسمی: https://enterprise.gov.ie/en/what-we-do/workplace-and-skills/employment-permits/permit-types/critical-skills-employment-permit/
+
+### استرالیا — Skilled Independent (189) / Nominated (190) (ممکن)
+- امتیاز شما 65 (حداقل ۶۵؛ در دعوت‌های اخیر مشاغل IT معمولاً ۸۵–۹۵+ لازم بوده).
+- سن 30، انگلیسی 0، سابقه 10، تحصیلات 15، وضعیت همسر 10.
+- ACS معمولاً ۲ سال اول سابقه را کسر می‌کند (در محاسبه لحاظ شده).
+- [ ] آیلتس ۸ در هر مهارت ۲۰ امتیاز دارد (۷ = ۱۰ امتیاز)؛ بزرگ‌ترین اهرم شماست.
+- [ ] ارزیابی مهارت (ACS برای IT، Engineers Australia برای مهندسی) را شروع کنید.
+- سایت رسمی: https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-independent-189/points-table
+
+### کانادا — Express Entry — Federal Skilled Worker (دشوار)
+- امتیاز CRS شما حدود 365 است (سن 99، تحصیلات 120، زبان 108، انتقال‌پذیری مهارت 38).
+- جدول ۶۷ امتیازی FSW: 70/100 — قبول.
+- در قرعه‌های عمومی اخیر معمولاً ۵۰۰+ لازم بوده؛ قرعه‌های دسته‌ای (زبان فرانسه، سلامت، STEM/فنی) حد پایین‌تری داشته‌اند.
+- بیشترین اثر: آیلتس L8.5 R8 W7.5 S7.5 (CLB 10) ← 430 (+65).
+- هر سال بعد از ۲۹ سالگی حدود ۵–۶ امتیاز CRS کم می‌شود؛ زمان به نفع شما نیست.
+- [ ] آزمون IELTS General یا CELPIP بدهید (هدف: CLB 9 یعنی L8 R7 W7 S7 در آیلتس).
+- [ ] ارزیابی مدرک (ECA) از WES یا ICAS/IQAS بگیرید؛ WES مدارک را مستقیم از دانشگاه می‌خواهد.
+- [ ] پروفایل Express Entry بسازید و استریم‌های PNP (بریتیش کلمبیا و انتاریو برای فناوری) را دنبال کنید؛ نامزدی استانی ۶۰۰ امتیاز دارد.
+- [ ] تمکن مالی: حدود ۱۵٬۳۰۰ دلار کانادا برای یک نفر (سالانه در ژوئیه به‌روز می‌شود).
+- سایت رسمی: https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/check-score.html
+
+### چک‌لیست مدارک
+- [ ] **پاسپورت و خروج از کشور** — حداقل ۱۸ ماه اعتبار. برای آقایان کارت پایان خدمت یا معافیت برای گرفتن پاسپورت/خروج لازم است.
+- [ ] **آزادسازی و تأییدیه مدرک** — فارغ‌التحصیلان دوره روزانه دانشگاه‌های دولتی باید تعهد آموزش رایگان را تسویه یا تضمین کنند تا مدرک آزاد شود. تأییدیه تحصیلی از سامانه سجاد (وزارت علوم) یا سامانه وزارت بهداشت.
+- [ ] **ترجمه رسمی و تأیید** — ترجمه توسط مترجم رسمی قوه قضاییه + مهر دادگستری و وزارت امور خارجه. ایران عضو کنوانسیون آپوستیل نیست، پس برخی کشورها تأیید سفارت خود را هم می‌خواهند.
+- [ ] **سوابق کار** — نامه روی سربرگ شرکت با عنوان شغلی، تاریخ شروع/پایان، ساعات کار، حقوق و وظایف دقیق + سوابق بیمه تأمین اجتماعی به عنوان مدرک پشتیبان.
+- [ ] **گواهی عدم سوءپیشینه** — از دفاتر پلیس+۱۰ یا خدمات قضایی؛ ترجمه رسمی. اعتبار آن معمولاً ۶ ماه است، پس نزدیک زمان اپلای بگیرید.
+- [ ] **آزمون زبان** — آیلتس و تافل در ایران برگزار می‌شود؛ CELPIP در ایران نیست. برای آلمانی مراکز Goethe/telc/ÖSD را چک کنید.
+- [ ] **محل انگشت‌نگاری و مصاحبه** — کانادا در ایران سفارت و VAC ندارد (نزدیک‌ترین‌ها: آنکارا، استانبول، دبی، ایروان). برای سایر کشورها صف نوبت تهران را با کنسولگری‌های منطقه مقایسه کنید.
+- [ ] **تمکن مالی** — به دلیل تحریم، صورت‌حساب بانک‌های ایرانی اغلب پذیرفته یا قابل انتقال نیست؛ از راه‌های قانونی مجاز در کشور مقصد (حساب بلوکه، ضامن، حساب در کشور ثالث) زودتر برنامه‌ریزی کنید.
+- [ ] **ارزیابی مدرک برای آلمان** — anabin / ZAB degree recognition
+- [ ] **ارزیابی مدرک برای هلند** — Nuffic / IDW credential evaluation
+- [ ] **ارزیابی مدرک برای انگلستان** — UK ENIC statement of comparability
+- [ ] **ارزیابی مدرک برای ایرلند** — QQI qualification recognition
+- [ ] **ارزیابی مدرک برای کانادا** — Educational Credential Assessment (WES etc.)
+- [ ] **ارزیابی مدرک برای استرالیا** — Skills assessment (e.g. ACS for IT, Engineers Australia)
+
+### برنامه ۹۰ روزه
+**روز ۱–۱۴: پایه**
+- [ ] آزمون زبان را رزرو کنید (هدف: آیلتس ۷+ در هر مهارت).
+- [ ] ترجمه رسمی مدارک، تأییدیه تحصیلی و نامه‌های سابقه کار را شروع کنید.
+- [ ] رزومه انگلیسی و لینکدین را طبق اصلاحات این گزارش بازنویسی کنید.
+
+**روز ۱۵–۴۵: اپلای هدفمند**
+- [ ] هفته‌ای ۱۰–۲۰ اپلای شخصی‌سازی‌شده، اولویت با آلمان و آگهی‌های دارای اسپانسر.
+- [ ] ارزیابی مدرک (anabin/ZAB، WES، ACS…) را ثبت کنید؛ چند هفته تا چند ماه طول می‌کشد.
+- [ ] برای هر آگهی یک نفر در همان شرکت را در لینکدین پیدا و پیام کوتاه بفرستید (معرفی داخلی شانس را چند برابر می‌کند).
+
+**روز ۴۶–۷۵: مصاحبه و مذاکره**
+- [ ] سوالات مصاحبه این گزارش را با صدای بلند تمرین کنید.
+- [ ] در مذاکره: حقوق را بالاتر از حداقل ویزا نگه دارید و کمک هزینه جابه‌جایی و هزینه ویزا را بخواهید.
+
+**روز ۷۶–۹۰: ویزا**
+- [ ] بعد از قرارداد: از کارفرما روند تسریع‌شده (مثل §81a آلمان) یا اسپانسرشیپ را بخواهید و نوبت سفارت را فوراً بگیرید.
+- [ ] مدارک را طبق چک‌لیست این گزارش کامل و کپی‌های تأییدشده نگه دارید.
+
+> هیچ مشاور معتبری «ویزای تضمینی» یا «پیشنهاد کار فروشی» (مثلاً خرید LMIA) نمی‌فروشد؛ این‌ها کلاهبرداری و غیرقانونی است.
 
 ## پروژه‌ها و فرصت‌های فریلنسری
 
@@ -489,7 +526,7 @@ I can start right away. Happy to answer any questions.
 ```
 
 ### 3. Fix React performance issues in e-commerce site
-امتیاز تطابق: **52/100** · Demo freelance · 500–1,000 USD/project
+امتیاز تطابق: **65/100** · Demo freelance · 500–1,000 USD/project
 🔗 [مشاهده و اپلای](https://example.com/projects/react-perf)
 
 **پروپوزال پیشنهادی:**
@@ -523,11 +560,7 @@ I can start right away. Happy to answer any questions.
 
 **کانادا:** [LinkedIn — Canada](https://www.linkedin.com/jobs/search/?keywords=full%20stack%20developer&location=Canada&f_TPR=r604800) · [Indeed CA](https://ca.indeed.com/jobs?q=full%20stack%20developer%20visa%20sponsorship) · [Glassdoor — Canada](https://www.glassdoor.com/Job/jobs.htm?sc.keyword=full%20stack%20developer%20Canada) · [Job Bank (Government of Canada)](https://www.jobbank.gc.ca/jobsearch/jobsearch?searchstring=full%20stack%20developer) · [Workopolis](https://www.workopolis.com/jobsearch/find-jobs?ak=full%20stack%20developer)
 
-**امارات:** [LinkedIn — United Arab Emirates](https://www.linkedin.com/jobs/search/?keywords=full%20stack%20developer&location=United%20Arab%20Emirates&f_TPR=r604800) · [Indeed AE](https://ae.indeed.com/jobs?q=full%20stack%20developer%20visa%20sponsorship) · [Glassdoor — United Arab Emirates](https://www.glassdoor.com/Job/jobs.htm?sc.keyword=full%20stack%20developer%20United%20Arab%20Emirates) · [Bayt](https://www.bayt.com/en/uae/jobs/full-stack-developer-jobs/) · [GulfTalent](https://www.gulftalent.com/uae/jobs/search?keywords=full%20stack%20developer) · [NaukriGulf](https://www.naukrigulf.com/full-stack-developer-jobs-in-uae)
-
-**سوئد:** [LinkedIn — Sweden](https://www.linkedin.com/jobs/search/?keywords=full%20stack%20developer&location=Sweden&f_TPR=r604800) · [Indeed SE](https://se.indeed.com/jobs?q=full%20stack%20developer%20visa%20sponsorship) · [Glassdoor — Sweden](https://www.glassdoor.com/Job/jobs.htm?sc.keyword=full%20stack%20developer%20Sweden) · [Platsbanken (Arbetsförmedlingen)](https://arbetsformedlingen.se/platsbanken/annonser?q=full%20stack%20developer) · [The Hub (Nordic startups)](https://thehub.io/jobs?search=full%20stack%20developer)
-
-**آمریکا:** [LinkedIn — United States](https://www.linkedin.com/jobs/search/?keywords=full%20stack%20developer&location=United%20States&f_TPR=r604800) · [Indeed US](https://www.indeed.com/jobs?q=full%20stack%20developer%20visa%20sponsorship) · [Glassdoor — United States](https://www.glassdoor.com/Job/jobs.htm?sc.keyword=full%20stack%20developer%20United%20States) · [Dice](https://www.dice.com/jobs?q=full%20stack%20developer) · [MyVisaJobs (H-1B sponsors)](https://www.myvisajobs.com/)
+**استرالیا:** [LinkedIn — Australia](https://www.linkedin.com/jobs/search/?keywords=full%20stack%20developer&location=Australia&f_TPR=r604800) · [Indeed AU](https://au.indeed.com/jobs?q=full%20stack%20developer%20visa%20sponsorship) · [Glassdoor — Australia](https://www.glassdoor.com/Job/jobs.htm?sc.keyword=full%20stack%20developer%20Australia) · [SEEK](https://www.seek.com.au/full-stack-developer-jobs)
 
 **پلتفرم‌های فریلنسری:** [Upwork](https://www.upwork.com/nx/search/jobs/?q=JavaScript) · [Fiverr (see competing gigs)](https://www.fiverr.com/search/gigs?query=JavaScript) · [PeoplePerHour](https://www.peopleperhour.com/freelance-jobs?q=JavaScript) · [Guru](https://www.guru.com/d/jobs/q/JavaScript/) · [Contra](https://contra.com/) · [Malt (Europe)](https://www.malt.com/) · [Toptal (top 3%, high rates)](https://www.toptal.com/talent/apply) · [Arc.dev (remote dev jobs)](https://arc.dev/remote-jobs) · [Lemon.io (vetted devs)](https://lemon.io/for-developers/) · [Turing (long-term remote)](https://www.turing.com/jobs) · [Braintrust](https://www.usebraintrust.com/) · [Ponisha (Iranian freelance market)](https://ponisha.ir/search/projects?q=JavaScript) · [Karlancer (Iranian freelance market)](https://www.karlancer.com/)
 

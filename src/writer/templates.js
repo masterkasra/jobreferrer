@@ -14,7 +14,9 @@ export function templatePitch(job, profile, lang = 'fa') {
   const where = job.countries[0] ? COUNTRY_NAMES[job.countries[0]] : '';
   const route = job.countries[0] && COUNTRIES[job.countries[0]]?.routes[0]?.name;
   const company = job.company || 'your team';
-  const mobility = job.signals.remote
+  const mobility = job.openFromHome
+    ? `I have worked remotely with distributed teams, communicate well in writing, and can overlap with your core hours. I can join as a full-time contractor and start quickly.`
+    : job.signals.remote
     ? `I work fully remotely across time zones and I'm also open to relocating${where ? ` to ${where}` : ''} if the role requires it.`
     : `I'm ready to relocate${where ? ` to ${where}` : ''} and would need visa sponsorship${route ? ` (the ${route} route fits this role)` : ''}. I can start the paperwork immediately and I'm flexible on the start date.`;
   // Letters are in English: skip achievements written in Persian/Arabic script (offline mode keeps them as-is).
@@ -39,7 +41,7 @@ export function templatePitch(job, profile, lang = 'fa') {
     [profile.email, ...(profile.links ?? []).slice(0, 2)].filter(Boolean).join(' | '),
   ].join('\n');
 
-  const recruiterMessage = `Hi! I'm a ${profile.headline} (${years}, ${skills.slice(0, 2).join(', ')}) and very interested in the ${job.title} role at ${company}. ${job.signals.remote ? 'Available to start soon.' : `Open to relocating${where ? ` to ${where}` : ''} with sponsorship.`} Could we have a quick chat?`.slice(0, 300);
+  const recruiterMessage = `Hi! I'm a ${profile.headline} (${years}, ${skills.slice(0, 2).join(', ')}) and very interested in the ${job.title} role at ${company}. ${job.openFromHome || job.signals.remote ? 'Available to start soon as a remote contractor.' : `Open to relocating${where ? ` to ${where}` : ''} with sponsorship.`} Could we have a quick chat?`.slice(0, 300);
 
   return {
     id: job.id,
@@ -49,7 +51,7 @@ export function templatePitch(job, profile, lang = 'fa') {
     emailSubject: `${job.title} — ${profile.name && !/[\u0600-\u06FF]/.test(profile.name) ? profile.name : 'Application'} (${years}, ${job.signals.remote ? 'remote' : 'open to relocation'})`,
     missingKeywords: job.missingSkills.slice(0, 6),
     tips: templateTips(job, profile, lang),
-    interviewQuestions: interviewQuestions(profile.roleFamily),
+    interviewQuestions: interviewQuestions(profile.roleFamily, job.openFromHome),
     source: 'template',
   };
 }
@@ -66,8 +68,10 @@ export function templateTips(job, profile, lang = 'fa') {
   if (job.sponsor && !job.sponsor.listed) tips.push(fa ? `این شرکت در فهرست رسمی اسپانسرهای ${job.sponsor.register} پیدا نشد؛ قبل از وقت گذاشتن از ریکروتر بپرسید که اسپانسر ویزا می‌شوند یا نه.` : `Employer not found on the ${job.sponsor.register} sponsor register: ask the recruiter to confirm sponsorship before investing time.`);
   if (job.sponsor?.listed) tips.push(fa ? `این شرکت در فهرست رسمی اسپانسرهای ${job.sponsor.register} ثبت شده است؛ این را در پیام به ریکروتر ذکر کنید.` : `Employer is on the ${job.sponsor.register} sponsor register: mention that you need the standard sponsorship.`);
   tips.push(fa ? 'در لینکدین مدیر استخدام یا یکی از اعضای تیم را پیدا کنید و پیام کوتاه بالا را برایش بفرستید؛ معرفی داخلی (referral) شانس مصاحبه را چند برابر می‌کند.' : 'Find the hiring manager or a team member on LinkedIn and send the short message above: referrals multiply interview chances.');
+  if (job.openFromHome) tips.push(fa ? 'برای کار ریموت: در نامه ساعت‌های هم‌پوشانی با تیم و تجربه کار ناهمزمان (async) را بنویسید. قبل از قرارداد بپرسید آیا می‌توانند به‌صورت قانونی با کشور محل اقامت شما قرارداد ببندند و پرداخت کنند.' : 'For remote roles: state your overlap hours and async experience. Before signing, ask whether they can legally contract with and pay someone in your country of residence.');
+  if (job.requiredYears && profile.yearsExperience && job.requiredYears > profile.yearsExperience) tips.push(fa ? `آگهی ${job.requiredYears}+ سال سابقه می‌خواهد و شما ${profile.yearsExperience} سال دارید؛ پروژه‌هایی را برجسته کنید که مسئولیت هم‌سطح داشته‌اید.` : `The ad asks for ${job.requiredYears}+ years and you have ${profile.yearsExperience}: highlight projects where you carried that level of responsibility.`);
   if (!job.signals.visa && !job.signals.relocation && !job.signals.remote && job.kind === 'job') tips.push(fa ? 'آگهی درباره ویزا چیزی نگفته؛ در اولین تماس محترمانه بپرسید که امکان اسپانسرشیپ وجود دارد یا نه.' : 'The ad does not mention visas: ask politely about sponsorship in the first contact.');
-  return tips.slice(0, 5);
+  return tips.slice(0, 6);
 }
 
 const QUESTIONS = {
@@ -76,7 +80,7 @@ const QUESTIONS = {
   devops: ['How would you design zero-downtime deployments for this stack?', 'Tell us about an incident you handled and what you changed afterwards.', 'How do you control cloud costs?'],
   default: ['Why do you want to move to this country and this company?', 'Tell us about your biggest professional achievement.', 'How do you handle disagreements within a team?'],
 };
-export const interviewQuestions = (family) => [...(QUESTIONS[family] ?? QUESTIONS.default).slice(0, 2), 'Why do you want to relocate, and what is your timeline?'];
+export const interviewQuestions = (family, remote = false) => [...(QUESTIONS[family] ?? QUESTIONS.default).slice(0, 2), remote ? 'How do you stay productive and visible when working asynchronously across time zones?' : 'Why do you want to relocate, and what is your timeline?'];
 
 export function freelanceProposal(job, profile) {
   const skills = (job.matchedSkills.length ? job.matchedSkills : profile.skills).slice(0, 3);

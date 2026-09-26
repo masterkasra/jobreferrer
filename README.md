@@ -16,18 +16,21 @@
 ## What it does
 
 1. **Reads your resume in any common format**: PDF, Word (DOCX and legacy DOC), ODT, RTF, HTML, TXT/MD, JSON Resume, and photos or scans (JPG/PNG/WEBP, scanned PDF). English and **Persian** resumes are both supported (Persian digits, Jalali dates and job titles are understood). Without an API key a built-in parser extracts titles, skills, years, languages, degree and achievements; with a Claude key, Claude reads the resume directly and also transcribes photos and scans.
-2. **Searches 14 job sources in parallel** and generates ready-made searches for 40+ more (LinkedIn, Indeed in 31 countries, StepStone, XING, SEEK, Bayt, Relocate.me, Jaabz, EURES…).
-3. **Ranks every job for someone who has to move**: skill and title fit, *visa sponsorship*, *relocation help*, target country, required local language, region-locked "remote" roles, freshness.
-4. **Checks the immigration side**: the employer against the official UK / Netherlands sponsor registers, and the advertised salary against the 2026 visa threshold (EU Blue Card, kennismigrant, Skilled Worker, Critical Skills, Sweden work permit).
-5. **Writes application material** for the top jobs: cover letter, short recruiter message, email subject, missing keywords, how to win this job, and likely interview questions.
-6. **Lists freelance projects** with a ready proposal, plus freelance platforms to use while the job search runs.
-7. **Builds your strategy**: best countries and visa routes for your profile, resume and LinkedIn fixes, freelance pricing, a 4-week action plan, scam and nationality-specific warnings.
-8. **Delivers it** as a self-contained HTML report (Persian RTL or English), Markdown, JSON, a Telegram bot, a local web page, or a daily Telegram digest from GitHub Actions.
+2. **Searches 15 job sources in parallel**, including the career pages of ~27 companies that hire internationally (GitLab, Canonical, N26, GetYourGuide, Adyen, Spotify, Stripe…, via their public Greenhouse/Lever/Ashby feeds), and generates ready-made searches for 40+ more (LinkedIn, Indeed in 31 countries, StepStone, XING, SEEK, Bayt, Relocate.me, Jaabz, EURES…).
+3. **Ranks every job precisely**: weighted skill match, title and field, *years of experience and seniority the ad asks for*, visa sponsorship, relocation help, target country, required local language, freshness. Each card explains *why* it was ranked (and what counts against it).
+4. **Two tracks**: jobs to **move** for (sponsorship, relocation, target countries) and **remote jobs you can do from where you live**. Remote eligibility is checked against your country of residence (worldwide / EMEA / Europe-only / one-country / US-hours) and ads that exclude sanctioned countries are pushed down.
+5. **Personal immigration assessment**, like a first consultation with an immigration adviser: official points systems (Canada CRS + FSW 67-point grid, Germany Opportunity Card, Australia points test) with "what if" levers (e.g. IELTS CLB 9 → +53 CRS), every route in your target countries rated strong / possible / hard / closed with next steps, costs and timelines, a document checklist (with Iran-specific items: degree release, official translation, military service, where to give biometrics), a 90-day plan and links to licensed advisers.
+6. **Checks each job's visa side**: the employer against the official UK / Netherlands sponsor registers, and the advertised salary against the 2026 visa threshold (EU Blue Card, kennismigrant, Skilled Worker, Critical Skills, Sweden work permit).
+7. **Writes application material** for the top relocation and remote jobs (different wording for each track): cover letter, short recruiter message, email subject, missing keywords, how to win this job, and likely interview questions.
+8. **Lists freelance projects** with a ready proposal, plus freelance platforms to use while the job search runs.
+9. **Builds your strategy**: best countries and visa routes for your profile, resume and LinkedIn fixes, freelance pricing, a 4-week action plan, scam and nationality-specific warnings.
+10. **Delivers it** as a self-contained HTML report (Persian RTL or English, with an application tracker and document checklist saved in the browser), Markdown, JSON, a Telegram bot, a local web page, or a daily Telegram digest from GitHub Actions.
 
 ## Job sources
 
 | Source | Key | Notes |
 |---|---|---|
+| Company career pages | free | ~27 employers known for international hiring, read from their public Greenhouse / Lever / Ashby feeds |
 | Arbeitnow | free | Germany/EU, explicit visa-sponsorship flag |
 | Bundesagentur für Arbeit | free | German federal job board (only when DE is a target) |
 | Remotive, Remote OK, Jobicy, Himalayas, Working Nomads, We Work Remotely | free | Remote jobs; region-locked roles are penalised |
@@ -73,6 +76,10 @@ Optional: copy `.env.example` to `.env` and add `ANTHROPIC_API_KEY` for Claude-w
     --offline                demo data instead of live search
     --seen FILE              remember jobs and flag new ones
     --telegram [--only-new]  send the result to TELEGRAM_CHAT_ID
+Immigration assessment (optional, makes the calculators exact):
+    --age 31 --married --residence IR --education master
+    --ielts 8,7,7,7          IELTS General bands L,R,W,S (or one overall score)
+    --german B1 --french A2
 ```
 
 ## Telegram bot
@@ -96,22 +103,32 @@ Keep the repository private if you store your resume in it.
 
 ## Web UI
 
-`npm run web` → <http://localhost:3000>: upload the resume, tick countries, get the report in the browser.
+Hosted: **<https://jobreferrer.vercel.app>**: upload a resume, tick countries, optionally add age / IELTS bands / German level for exact points, and get the report in the browser. Nothing is stored.
+
+Locally: `npm run web` → <http://localhost:3000>. The same handler runs as a Vercel function (`api/index.js`, `vercel.json`).
 
 ## How ranking works
 
 | Signal | Effect |
 |---|---|
-| Skills in the ad that you have | up to +40 |
-| Title matches your target titles | up to +20 |
+| Skills in the ad that you have (your top 8 skills count 1.5×) | up to +40 |
+| Your own title in the ad title / word matches | +25 / up to +20 |
+| Ad title is in an unrelated field | −20 |
+| Ad title names a technology you don't have (".NET Developer" for a React developer) | −12 |
+| Years asked vs yours (parsed in English, German, Dutch) | +4 / −4 / −12 |
+| Level in the title vs yours (junior … director) | −3 to −12 |
 | Visa sponsorship / relocation mentioned | +15 / +10 |
 | In one of your target countries | +8 |
-| Remote and open to your region | +6 |
-| "No sponsorship" / "must have right to work" | −25 |
-| Remote but US-only (and US not targeted) | −12 |
+| Remote and open from where you live (worldwide / EMEA / …) | +6 to +8 |
+| "No sponsorship" / "must have right to work" | −25 (−8 for remote-from-home) |
+| Remote but locked to another region, or only for residents there | −12 / −6 |
+| Needs US working hours (you live outside the Americas) | −6 |
+| Ad excludes sanctioned countries and you live in one | −30 |
 | Requires a language you don't speak at B2+ | −10 each |
 | Posted in the last week / older than 60 days | +5 / −5 |
 | Scam patterns (fees, guaranteed visa, WhatsApp-only) | removed and listed separately |
+
+Near-duplicate ads are merged, and no employer takes more than 2 of the top places.
 
 ## Project layout
 

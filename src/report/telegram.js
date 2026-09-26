@@ -49,12 +49,23 @@ export function toTelegram(r, { maxJobs = 10, onlyNew = false } = {}) {
   });
   if (!jobs.length) jobLines.push(esc(s.none));
 
+  const remoteLines = [`<b>🏠 ${esc(s.remoteJobs)}</b>`, ''];
+  (r.remote ?? []).slice(0, 5).forEach((j) => remoteLines.push(`• <a href="${esc(j.url)}">${esc(j.title)}</a> — ${esc(j.company || '?')} (${j.score}/100)`));
+
+  const im = r.immigration;
+  const immLines = im ? [`<b>🛂 ${esc(s.immigration)}</b>`, '',
+    ...(im.calculators.crs ? [`🇨🇦 CRS ${im.calculators.crs.total} · FSW ${im.calculators.fsw.total}/100`] : []),
+    ...(im.calculators.chancenkarte ? [`🇩🇪 Chancenkarte ${im.calculators.chancenkarte.points}/6`] : []),
+    ...(im.calculators.australia ? [`🇦🇺 ${im.calculators.australia.points}/65`] : []),
+    ...im.pathways.slice(0, 5).map((p) => `• ${esc(p.country)} — ${esc(p.route)}: <b>${esc(s.status4[p.status] ?? p.status)}</b>`),
+  ] : [];
+
   const gigLines = [`<b>${esc(s.freelance)}</b>`, ''];
   r.freelance.slice(0, 5).forEach((j) => {
     gigLines.push(`• <a href="${esc(j.url)}">${esc(j.title)}</a> — ${esc(j.sourceName)}${j.salary ? ` · ${esc(salaryText(j, s))}` : ''}`);
   });
 
-  return [...chunk(summary), ...chunk(jobLines), ...(r.freelance.length ? chunk(gigLines) : [])];
+  return [...chunk(summary), ...chunk(jobLines), ...((r.remote ?? []).length ? chunk(remoteLines) : []), ...(immLines.length ? chunk(immLines) : []), ...(r.freelance.length ? chunk(gigLines) : [])];
 }
 
 /** One job's full application kit, sent when the user taps "Pitch N". */

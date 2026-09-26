@@ -80,6 +80,30 @@ export function toMarkdown(r) {
     out.push('');
   });
 
+  if (r.remote) {
+    out.push(`## ${s.remoteJobs}`, '', `> ${['IR', 'CU', 'SY', 'KP'].includes(r.residence) ? s.remoteNoteSanctioned : s.remoteNote}`, '');
+    if (!r.remote.length) out.push(s.none, '');
+    r.remote.forEach((j, i) => {
+      out.push(`### ${i + 1}. ${j.title} — ${j.company || '?'}`, `${s.score}: **${j.score}/100** · ${j.location} · ${s.source}: ${j.sourceName}`, `🔗 [${s.apply}](${j.url})`);
+      if (j.pitch) out.push('', `**${s.coverLetter}:**`, fence(j.pitch.coverLetter));
+      out.push('');
+    });
+  }
+
+  if (r.immigration) {
+    const im = r.immigration;
+    out.push(`## ${s.immigration}`, '');
+    for (const e of im.applicant.estimated) out.push(`- _${s.assumption[e] ?? e}_`);
+    if (im.calculators.crs) out.push(`- 🇨🇦 CRS: **${im.calculators.crs.total}** · FSW 67: ${im.calculators.fsw.total}/100`);
+    if (im.calculators.chancenkarte) out.push(`- 🇩🇪 Chancenkarte: **${im.calculators.chancenkarte.points}/6**`);
+    if (im.calculators.australia) out.push(`- 🇦🇺 Points: **${im.calculators.australia.points}**/65`);
+    out.push('');
+    for (const p of im.pathways) out.push(`### ${p.country} — ${p.route} (${s.status4[p.status] ?? p.status})`, ...p.why.map((x) => `- ${x}`), ...p.next.map((x) => `- [ ] ${x}`), `- ${s.official}: ${p.url}`, '');
+    out.push(`### ${s.documents}`, ...im.documents.map((d) => `- [ ] **${d.title}** — ${d.detail}`), '', `### ${s.roadmap}`);
+    for (const ph of im.roadmap) out.push(`**${ph.phase}**`, ...ph.tasks.map((x) => `- [ ] ${x}`), '');
+    out.push(`> ${im.scamWarning}`, '');
+  }
+
   out.push(`## ${s.freelance}`, '');
   if (!r.freelance.length) out.push(s.none, '');
   r.freelance.forEach((j, i) => {

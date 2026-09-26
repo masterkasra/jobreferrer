@@ -12,12 +12,13 @@ import freelancer from './freelancer.js';
 import adzuna from './adzuna.js';
 import jooble from './jooble.js';
 import reed from './reed.js';
+import companies from './companies.js';
 import { makeRelevance } from './filter.js';
 import { dedupe } from '../jobs/normalize.js';
 
 export const SOURCES = [
   arbeitnow, remotive, remoteok, jobicy, himalayas, themuse, hackernews, workingnomads,
-  weworkremotely, arbeitsagentur, freelancer, adzuna, jooble, reed,
+  weworkremotely, arbeitsagentur, companies, freelancer, adzuna, jooble, reed,
 ];
 
 /**
