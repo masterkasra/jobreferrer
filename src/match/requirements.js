@@ -72,11 +72,13 @@ const EUROPE = /\b(europe|european|eu|eea|cet|cest|european time ?zones?)\b/i;
 /**
  * Where a remote hire may live:
  *  'worldwide' | 'emea' | 'europe' | 'country' (remote inside one country) | 'multi-country'
- *  | 'region-other' | 'other-place' (an unmapped place) | 'unspecified' | '' (not remote)
+ *  | 'region-other' | 'other-place' (an unmapped place) | 'hybrid' | 'unspecified' | '' (not remote)
  */
 export function remoteScope(job) {
   if (!job.signals?.remote) return '';
   const loc = job.location ?? '';
+  // "Hybrid" means regular office days: not a remote job for someone abroad.
+  if (/\bhybrid\b/i.test(loc) && !/\bremote\b/i.test(loc)) return 'hybrid';
   if (WORLDWIDE.test(loc) || job.region === 'WW') return 'worldwide';
   if (EMEA.test(loc)) return 'emea';
   if (/\b(latam|latin america|south america|apac|asia[- ]pacific|north america|americas)\b/i.test(loc)) return 'region-other';

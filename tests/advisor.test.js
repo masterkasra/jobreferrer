@@ -76,6 +76,7 @@ test('job requirement parsing: years, level, field, remote scope, sanctions, hou
   assert.equal(remoteScope(job('Germany')), 'country');
   assert.equal(remoteScope(job('Argentina')), 'other-place');
   assert.equal(remoteScope(job('Fully Remote')), 'unspecified');
+  assert.equal(remoteScope(job('Hybrid')), 'hybrid');
   assert.ok(sanctionsExcluded('Due to OFAC sanctions we cannot hire in Cuba, Iran, North Korea or Syria.'));
   assert.ok(usHours('Must overlap 4 hours with PST time zone'));
 });

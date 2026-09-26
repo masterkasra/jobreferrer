@@ -83,7 +83,7 @@ export function scoreJob(job, profile, countries = [], ctx = {}) {
   const gap = jobLevel(job.title) - (CANDIDATE_LEVEL[profile.seniority] ?? 2);
   if (gap >= 2) (breakdown.experience -= 12), reasons.push('level-too-high');
   else if (gap === 1) breakdown.experience -= 3;
-  else if (gap <= -2) (breakdown.experience -= 6), reasons.push('overqualified');
+  else if (gap <= -2) (breakdown.experience -= /\b(intern|internship|trainee|werkstudent|working student|praktikum|apprentice)\b/i.test(job.title) ? 20 : 6), reasons.push('overqualified');
   score += breakdown.experience;
 
   // Mobility: visa, relocation, target country, remote eligibility.
