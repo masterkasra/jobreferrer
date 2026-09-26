@@ -6,7 +6,7 @@ import { parseArgs } from 'node:util';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { extractText, detectType } from '../src/resume/extract.js';
+import { loadResume as parseResume, resumeErrorMessage } from '../src/resume/load.js';
 import { run } from '../src/pipeline.js';
 import { toMarkdown } from '../src/report/markdown.js';
 import { toHtml } from '../src/report/html.js';
@@ -17,7 +17,7 @@ import { config, hasClaude } from '../src/config.js';
 
 const HELP = `jobreferrer — find visa-sponsored and relocation jobs abroad from your resume
 
-Usage: jobreferrer <resume.pdf|.docx|.txt|.md|-> [options]
+Usage: jobreferrer <resume: pdf|docx|doc|odt|rtf|html|txt|md|json|jpg|png|-> [options]
 
 Options:
   -c, --countries DE,NL,GB   target countries (ISO codes). Default: ${config.defaults.countries.join(',')}
@@ -89,21 +89,24 @@ async function loadResume() {
 const list = (s) => (s ? s.split(',').map((x) => x.trim()).filter(Boolean) : []);
 
 const { buffer, name } = await loadResume();
-const text = await extractText(buffer, name);
-if (text.length < 80) {
-  console.error('Could not read enough text from the resume. If it is a scanned PDF, export it as text or DOCX first.');
+const useAI = !values['no-ai'] && hasClaude();
+let resume;
+try {
+  resume = await parseResume(buffer, name, { useAI });
+} catch (err) {
+  console.error(resumeErrorMessage(err, values.lang === 'fa' ? 'fa' : 'en'));
   process.exit(1);
 }
+const { text } = resume;
 
 const here = dirname(fileURLToPath(import.meta.url));
 const fixtureJobs = values.offline ? JSON.parse(await readFile(resolve(here, '../examples/demo-jobs.json'), 'utf8')) : undefined;
-const useAI = !values['no-ai'] && hasClaude();
 const log = (m) => process.stderr.write(`${m}\n`);
-log(`jobreferrer: ${useAI ? `AI mode (${config.anthropic.model})` : 'offline mode (no ANTHROPIC_API_KEY)'}`);
+log(`jobreferrer: ${useAI ? `AI mode (${config.anthropic.model})` : 'offline mode (no ANTHROPIC_API_KEY)'} · resume ${resume.type} read ${resume.via === 'ocr' ? 'by Claude (image/scan)' : 'locally'}, ${text.length} chars`);
 
 const report = await run({
   text,
-  pdf: detectType(name, buffer) === '.pdf' ? buffer : undefined,
+  pdf: resume.pdf,
   countries: list(values.countries),
   lang: values.lang ?? config.defaults.lang,
   nationality: values.nationality,

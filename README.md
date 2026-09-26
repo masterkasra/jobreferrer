@@ -15,7 +15,7 @@
 
 ## What it does
 
-1. **Reads your resume** (PDF, DOCX, TXT/MD). With a Claude API key, Claude reads the PDF directly; without one, a built-in parser extracts titles, skills, years, languages and degree.
+1. **Reads your resume in any common format**: PDF, Word (DOCX and legacy DOC), ODT, RTF, HTML, TXT/MD, JSON Resume, and photos or scans (JPG/PNG/WEBP, scanned PDF). English and **Persian** resumes are both supported (Persian digits, Jalali dates and job titles are understood). Without an API key a built-in parser extracts titles, skills, years, languages, degree and achievements; with a Claude key, Claude reads the resume directly and also transcribes photos and scans.
 2. **Searches 14 job sources in parallel** and generates ready-made searches for 40+ more (LinkedIn, Indeed in 31 countries, StepStone, XING, SEEK, Bayt, Relocate.me, Jaabz, EURES…).
 3. **Ranks every job for someone who has to move**: skill and title fit, *visa sponsorship*, *relocation help*, target country, required local language, region-locked "remote" roles, freshness.
 4. **Checks the immigration side**: the employer against the official UK / Netherlands sponsor registers, and the advertised salary against the 2026 visa threshold (EU Blue Card, kennismigrant, Skilled Worker, Critical Skills, Sweden work permit).
@@ -132,11 +132,12 @@ src/bot/, src/web/        Telegram bot, local web UI
 ## Development
 
 ```bash
-npm test          # unit + integration tests (no network)
+npm test          # unit + integration tests (no network): every resume format, English + Persian, bot, web, pipeline
 npm run smoke     # live check of every job source
+npm run e2e       # live end to end: each resume format → real job boards → ranked jobs + reports in e2e-reports/
 ```
 
-CI runs the tests on Node 20 and 22 and a non-blocking live check of the job boards.
+CI runs the tests on Node 20 and 22, a live check of the job boards, and the live end-to-end run (its HTML reports are uploaded as the `e2e-reports` artifact).
 
 ## Disclaimer
 

@@ -263,7 +263,10 @@ const compiled = Object.entries(SKILLS).map(([name, aliases]) => [name, aliases.
 
 export function findSkills(text = '') {
   const lower = ` ${text.toLowerCase()} `;
-  return compiled.filter(([, regs]) => regs.some((r) => r.test(lower))).map(([name]) => name);
+  const found = compiled.filter(([, regs]) => regs.some((r) => r.test(lower))).map(([name]) => name);
+  // "go" is too common a word to match in lower case; accept the capitalised language name in a list.
+  if (!found.includes('Go') && /(^|[\s,;:(/])Go(?=[\s,;:)/]|$)(?! (to|ahead|live|back|beyond)\b)/.test(text)) found.push('Go');
+  return found;
 }
 
 export function canonicalSkill(raw = '') {

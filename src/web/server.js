@@ -2,7 +2,7 @@
 //   npm run web   →  http://localhost:3000
 
 import { createServer } from 'node:http';
-import { extractText, detectType } from '../resume/extract.js';
+import { loadResume, resumeErrorMessage } from '../resume/load.js';
 import { run } from '../pipeline.js';
 import { toHtml } from '../report/html.js';
 import { COUNTRIES } from '../immigration/countries.js';
@@ -30,8 +30,8 @@ button{margin-top:18px;width:100%;padding:12px;border:0;border-radius:10px;backg
 <h1>jobreferrer</h1>
 <p class="muted">رزومه بدهید؛ موقعیت‌های دارای اسپانسر ویزا و جابه‌جایی، پروژه‌های فریلنسری، نامه آماده برای هر کارفرما و برنامه مهاجرت بگیرید. ${hasClaude() ? `حالت هوش مصنوعی فعال است (${config.anthropic.model}).` : 'حالت بدون هوش مصنوعی (برای متن‌های شخصی‌تر ANTHROPIC_API_KEY را تنظیم کنید).'}</p>
 <form id="f">
-<label>رزومه (PDF، DOCX، TXT)</label>
-<div class="drop" id="drop"><span id="dl">فایل را اینجا بکشید یا کلیک کنید</span><input type="file" id="file" accept=".pdf,.docx,.txt,.md" hidden></div>
+<label>رزومه (PDF، Word، ODT، RTF، متن یا عکس)</label>
+<div class="drop" id="drop"><span id="dl">فایل را اینجا بکشید یا کلیک کنید</span><input type="file" id="file" accept=".pdf,.docx,.doc,.odt,.rtf,.txt,.md,.html,.json,.jpg,.jpeg,.png,.webp" hidden></div>
 <label>کشورهای هدف</label>
 <div class="grid">${Object.entries(COUNTRIES).map(([c, v]) => `<label><input type="checkbox" name="c" value="${c}" ${config.defaults.countries.includes(c) ? 'checked' : ''}> ${v.fa}</label>`).join('')}</div>
 <label>ملیت (کد دوحرفی، اختیاری)</label><input type="text" id="nat" placeholder="IR" maxlength="2">
@@ -82,17 +82,21 @@ export const server = createServer(async (req, res) => {
     if (req.method === 'POST' && url.pathname === '/api/run') {
       const buffer = await readBody(req);
       const name = decodeURIComponent(req.headers['x-filename'] ?? 'resume.txt');
-      const text = await extractText(buffer, name);
-      if (text.length < 80) {
+      const lang = url.searchParams.get('lang') === 'en' ? 'en' : 'fa';
+      let resume;
+      try {
+        resume = await loadResume(buffer, name);
+      } catch (err) {
+        if (!err.code) throw err;
         res.writeHead(422, { 'Content-Type': 'text/plain; charset=utf-8' });
-        return res.end('Could not read enough text from the resume (scanned PDF?).');
+        return res.end(resumeErrorMessage(err, lang));
       }
       const title = (url.searchParams.get('title') ?? '').trim().slice(0, 60);
       const report = await run({
-        text,
-        pdf: detectType(name, buffer) === '.pdf' ? buffer : undefined,
+        text: resume.text,
+        pdf: resume.pdf,
         countries: (url.searchParams.get('countries') ?? '').split(',').filter((c) => COUNTRIES[c]),
-        lang: url.searchParams.get('lang') === 'en' ? 'en' : 'fa',
+        lang,
         nationality: (url.searchParams.get('nationality') ?? '').slice(0, 2),
         overrides: title ? { titles: [title], searchQueries: [title.toLowerCase()], headline: title } : {},
       });

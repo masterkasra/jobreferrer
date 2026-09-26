@@ -7,14 +7,14 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tg, sendMessages, sendDocument, downloadFile } from './api.js';
-import { extractText } from '../resume/extract.js';
+import { loadResume, resumeErrorMessage } from '../resume/load.js';
 import { run } from '../pipeline.js';
 import { toHtml } from '../report/html.js';
 import { toTelegram, pitchMessages } from '../report/telegram.js';
 import { COUNTRIES } from '../immigration/countries.js';
 import { config } from '../config.js';
 
-const STATE_FILE = join(config.cacheDir, 'bot-state.json');
+const stateFile = () => join(config.cacheDir, 'bot-state.json');
 const DAY = 24 * 3600 * 1000;
 let state = { users: {} };
 const lastReports = new Map(); // chatId -> report (memory only)
@@ -24,7 +24,7 @@ const TEXT = {
   fa: {
     welcome: `سلام! 👋 من ربات <b>jobreferrer</b> هستم.
 
-رزومه‌تان را (PDF، Word یا متن) همینجا بفرستید تا:
+رزومه‌تان را همینجا بفرستید (PDF، Word، ODT، RTF، متن، یا حتی عکس رزومه) تا:
 • در ده‌ها سایت کاریابی موقعیت‌های دارای <b>اسپانسر ویزا و کمک جابه‌جایی</b> را پیدا کنم
 • برای هر موقعیت <b>نامه و پیام آماده</b> برای متقاعد کردن کارفرما بنویسم
 • پروژه‌های <b>فریلنسری</b> مرتبط را لیست کنم
@@ -42,7 +42,8 @@ const TEXT = {
     working: '⏳ رزومه دریافت شد. در حال تحلیل و جستجو در سایت‌های کاریابی… (۱ تا ۳ دقیقه)',
     busy: 'یک جستجو برای شما در حال انجام است، لطفاً صبر کنید.',
     noResume: 'اول رزومه‌تان را بفرستید (فایل PDF/DOCX یا متن).',
-    unreadable: 'نتوانستم متن کافی از فایل بخوانم. اگر PDF اسکن‌شده است، نسخه Word یا متنی بفرستید.',
+    received: '📥 رزومه دریافت شد. در حال خواندن فایل و جستجو در سایت‌های کاریابی… (۱ تا ۳ دقیقه)',
+    tooLarge: 'حجم فایل زیاد است (حداکثر ۲۰ مگابایت). نسخه کوچک‌تر یا PDF بفرستید.',
     saved: '✅ ذخیره شد.',
     forgot: '🗑 رزومه و تنظیمات شما پاک شد.',
     dailyOn: '🔔 گزارش روزانه روشن شد. هر روز آگهی‌های جدید را برایتان می‌فرستم.',
@@ -56,7 +57,7 @@ const TEXT = {
   en: {
     welcome: `Hi! 👋 I'm <b>jobreferrer</b>.
 
-Send me your resume (PDF, Word or text) and I will:
+Send me your resume (PDF, Word, ODT, RTF, text, or even a photo of it) and I will:
 • search dozens of job boards for roles with <b>visa sponsorship and relocation</b>
 • write a <b>tailored cover letter and recruiter message</b> for each job
 • list matching <b>freelance</b> projects
@@ -74,7 +75,8 @@ Send me your resume (PDF, Word or text) and I will:
     working: '⏳ Got it. Reading your resume and searching job boards… (1–3 minutes)',
     busy: 'A search is already running for you, please wait.',
     noResume: 'Send your resume first (PDF/DOCX file or text).',
-    unreadable: 'I could not read enough text. If it is a scanned PDF, send a Word or text version.',
+    received: '📥 Resume received. Reading it and searching job boards… (1–3 minutes)',
+    tooLarge: 'The file is too large (max 20 MB). Send a smaller file or a PDF.',
     saved: '✅ Saved.',
     forgot: '🗑 Your resume and settings were deleted.',
     dailyOn: '🔔 Daily digest on. I will send new matches every day.',
@@ -87,16 +89,16 @@ Send me your resume (PDF, Word or text) and I will:
   },
 };
 
-async function loadState() {
+export async function loadState() {
   try {
-    state = JSON.parse(await readFile(STATE_FILE, 'utf8'));
+    state = JSON.parse(await readFile(stateFile(), 'utf8'));
   } catch {
     state = { users: {} };
   }
 }
 async function saveState() {
   await mkdir(config.cacheDir, { recursive: true });
-  await writeFile(STATE_FILE, JSON.stringify(state));
+  await writeFile(stateFile(), JSON.stringify(state));
 }
 
 function user(chatId) {
@@ -141,7 +143,7 @@ async function search(chatId, { onlyNew = false, quiet = false } = {}) {
   }
 }
 
-async function handleMessage(msg) {
+export async function handleMessage(msg) {
   const chatId = msg.chat.id;
   const u = user(chatId);
   const tx = TEXT[u.lang] ?? TEXT.fa;
@@ -189,15 +191,21 @@ async function handleMessage(msg) {
       break;
   }
 
-  if (msg.document) {
-    const doc = msg.document;
-    if (doc.file_size > 10 * 1024 * 1024) return sendMessages(chatId, [tx.unreadable]);
-    const buffer = await downloadFile(doc.file_id);
-    const resume = await extractText(buffer, doc.file_name ?? '');
-    if (resume.length < 80) return sendMessages(chatId, [tx.unreadable]);
-    u.resume = resume.slice(0, 30000);
+  // A resume file, or a photo of one (Telegram sends photos in several sizes; take the largest).
+  const file = msg.document ?? (msg.photo?.length ? { ...msg.photo.at(-1), file_name: 'resume.jpg' } : null);
+  if (file) {
+    if (file.file_size > 20 * 1024 * 1024) return sendMessages(chatId, [tx.tooLarge]);
+    await sendMessages(chatId, [tx.received]);
+    try {
+      const buffer = await downloadFile(file.file_id);
+      const resume = await loadResume(buffer, file.file_name ?? '');
+      u.resume = resume.text.slice(0, 30000);
+    } catch (err) {
+      if (!err.code) throw err;
+      return sendMessages(chatId, [resumeErrorMessage(err, u.lang)]);
+    }
     await saveState();
-    return search(chatId);
+    return search(chatId, { quiet: true });
   }
   if (text.length > 300 && !text.startsWith('/')) {
     u.resume = text.slice(0, 30000);
@@ -207,7 +215,7 @@ async function handleMessage(msg) {
   return sendMessages(chatId, [tx.welcome]);
 }
 
-async function handleCallback(cb) {
+export async function handleCallback(cb) {
   const chatId = cb.message.chat.id;
   await tg('answerCallbackQuery', { callback_query_id: cb.id }).catch(() => {});
   const m = cb.data?.match(/^pitch:(\d+)$/);

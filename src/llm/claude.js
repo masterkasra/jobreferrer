@@ -103,8 +103,26 @@ export function extractProfile({ text, pdf }) {
 - strengths: 3-6 selling points backed by the resume (numbers and achievements if present).
 - freelanceServices: 3-5 concrete services this person could sell on freelance platforms.
 - Use empty strings for missing contact fields and 0 for unknown years.
+- The resume may be written in Persian or another language: always write titles, skills, queries, summary and strengths in English.
 ${pdf ? '' : `\n<resume>\n${text}\n</resume>`}`;
     return { ...(await callJson({ prompt, schema: PROFILE_SCHEMA, documents })), source: 'claude' };
+  });
+}
+
+const TRANSCRIPT_SCHEMA = obj({ text: str });
+
+/**
+ * Read a resume that has no text layer (photo, screenshot, scanned PDF) and
+ * return its full text. Returns null when Claude is unavailable or fails.
+ */
+export function transcribeResume({ image, pdf }) {
+  return safe('transcribe', async () => {
+    const documents = image
+      ? [{ type: 'image', source: { type: 'base64', media_type: image.mediaType, data: image.data.toString('base64') } }]
+      : [{ type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: pdf.toString('base64') } }];
+    const prompt = `The attached ${image ? 'image' : 'PDF'} is a resume/CV (possibly a photo or scan, possibly in Persian or another language). Transcribe all of its text faithfully in reading order, one line per line of the original, keeping the original language, names, dates, numbers, emails and links. If it is not a resume, return an empty string.`;
+    const out = await callJson({ prompt, schema: TRANSCRIPT_SCHEMA, documents, effort: 'low', maxTokens: 16000 });
+    return out.text.trim();
   });
 }
 

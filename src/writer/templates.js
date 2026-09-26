@@ -7,7 +7,6 @@ import { COUNTRIES } from '../immigration/countries.js';
 import { salaryCheck } from '../immigration/advisor.js';
 
 const list = (items) => (items.length <= 1 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`);
-const firstName = (name) => (name || '').split(/\s+/)[0] || '';
 
 export function templatePitch(job, profile, lang = 'fa') {
   const skills = (job.matchedSkills.length ? job.matchedSkills : profile.skills).slice(0, 3);
@@ -18,7 +17,9 @@ export function templatePitch(job, profile, lang = 'fa') {
   const mobility = job.signals.remote
     ? `I work fully remotely across time zones and I'm also open to relocating${where ? ` to ${where}` : ''} if the role requires it.`
     : `I'm ready to relocate${where ? ` to ${where}` : ''} and would need visa sponsorship${route ? ` (the ${route} route fits this role)` : ''}. I can start the paperwork immediately and I'm flexible on the start date.`;
-  const strengths = (profile.strengths?.length ? profile.strengths : skills.map((s) => `Production experience with ${s}`)).slice(0, 2);
+  // Letters are in English: skip achievements written in Persian/Arabic script (offline mode keeps them as-is).
+  const latin = (profile.strengths ?? []).filter((x) => !/[\u0600-\u06FF]/.test(x));
+  const strengths = (latin.length ? latin : skills.map((x) => `Production experience with ${x}`)).slice(0, 2);
 
   const coverLetter = [
     `Dear ${company} hiring team,`,
@@ -34,7 +35,7 @@ export function templatePitch(job, profile, lang = 'fa') {
     "I'd welcome a short call to discuss how I can help your team. Thank you for your time.",
     '',
     'Best regards,',
-    profile.name || '[Your name]',
+    /[\u0600-\u06FF]/.test(profile.name || '') || !profile.name ? '[Your name in English]' : profile.name,
     [profile.email, ...(profile.links ?? []).slice(0, 2)].filter(Boolean).join(' | '),
   ].join('\n');
 
@@ -45,7 +46,7 @@ export function templatePitch(job, profile, lang = 'fa') {
     fitSummary: '',
     coverLetter,
     recruiterMessage,
-    emailSubject: `${job.title} — ${profile.name || firstName(profile.name) || 'Application'} (${years}, ${job.signals.remote ? 'remote' : 'open to relocation'})`,
+    emailSubject: `${job.title} — ${profile.name && !/[\u0600-\u06FF]/.test(profile.name) ? profile.name : 'Application'} (${years}, ${job.signals.remote ? 'remote' : 'open to relocation'})`,
     missingKeywords: job.missingSkills.slice(0, 6),
     tips: templateTips(job, profile, lang),
     interviewQuestions: interviewQuestions(profile.roleFamily),
@@ -87,7 +88,7 @@ export function freelanceProposal(job, profile) {
     '2. Deliver a first working milestone quickly so you can give feedback early.',
     '3. Finish, test and hand over with clear documentation.',
     '',
-    `Relevant work: ${(profile.strengths ?? []).slice(0, 2).join('; ') || 'portfolio available on request'}.`,
+    `Relevant work: ${(profile.strengths ?? []).filter((x) => !/[\u0600-\u06FF]/.test(x)).slice(0, 2).join('; ') || 'portfolio available on request'}.`,
     'I can start right away. Happy to answer any questions.',
   ].join('\n');
 }
