@@ -37,6 +37,7 @@ async function fetchJobs(q) {
     try {
       const url = `https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/${path}?was=${encodeURIComponent(q)}&angebotsart=1&size=50&page=1`;
       const data = await getJson(url, { retries: 0, headers: { 'X-API-Key': 'jobboerse-jobsuche' } });
+      if (process.env.JOBREFERRER_DEBUG) console.warn(`[arbeitsagentur] ${path}?was=${q} → ${JSON.stringify(data).slice(0, 400)}`);
       if (!Array.isArray(data?.stellenangebote)) {
         // Newer versions may omit the key when there are no hits; remember and keep trying.
         empty ??= { stellenangebote: [] };
